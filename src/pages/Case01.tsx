@@ -6,15 +6,26 @@ export function Case01() {
     const [fromStart, setFromStart] = React.useState(false);
     const [started, setStarted] = React.useState(false);
     const [auto, setAuto] = React.useState(false);
+    const [dots, setDots] = React.useState<number[]>([]);
 
     const [containerRef, { width: containerWidth }] = useMeasure<HTMLDivElement>();
     const [elementRef, { width: elementWidth }] = useMeasure<HTMLDivElement>();
 
     const bind = useSpring({
         x: fromStart ? containerWidth - elementWidth - 2 : 0,
-        config: { ...config.wobbly, mass: .2, clamp: true },
-        onChange: ({value}) => {
-            !auto && console.log('frame', value.x.toFixed(0));
+        loop: { reverse: true },
+        config: {
+            ...config.wobbly,
+            mass: .2,
+            clamp: true,
+            //duration: 2000
+        },
+        onStart: () => {
+            setDots([]);
+        },
+        onChange: ({ value }) => {
+            //!auto && console.log('frame', value.x.toFixed(0));
+            setDots([...dots, value.x]);
         },
         onRest: () => {
             if (auto) {
@@ -61,6 +72,11 @@ export function Case01() {
                     className="w-32 h-20 border rounded-md bg-purple-400/50 border-purple-800"
                 >
                 </a.div>
+            </div>
+            <div className="relative">
+                {dots.map((dot, idx) => (
+                    <div className={`absoulte left-[${dot}] top-0 w-4 h-4 rounded-full bg-green-400`} key={idx}></div>
+                ))}
             </div>
         </div>
     );
