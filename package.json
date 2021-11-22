@@ -3,10 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "serve": "vite preview"
   },
   "dependencies": {
+    "@react-spring/web": "^9.3.0",
     "react": "^17.0.0",
     "react-dom": "^17.0.0"
   },
