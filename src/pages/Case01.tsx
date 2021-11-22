@@ -15,10 +15,10 @@ export function Case01() {
         config: { ...config.wobbly, mass: .2, clamp: true },
         onRest: () => {
             auto && setRunning(!running);
-            !auto && setRunning(false);
+            !auto && setStarted(false);
         }
     });
-    
+
     return (
         <div className="w-full h-96 grid grid-rows-[auto,minmax(0,1fr)] bg-red-400">
             <div className="flex justify-end space-x-4">

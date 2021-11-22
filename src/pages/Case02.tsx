@@ -27,12 +27,12 @@ export function Case02() {
                     />
                     <span className="select-none">auto reset animation</span>
                 </label>
-                <button className="px-4 py-2 bg-red-400 border border-red-800 rounded active:scale-[.97]"
+                <button className="px-4 py-2 w-16 bg-red-400 border border-red-800 rounded active:scale-[.97]"
                     onClick={() => {
                         setRunning(!running);
                     }}
                 >
-                    Run
+                    {running ? 'Stop' : 'Run'}
                 </button>
             </div>
             <div ref={containerRef} className="mt-4 p-1 border border-dotted">
