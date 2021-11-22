@@ -13,6 +13,9 @@ export function Case01() {
     const bind = useSpring({
         x: fromStart ? containerWidth - elementWidth - 2 : 0,
         config: { ...config.wobbly, mass: .2, clamp: true },
+        onChange: ({value}) => {
+            !auto && console.log('frame', value.x.toFixed(0));
+        },
         onRest: () => {
             if (auto) {
                 setFromStart(!fromStart);
