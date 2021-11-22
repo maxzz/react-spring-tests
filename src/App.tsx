@@ -5,9 +5,11 @@ function Case01() {
     const [open, setOpen] = useState(false);
     return (
         <div className="w-full h-96 grid grid-rows-[auto,minmax(0,1fr)] bg-red-400">
-            <button className="px-4 py-2 bg-red-400 border border-red-800 rounded" onClick={() => setOpen(!open)}>
-                <div className="active:scale-[.97] active:font-bold">Run</div>
-            </button>
+            <div className="flex justify-end">
+                <button className="px-4 py-2 bg-red-400 border border-red-800 rounded active:scale-[.97]" onClick={() => setOpen(!open)}>
+                    Run
+                </button>
+            </div>
             {open &&
                 <div className="">
                 </div>
