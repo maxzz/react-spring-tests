@@ -3,24 +3,23 @@ import { a, config, useSpring } from '@react-spring/web';
 import { useMeasure } from 'react-use';
 
 export function Case01() {
-    const [moving, setMoving] = React.useState(false);
-    //const [started, setStarted] = React.useState(false);
+    const [fromStart, setFromStart] = React.useState(false);
+    const [started, setStarted] = React.useState(false);
     const [auto, setAuto] = React.useState(false);
 
     const [containerRef, { width: containerWidth }] = useMeasure<HTMLDivElement>();
     const [elementRef, { width: elementWidth }] = useMeasure<HTMLDivElement>();
 
     const bind = useSpring({
-        x: moving ? containerWidth - elementWidth - 2 : 0,
-        loop: true,
+        x: fromStart ? containerWidth - elementWidth - 2 : 0,
         config: { ...config.wobbly, mass: .2, clamp: true },
         onRest: () => {
-            //auto && setMoving(!moving);
-            // if (!auto) {
-            //     setMoving(false);
-            // } else {
-            //     setMoving(!moving);
-            // }
+            if (auto) {
+                setFromStart(!fromStart);
+                setStarted(true);
+            } else {
+                setStarted(false);
+            }
         }
     });
 
@@ -32,31 +31,24 @@ export function Case01() {
                         className="w-4 h-4 form-checkbox text-red-600 bg-red-300 red-ring rounded"
                         type="checkbox"
                         checked={auto}
-                        onChange={(event) => {
-                            // setMoving(event.target.checked);
-                            setAuto(event.target.checked);
-                            // setStarted(event.target.checked);
-                        }}
+                        onChange={(event) => setAuto(event.target.checked)}
                     />
                     <span className="select-none">auto reset animation</span>
                 </label>
-                <button className="px-4 py-2 w-16 bg-red-400 border border-red-800 rounded active:scale-[.97]"
+                <button
+                    className="px-4 py-2 w-16 bg-red-400 border border-red-800 rounded active:scale-[.97]"
                     onClick={() => {
-                        // if (auto) {
-                        //     if (started) {
-                        //         setMoving(false);
-                        //     }
-                        // } else {
-                        //     if (!started) {
-                        //         setMoving(true);
-                        //     }
-                        // }
-                        setMoving(!moving);
-                        // auto && setStarted(!started);
+                        if (started) {
+                            setFromStart(!fromStart);
+                            setStarted(false);
+                            setAuto(false);
+                        } else {
+                            setFromStart(!fromStart);
+                            setStarted(true);
+                        }
                     }}
                 >
-                    {/* {started && auto ? 'Stop' : 'Run'} */}
-                    {auto ? 'Stop' : 'Run'}
+                    {started ? 'Stop' : 'Run'}
                 </button>
             </div>
             <div ref={containerRef} className="mt-4 p-1 border border-dotted">
