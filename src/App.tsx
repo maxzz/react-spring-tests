@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import './App.css';
 
+const sharedStyles = {
+    btn: {
+        className: "px-4 py-2 bg-red-400 border border-red-800 rounded"
+    }
+}
+
 function Case01() {
     const [open, setOpen] = useState(false);
     const className="px-4 py-2 bg-red-400 border border-red-800 rounded";
