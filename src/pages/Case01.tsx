@@ -3,7 +3,7 @@ import { a, config, useSpring } from '@react-spring/web';
 import { useMeasure } from 'react-use';
 
 export function Case01() {
-    const [running, setRunning] = React.useState(false);
+    const [moving, setMoving] = React.useState(false);
     const [started, setStarted] = React.useState(false);
     const [auto, setAuto] = React.useState(false);
 
@@ -11,10 +11,10 @@ export function Case01() {
     const [elementRef, { width: elementWidth }] = useMeasure<HTMLDivElement>();
 
     const bind = useSpring({
-        x: running ? containerWidth - elementWidth - 2 : 0,
+        x: moving ? containerWidth - elementWidth - 2 : 0,
         config: { ...config.wobbly, mass: .2, clamp: true },
         onRest: () => {
-            auto && setRunning(!running);
+            auto && setMoving(!moving);
             !auto && setStarted(false);
         }
     });
@@ -25,14 +25,29 @@ export function Case01() {
                 <label className="self-end text-sm flex items-center space-x-1">
                     <input
                         className="w-4 h-4 form-checkbox text-red-600 bg-red-300 red-ring rounded"
-                        type="checkbox" checked={auto} onChange={(event) => setAuto(event.target.checked)}
+                        type="checkbox"
+                        checked={auto}
+                        onChange={(event) => {
+                            setMoving(event.target.checked);
+                            setAuto(event.target.checked);
+                            setStarted(event.target.checked);
+                        }}
                     />
                     <span className="select-none">auto reset animation</span>
                 </label>
                 <button className="px-4 py-2 w-16 bg-red-400 border border-red-800 rounded active:scale-[.97]"
                     onClick={() => {
-                        setRunning(!running);
-                        auto && setStarted(!started);
+                        if (auto) {
+                            if (started) {
+                                setMoving(false);
+                            }
+                        } else {
+                            if (!started) {
+                                setMoving(true);
+                            }
+                        }
+                        // setMoving(!moving);
+                        // auto && setStarted(!started);
                     }}
                 >
                     {started && auto ? 'Stop' : 'Run'}
