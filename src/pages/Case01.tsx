@@ -18,8 +18,11 @@ export function Case01() {
         <div className="w-full h-96 grid grid-rows-[auto,minmax(0,1fr)] bg-red-400">
             <div className="flex justify-end space-x-4">
                 <label className="self-end text-sm flex items-center space-x-1">
-                    <input className="w-4 h-4" type="checkbox" checked={auto} onChange={(event) => setAuto(event.target.checked)} />
-                    <span className="">auto reset animation</span>
+                    <input
+                        className="w-4 h-4 form-checkbox text-red-600 bg-red-300 focus:bg-red-300 focus:ring-red-600 focus:ring-offset-red-200 rounded"
+                        type="checkbox" checked={auto} onChange={(event) => setAuto(event.target.checked)}
+                    />
+                    <span className="select-none">auto reset animation</span>
                 </label>
                 <button className="px-4 py-2 bg-red-400 border border-red-800 rounded active:scale-[.97]"
                     onClick={() => {
