@@ -43,6 +43,8 @@ export function Case01() {
 
     return (
         <div className="w-full h-96 grid grid-rows-[auto,minmax(0,1fr)] bg-red-400">
+
+            {/* Controls */}
             <div className="flex justify-end space-x-4">
                 <label className="self-end text-sm flex items-center space-x-1">
                     <input
@@ -70,6 +72,7 @@ export function Case01() {
                 </button>
             </div>
 
+            {/* Scene */}
             <div ref={containerRef} className="mt-4 p-1 border border-dotted">
                 <a.div
                     ref={elementRef}

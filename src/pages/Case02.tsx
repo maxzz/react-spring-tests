@@ -11,7 +11,11 @@ export function Case02() {
 
     const bind = useSpring({
         x: running ? containerWidth - elementWidth - 2 : 0,
-        config: { ...config.wobbly, mass: .2, clamp: true },
+        config: {
+            ...config.wobbly,
+            mass: .2,
+            clamp: true
+        },
         onRest: () => {
             auto && setRunning(!running);
         }
@@ -19,6 +23,8 @@ export function Case02() {
 
     return (
         <div className="w-full h-96 grid grid-rows-[auto,minmax(0,1fr)] bg-red-400">
+
+            {/* Controls */}
             <div className="flex justify-end space-x-4">
                 <label className="self-end text-sm flex items-center space-x-1">
                     <input
@@ -35,16 +41,15 @@ export function Case02() {
                     {running ? 'Stop' : 'Run'}
                 </button>
             </div>
+
+            {/* Scene */}
             <div ref={containerRef} className="mt-4 p-1 border border-dotted">
                 <a.div
                     ref={elementRef}
-                    style={{ 
+                    style={{
                         ...bind,
-                        width: bind.x.to({
-                            range: [0, 1],
-                            output: [.2, 3],
-                        })
-                     }}
+                        width: bind.x.to({ range: [0, 1], output: [0, 3], })
+                    }}
                     className="w-32 h-20 border rounded-md bg-purple-400/50 border-purple-800"
                 >
                 </a.div>
