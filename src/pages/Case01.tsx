@@ -16,15 +16,19 @@ export function Case01() {
         loop: { reverse: true },
         config: {
             ...config.wobbly,
-            mass: .2,
+            //mass: .2,
             clamp: true,
             //duration: 2000
         },
         onStart: () => {
+            console.log('start');
+
             setDots([]);
         },
         onChange: ({ value }) => {
             //!auto && console.log('frame', value.x.toFixed(0));
+            console.log('dots', dots);
+
             setDots([...dots, value.x]);
         },
         onRest: () => {
@@ -65,6 +69,7 @@ export function Case01() {
                     {started ? 'Stop' : 'Run'}
                 </button>
             </div>
+
             <div ref={containerRef} className="mt-4 p-1 border border-dotted">
                 <a.div
                     ref={elementRef}
@@ -72,11 +77,12 @@ export function Case01() {
                     className="w-32 h-20 border rounded-md bg-purple-400/50 border-purple-800"
                 >
                 </a.div>
-            </div>
-            <div className="relative">
-                {dots.map((dot, idx) => (
-                    <div className={`absoulte left-[${dot}] top-0 w-4 h-4 rounded-full bg-green-400`} key={idx}></div>
-                ))}
+
+                <div className="relative">
+                    {dots.map((dot, idx) => (
+                        <div className={`absoulte left-[${dot}] top-0 w-4 h-4 border border-gray-700 rounded-full bg-gray-400/50`} key={idx}></div>
+                    ))}
+                </div>
             </div>
         </div>
     );
