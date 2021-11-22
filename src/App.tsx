@@ -1,18 +1,11 @@
 import React, { useState } from 'react';
 import './App.css';
 
-const sharedStyles = {
-    btn: {
-        className: "px-4 py-2 bg-red-400 border border-red-800 rounded"
-    }
-}
-
 function Case01() {
     const [open, setOpen] = useState(false);
-    const className="px-4 py-2 bg-red-400 border border-red-800 rounded";
     return (
-        <div className="h-96 grid grid-rows-[auto,minmax(0,1fr)] bg-red-400">
-            <button className={className} onClick={() => setOpen(!open)}>
+        <div className="w-full h-96 grid grid-rows-[auto,minmax(0,1fr)] bg-red-400">
+            <button className="px-4 py-2 bg-red-400 border border-red-800 rounded" onClick={() => setOpen(!open)}>
                 Open case 01
             </button>
             {open &&
@@ -27,7 +20,12 @@ function App() {
     return (
         <React.Fragment>
             <div className="h-screen grid place-items-center bg-[salmon] text-red-800">
-                <Case01 />
+                <div className="mx-4 grid grid-cols-[repeat(2,minmax(400px,1fr))] gap-4">
+                    <Case01 />
+                    <Case01 />
+                    <Case01 />
+                    <Case01 />
+                </div>
             </div>
         </React.Fragment>
     );
