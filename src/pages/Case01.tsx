@@ -4,7 +4,7 @@ import { useMeasure } from 'react-use';
 
 export function Case01() {
     const [moving, setMoving] = React.useState(false);
-    const [started, setStarted] = React.useState(false);
+    //const [started, setStarted] = React.useState(false);
     const [auto, setAuto] = React.useState(false);
 
     const [containerRef, { width: containerWidth }] = useMeasure<HTMLDivElement>();
@@ -12,10 +12,15 @@ export function Case01() {
 
     const bind = useSpring({
         x: moving ? containerWidth - elementWidth - 2 : 0,
+        loop: true,
         config: { ...config.wobbly, mass: .2, clamp: true },
         onRest: () => {
-            auto && setMoving(!moving);
-            !auto && setStarted(false);
+            //auto && setMoving(!moving);
+            // if (!auto) {
+            //     setMoving(false);
+            // } else {
+            //     setMoving(!moving);
+            // }
         }
     });
 
@@ -28,33 +33,38 @@ export function Case01() {
                         type="checkbox"
                         checked={auto}
                         onChange={(event) => {
-                            setMoving(event.target.checked);
+                            // setMoving(event.target.checked);
                             setAuto(event.target.checked);
-                            setStarted(event.target.checked);
+                            // setStarted(event.target.checked);
                         }}
                     />
                     <span className="select-none">auto reset animation</span>
                 </label>
                 <button className="px-4 py-2 w-16 bg-red-400 border border-red-800 rounded active:scale-[.97]"
                     onClick={() => {
-                        if (auto) {
-                            if (started) {
-                                setMoving(false);
-                            }
-                        } else {
-                            if (!started) {
-                                setMoving(true);
-                            }
-                        }
-                        // setMoving(!moving);
+                        // if (auto) {
+                        //     if (started) {
+                        //         setMoving(false);
+                        //     }
+                        // } else {
+                        //     if (!started) {
+                        //         setMoving(true);
+                        //     }
+                        // }
+                        setMoving(!moving);
                         // auto && setStarted(!started);
                     }}
                 >
-                    {started && auto ? 'Stop' : 'Run'}
+                    {/* {started && auto ? 'Stop' : 'Run'} */}
+                    {auto ? 'Stop' : 'Run'}
                 </button>
             </div>
             <div ref={containerRef} className="mt-4 p-1 border border-dotted">
-                <a.div ref={elementRef} style={{ ...bind }} className="w-32 h-20 border rounded-md bg-purple-400/50 border-purple-800">
+                <a.div
+                    ref={elementRef}
+                    style={{ ...bind }}
+                    className="w-32 h-20 border rounded-md bg-purple-400/50 border-purple-800"
+                >
                 </a.div>
             </div>
         </div>
