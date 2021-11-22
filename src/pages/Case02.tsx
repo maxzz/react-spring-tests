@@ -2,7 +2,7 @@ import React from 'react';
 import { a, config, useSpring } from '@react-spring/web';
 import { useMeasure } from 'react-use';
 
-export function Case01() {
+export function Case02() {
     const [running, setRunning] = React.useState(false);
     const [auto, setAuto] = React.useState(false);
     const [containerRef, { width: containerWidth }] = useMeasure<HTMLDivElement>();
