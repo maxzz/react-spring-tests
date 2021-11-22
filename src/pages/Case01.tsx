@@ -11,7 +11,6 @@ export function Case01() {
         x: running ? containerWidth - elementWidth - 2 : 0,
         config: { ...config.wobbly, mass: .2, clamp: true },
         onRest: () => {
-            console.log('done');
             auto && setRunning(!running);
         }
     });
@@ -20,7 +19,7 @@ export function Case01() {
             <div className="flex justify-end space-x-4">
                 <label className="self-end text-sm flex items-center space-x-1">
                     <input className="w-4 h-4" type="checkbox" checked={auto} onChange={(event) => setAuto(event.target.checked)} />
-                    <span className="">auto</span>
+                    <span className="">auto reset animation</span>
                 </label>
                 <button className="px-4 py-2 bg-red-400 border border-red-800 rounded active:scale-[.97]"
                     onClick={() => {
