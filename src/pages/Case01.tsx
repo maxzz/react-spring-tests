@@ -7,6 +7,7 @@ export function Case01() {
     const [started, setStarted] = React.useState(false);
     const [auto, setAuto] = React.useState(false);
     const [dots, setDots] = React.useState<number[]>([]);
+    const dotsRaw = React.useRef<number[]>([]);
 
     const [containerRef, { width: containerWidth }] = useMeasure<HTMLDivElement>();
     const [elementRef, { width: elementWidth }] = useMeasure<HTMLDivElement>();
@@ -23,13 +24,13 @@ export function Case01() {
         onStart: () => {
             console.log('start');
 
-            setDots([]);
+            dotsRaw.current = [];
         },
         onChange: ({ value }) => {
             //!auto && console.log('frame', value.x.toFixed(0));
-            console.log('dots', dots);
+            console.log('dots', dotsRaw);
 
-            setDots([...dots, value.x]);
+            dotsRaw.current.push(value.x);
         },
         onRest: () => {
             if (auto) {
@@ -37,6 +38,7 @@ export function Case01() {
                 setStarted(true);
             } else {
                 setStarted(false);
+                setDots(dotsRaw.current);
             }
         }
     });
