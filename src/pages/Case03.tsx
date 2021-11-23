@@ -9,6 +9,7 @@ export function Case03() {
     const [elementRef, { width: elementWidth }] = useMeasure<HTMLDivElement>();
 
     const bind = useSpring({
+        //x: containerWidth - elementWidth,
         x: running ? containerWidth - elementWidth - 2 : 0,
         config: {
             ...config.wobbly,
@@ -17,7 +18,7 @@ export function Case03() {
         },
         onRest: () => {
         }
-    });
+    }, [running]);
 
     return (
         <div className="w-full h-96 grid grid-rows-[auto,minmax(0,1fr)] bg-red-400">
