@@ -48,11 +48,11 @@ export function Case02() {
                     ref={elementRef}
                     style={{
                         ...bind,
-                        width: bind.x.to({ range: [0, 1], output: [0, 2], })
+                        width: bind.x.to({ range: [0, 1], output: [0.6, 2], })
                     }}
                     className="w-32 h-20"
                 >
-                    <div className="h-full border rounded-md bg-purple-400/50 border-purple-800"></div>
+                    <div className="h-full border-4 rounded-md bg-purple-400/50 border-purple-800">aaa</div>
                 </a.div>
             </div>
         </div>
