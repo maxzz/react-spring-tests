@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { Case01 } from './pages/Case01';
 import { Case02 } from './pages/Case02';
+import { Case03 } from './pages/Case03';
 import { Case0X } from './pages/Case0X';
 
 function App() {
@@ -11,7 +12,7 @@ function App() {
                 <div className="mx-4 grid grid-cols-[repeat(2,minmax(400px,1fr))] gap-4">
                     <Case01 />
                     <Case02 />
-                    <Case0X />
+                    <Case03 />
                     <Case0X />
                 </div>
             </div>
