@@ -50,8 +50,9 @@ export function Case02() {
                         ...bind,
                         width: bind.x.to({ range: [0, 1], output: [0, 2], })
                     }}
-                    className="w-32 h-20 border rounded-md bg-purple-400/50 border-purple-800"
+                    className="w-32 h-20"
                 >
+                    <div className="h-full border rounded-md bg-purple-400/50 border-purple-800"></div>
                 </a.div>
             </div>
         </div>
