@@ -13,8 +13,8 @@ export function Case02() {
         x: running ? containerWidth - elementWidth - 2 : 0,
         config: {
             ...config.wobbly,
-            mass: .2,
-            clamp: true
+            mass: 2,
+            clamp: true,
         },
         onRest: () => {
             auto && setRunning(!running);
@@ -48,7 +48,7 @@ export function Case02() {
                     ref={elementRef}
                     style={{
                         ...bind,
-                        width: bind.x.to({ range: [0, 1], output: [0, 3], })
+                        width: bind.x.to({ range: [0, 1], output: [0, 2], })
                     }}
                     className="w-32 h-20 border rounded-md bg-purple-400/50 border-purple-800"
                 >
