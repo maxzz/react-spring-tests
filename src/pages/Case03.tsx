@@ -8,6 +8,8 @@ export function Case03() {
     const [containerRef, { width: containerWidth }] = useMeasure<HTMLDivElement>();
     const [elementRef, { width: elementWidth }] = useMeasure<HTMLDivElement>();
 
+    console.log('Container,child', containerWidth.toFixed(0), elementWidth.toFixed(0));
+
     const bind = useSpring({
         x: running ? containerWidth - elementWidth - 2 : 0,
         config: {
@@ -20,12 +22,13 @@ export function Case03() {
     });
 
     return (
-        <div className="w-full h-96 grid grid-rows-[auto,minmax(0,1fr)] bg-red-400">
+        <div className="w-full h-96 grid grid-rows-[auto,minmax(0,1fr)] max-w-full bg-red-400">
 
             {/* Controls */}
             <div className="flex justify-end space-x-4">
                 <button className="px-4 py-2 w-16 bg-red-400 border border-red-800 rounded active:scale-[.97]"
                     onClick={() => {
+                        console.log('Container,child ---------- click', containerWidth.toFixed(0), elementWidth.toFixed(0));
                         setRunning(!running);
                     }}
                 >
