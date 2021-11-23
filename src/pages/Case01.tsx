@@ -85,7 +85,11 @@ export function Case01() {
 
                 <div className="relative">
                     {dots.map((dot, idx) => (
-                        <div className={`absolute left-[${idx * 10}px] top-[${dot}px] w-4 h-4 border border-gray-700 rounded-full bg-gray-400/50`} key={idx}></div>
+                        <div
+                            className={`absolute w-4 h-4 border border-gray-700 rounded-full bg-gray-400/50`}
+                            style={{ left: `${idx * 10}px`, top: `${dot}px` }}
+                            key={idx}>
+                        </div>
                     ))}
                 </div>
             </div>
