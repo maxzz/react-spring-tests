@@ -18,17 +18,17 @@ export function Case01() {
         config: {
             ...config.wobbly,
             //mass: .2,
-            clamp: true,
+            mass: .01,
+            //clamp: true,
             //duration: 2000
         },
-        onStart: () => {
-            console.log('start');
+        onStart: (value, ctrl) => {
+            console.log('start', value, ctrl);
 
             dotsRaw.current = [];
         },
         onChange: ({ value }) => {
-            //!auto && console.log('frame', value.x.toFixed(0));
-            console.log('dots', dotsRaw);
+            !auto && console.log('frame value', value.x.toFixed(0), dotsRaw.current.map(_ => _.toFixed(0)));
 
             dotsRaw.current.push(value.x);
         },
@@ -85,7 +85,7 @@ export function Case01() {
 
                 <div className="relative">
                     {dots.map((dot, idx) => (
-                        <div className={`absoulte left-[${dot}] top-0 w-4 h-4 border border-gray-700 rounded-full bg-gray-400/50`} key={idx}></div>
+                        <div className={`absolute left-[${idx * 10}px] top-[${dot}px] w-4 h-4 border border-gray-700 rounded-full bg-gray-400/50`} key={idx}></div>
                     ))}
                 </div>
             </div>
