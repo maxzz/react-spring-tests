@@ -30,9 +30,9 @@ export function Case01() {
             //!auto && console.log('frame value', value.x.toFixed(0), dotsRaw.current.map(_ => _.toFixed(0)));
             dotsRaw.current.push(value.x);
         },
-        onProps: (...args) => {
-            console.log('props', args)
-        },
+        // onProps: (...args) => {
+        //     console.log('props', args)
+        // },
         onRest: () => {
             if (auto) {
                 setFromStart(!fromStart);
@@ -89,7 +89,9 @@ export function Case01() {
                         <div
                             className={`absolute w-4 h-4 border border-gray-700 rounded-full bg-gray-400/50`}
                             style={{ left: `${idx * 14}px`, top: `${dot}px` }}
-                            key={idx}>
+                            key={idx}
+                        >
+                            <div className="text-[.55rem]">{idx}</div>
                         </div>
                     ))}
                 </div>
