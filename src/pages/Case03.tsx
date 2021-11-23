@@ -14,7 +14,7 @@ export function Case03() {
 
     const bind = useSpring({
         // x: running ? containerWidth - elementWidth - 2 : 0,
-        x: running ? containerWidth - 128 - 2 : 0,
+        x: running ? 1 : 0,
         config: {
             ...config.wobbly,
             mass: 2,
@@ -25,7 +25,7 @@ export function Case03() {
     });
 
     return (
-        <div className="w-full h-96 grid grid-rows-[auto,minmax(0,1fr)] bg-red-400">
+        <div className="w-full h-96 grid grid-rows-[auto,minmax(0,1fr)] grid-cols-1 bg-red-400">
 
             {/* Controls */}
             <div className="flex justify-end space-x-4">
@@ -41,14 +41,14 @@ export function Case03() {
             </div>
 
             {/* Scene */}
-            <div ref={containerRef} className="mt-4 p-1 border border-dotted">
+            <div ref={containerRef} className="relative mt-4 p-1 border border-dotted">
                 <a.div
                     //ref={elementRef}
                     style={{
                         ...bind,
-                        width: bind.x.to({ range: [0, 1], output: [0, 2], })
+                        width: bind.x.to({ range: [0, 1], output: [0, 500], })
                     }}
-                    className="w-32 h-20 border rounded-md bg-purple-400/50 border-purple-800"
+                    className="w-32 h-20 absolute border rounded-md bg-purple-400/50 border-purple-800"
                 >
                 </a.div>
             </div>
