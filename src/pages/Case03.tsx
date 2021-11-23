@@ -4,7 +4,6 @@ import { useMeasure } from 'react-use';
 
 export function Case03() {
     const [running, setRunning] = React.useState(false);
-    const [auto, setAuto] = React.useState(false);
 
     const [containerRef, { width: containerWidth }] = useMeasure<HTMLDivElement>();
     const [elementRef, { width: elementWidth }] = useMeasure<HTMLDivElement>();
@@ -17,7 +16,6 @@ export function Case03() {
             clamp: true,
         },
         onRest: () => {
-            auto && setRunning(!running);
         }
     });
 
@@ -26,13 +24,6 @@ export function Case03() {
 
             {/* Controls */}
             <div className="flex justify-end space-x-4">
-                <label className="self-end text-sm flex items-center space-x-1">
-                    <input
-                        className="w-4 h-4 form-checkbox text-red-600 bg-red-300 red-ring rounded"
-                        type="checkbox" checked={auto} onChange={(event) => setAuto(event.target.checked)}
-                    />
-                    <span className="select-none">auto reset animation</span>
-                </label>
                 <button className="px-4 py-2 w-16 bg-red-400 border border-red-800 rounded active:scale-[.97]"
                     onClick={() => {
                         setRunning(!running);
