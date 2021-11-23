@@ -9,7 +9,7 @@ export function Case03() {
     const [elementRef, { width: elementWidth }] = useMeasure<HTMLDivElement>();
 
     const bind = useSpring({
-        x: () => running ? containerWidth - elementWidth - 2 : 0,
+        x: running ? containerWidth - elementWidth - 2 : 0,
         config: {
             ...config.wobbly,
             mass: 2,
