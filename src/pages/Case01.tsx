@@ -2,6 +2,20 @@ import React from 'react';
 import { a, config, useSpring } from '@react-spring/web';
 import { useMeasure } from 'react-use';
 
+export function SimpleChekbox({ label, value, onChange }: { label: string; value: boolean; onChange: (v: boolean) => void; }) {
+    return (
+        <label className="self-end text-sm flex items-center space-x-1">
+            <input
+                className="w-4 h-4 form-checkbox text-red-600 bg-red-300 red-ring rounded"
+                type="checkbox"
+                checked={value}
+                onChange={(event) => onChange(event.target.checked)}
+            />
+            <span className="select-none">auto reset animation</span>
+        </label>
+    );
+}
+
 export function Case01() {
     const [fromStart, setFromStart] = React.useState(false);
     const [started, setStarted] = React.useState(false);
@@ -49,15 +63,7 @@ export function Case01() {
 
             {/* Controls */}
             <div className="flex justify-end space-x-4">
-                <label className="self-end text-sm flex items-center space-x-1">
-                    <input
-                        className="w-4 h-4 form-checkbox text-red-600 bg-red-300 red-ring rounded"
-                        type="checkbox"
-                        checked={auto}
-                        onChange={(event) => setAuto(event.target.checked)}
-                    />
-                    <span className="select-none">auto reset animation</span>
-                </label>
+                <SimpleChekbox label="auto reset animation" value={auto} onChange={setAuto} />
                 <button
                     className="px-4 py-2 w-16 bg-red-400 border border-red-800 rounded active:scale-[.97]"
                     onClick={() => {
@@ -92,7 +98,7 @@ export function Case01() {
                             key={idx}
                         >
                             <div className="text-[.55rem] text-center">{idx}
-                            <div className="text-[.47rem]">{dot.toFixed(0)}</div>
+                                <div className="text-[.47rem]">{dot.toFixed(0)}</div>
                             </div>
                         </div>
                     ))}
