@@ -1,6 +1,7 @@
 import React from 'react';
 import { a, config, useSpring } from '@react-spring/web';
 import { useMeasure } from 'react-use';
+import SVGCatmullRomSpline from 'svg-catmull-rom-spline';
 
 function mapValueFromRangeToRange({ value, from, to }: { value: number; from: { min: number; max: number; }; to: { min: number; max: number; }; }): number {
     return (value - from.min) / (from.max - from.min) * (to.max - to.min) + to.min;
@@ -11,6 +12,7 @@ function mapValuesToContainerPoints(yValues: number[], containerWidth: number, c
     const maxValue = Math.max(...yValues);
 
     const points = yValues.map<[number, number]>((y, idx) => [idx / (yValues.length - 1) * (containerWidth - 16), mapValueToYCoord(y)]);
+    SVGCatmullRomSpline()
 
     return {
         points,
