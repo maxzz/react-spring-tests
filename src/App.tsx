@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Case01 } from './pages/Case01';
+import { Case01snapshot } from './pages/Case01snapshot';
 import { Case02 } from './pages/Case02';
 import { Case03 } from './pages/Case03';
 import { Case04 } from './pages/Case04';
@@ -15,6 +16,7 @@ function App() {
                     <Case02 />
                     <Case03 />
                     <Case04 />
+                    {/* <Case01snapshot /> */}
                 </div>
             </div>
         </React.Fragment>
