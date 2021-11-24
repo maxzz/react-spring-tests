@@ -2,18 +2,31 @@ import React from 'react';
 import { a, config, useSpring } from '@react-spring/web';
 import { useMeasure } from 'react-use';
 
-export function SimpleCheckbox({ label, value, onChange }: { label: string; value: boolean; onChange: (v: boolean) => void; }) {
-    return (
-        <label className="self-end text-sm flex items-center space-x-1">
-            <input
-                className="w-4 h-4 form-checkbox text-red-600 bg-red-300 red-ring rounded"
-                type="checkbox"
-                checked={value}
-                onChange={(event) => onChange(event.target.checked)}
-            />
-            <span className="select-none">{label}</span>
-        </label>
-    );
+function mapValueFromRangeToRange({ value, from, to }: { value: number; from: { min: number; max: number; }; to: { min: number; max: number; }; }): number {
+    return (value - from.min) / (from.max - from.min) * (to.max - to.min) + to.min;
+}
+
+function mapValuesToContainerPoints(yValues: number[], containerWidth: number, containerHeight: number) {
+    const minValue = Math.min(...yValues);
+    const maxValue = Math.max(...yValues);
+
+    const points = yValues.map((y, idx) => [idx / (yValues.length - 1) * containerWidth, mapValueToYCoord(y)]);
+
+    return {
+        points,
+        minValue,
+        maxValue,
+        yFrom: mapValueToYCoord(0),
+        yto: mapValueToYCoord(1),
+    };
+
+    function mapValueToYCoord(value: number): number {
+        return containerHeight - mapValueFromRangeToRange({
+            value,
+            from: { min: minValue, max: maxValue },
+            to: { min: containerHeight * 0.2, max: containerHeight * 0.8 }
+        });
+    }
 }
 
 export function Case01() {
@@ -114,5 +127,19 @@ export function Case01() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export function SimpleCheckbox({ label, value, onChange }: { label: string; value: boolean; onChange: (v: boolean) => void; }) {
+    return (
+        <label className="self-end text-sm flex items-center space-x-1">
+            <input
+                className="w-4 h-4 form-checkbox text-red-600 bg-red-300 red-ring rounded"
+                type="checkbox"
+                checked={value}
+                onChange={(event) => onChange(event.target.checked)}
+            />
+            <span className="select-none">{label}</span>
+        </label>
     );
 }
