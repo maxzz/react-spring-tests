@@ -39,6 +39,11 @@ export function Case01() {
 
     const [containerRef, { width: containerWidth }] = useMeasure<HTMLDivElement>();
     const [elementRef, { width: elementWidth }] = useMeasure<HTMLDivElement>();
+    const [displayRef, { width: displayWidth, height: displayHeight }] = useMeasure<HTMLDivElement>();
+
+    const display = React.useMemo(() => {
+        return mapValuesToContainerPoints(dots, displayWidth, displayHeight)
+    }, [dots, displayWidth, displayHeight]);
 
     const bind = useSpring({
         x: fromStart ? containerWidth - elementWidth - 2 : 0,
@@ -112,7 +117,7 @@ export function Case01() {
                 >
                 </a.div>
 
-                <div className="relative">
+                <div ref={displayRef} className="relative">
                     {dots.map((dot, idx) => (
                         <div
                             className={`absolute w-4 h-4 border border-gray-700 rounded-full bg-gray-400/50`}
