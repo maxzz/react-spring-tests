@@ -10,7 +10,7 @@ function mapValuesToContainerPoints(yValues: number[], containerWidth: number, c
     const minValue = Math.min(...yValues);
     const maxValue = Math.max(...yValues);
 
-    const points = yValues.map((y, idx) => [idx / (yValues.length - 1) * containerWidth, mapValueToYCoord(y)]);
+    const points = yValues.map<[number, number]>((y, idx) => [idx / (yValues.length - 1) * containerWidth, mapValueToYCoord(y)]);
 
     return {
         points,
@@ -42,7 +42,9 @@ export function Case01() {
     const [displayRef, { width: displayWidth, height: displayHeight }] = useMeasure<HTMLDivElement>();
 
     const display = React.useMemo(() => {
-        return mapValuesToContainerPoints(dots, displayWidth, displayHeight)
+        console.log(displayWidth, displayHeight);
+        
+        return mapValuesToContainerPoints(dots, displayWidth, displayHeight);
     }, [dots, displayWidth, displayHeight]);
 
     const bind = useSpring({
@@ -117,8 +119,19 @@ export function Case01() {
                 >
                 </a.div>
 
-                <div ref={displayRef} className="relative">
-                    {dots.map((dot, idx) => (
+                <div ref={displayRef} className="relative h-full bg-gray-50/20">
+                    {display.points.map(([x, y], idx) => (
+                        <div
+                            className={`absolute w-4 h-4 border border-gray-700 rounded-full bg-gray-400/50`}
+                            style={{ left: `${x}px`, top: `${y}px` }}
+                            key={idx}
+                        >
+                            <div className="text-[.55rem] text-center">{idx}
+                                <div className="text-[.47rem]">{y.toFixed(0)}</div>
+                            </div>
+                        </div>
+                    ))}
+                    {/* {dots.map((dot, idx) => (
                         <div
                             className={`absolute w-4 h-4 border border-gray-700 rounded-full bg-gray-400/50`}
                             style={{ left: `${idx * 14}px`, top: `${dot}px` }}
@@ -128,7 +141,7 @@ export function Case01() {
                                 <div className="text-[.47rem]">{dot.toFixed(0)}</div>
                             </div>
                         </div>
-                    ))}
+                    ))} */}
                 </div>
             </div>
         </div>
