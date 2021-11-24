@@ -1,6 +1,7 @@
 import React from 'react';
 import { a, config, useSpring } from '@react-spring/web';
 import { useMeasure } from 'react-use';
+import { SimpleChekbox } from './Case01';
 
 export function Case02() {
     const [running, setRunning] = React.useState(false);
@@ -26,13 +27,7 @@ export function Case02() {
 
             {/* Controls */}
             <div className="flex justify-end space-x-4">
-                <label className="self-end text-sm flex items-center space-x-1">
-                    <input
-                        className="w-4 h-4 form-checkbox text-red-600 bg-red-300 red-ring rounded"
-                        type="checkbox" checked={auto} onChange={(event) => setAuto(event.target.checked)}
-                    />
-                    <span className="select-none">auto reset animation</span>
-                </label>
+                <SimpleChekbox label="auto reset animation" value={auto} onChange={setAuto} />
                 <button className="px-4 py-2 w-16 bg-red-400 border border-red-800 rounded active:scale-[.97]"
                     onClick={() => {
                         setRunning(!running);
