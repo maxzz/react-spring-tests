@@ -33,7 +33,7 @@ export function Case01() {
         config: {
             ...config.wobbly,
             //mass: .2,
-            mass: wobbly ? 2 : .2,
+            mass: wobbly ? 2 : .2, // this change will not have effect during running animation
             //clamp: true,
             //duration: 2000
         },
@@ -63,9 +63,16 @@ export function Case01() {
         <div className="w-full h-96 grid grid-rows-[auto,minmax(0,1fr)] bg-red-400">
 
             {/* Controls */}
-            <div className="flex justify-end space-x-4">
-                <SimpleCheckbox label="wobbly" value={wobbly} onChange={setWobbly} />
-                <SimpleCheckbox label="auto reset animation" value={auto} onChange={setAuto} />
+            <div className="flex justify-between space-x-4">
+                <div className="ml-4 mt-2 flex flex-col">
+                    <div className="text-xs">
+                        container: {containerWidth.toFixed(0)} element: {elementWidth.toFixed(0)}
+                    </div>
+                    <div className="flex items-center space-x-4">
+                        <SimpleCheckbox label="wobbly" value={wobbly} onChange={setWobbly} />
+                        <SimpleCheckbox label="auto reset animation" value={auto} onChange={setAuto} />
+                    </div>
+                </div>
                 <button
                     className="px-4 py-2 w-16 bg-red-400 border border-red-800 rounded active:scale-[.97]"
                     onClick={() => {
