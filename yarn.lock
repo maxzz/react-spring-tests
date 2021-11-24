@@ -1546,6 +1546,11 @@ simple-swizzle@^0.2.2:
   dependencies:
     is-arrayish "^0.3.1"
 
+simplify-js@^1.2.1:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/simplify-js/-/simplify-js-1.2.4.tgz#7aab22d6df547ffd40ef0761ccd82b75287d45c7"
+  integrity sha512-vITfSlwt7h/oyrU42R83mtzFpwYk3+mkH9bOHqq/Qw6n8rtR7aE3NZQ5fbcyCUVVmuMJR6ynsAhOfK2qoah8Jg==
+
 source-map-js@^0.6.2:
   version "0.6.2"
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-0.6.2.tgz#0bb5de631b41cfbda6cfba8bd05a80efdfd2385e"
@@ -1618,6 +1623,13 @@ supports-color@^7.1.0:
   integrity sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==
   dependencies:
     has-flag "^4.0.0"
+
+svg-catmull-rom-spline@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/svg-catmull-rom-spline/-/svg-catmull-rom-spline-0.0.1.tgz#ae3bf714db19ad0a7657d76056c3da8b1856cfd8"
+  integrity sha1-rjv3FNsZrQp2V9dgVsPaixhWz9g=
+  dependencies:
+    simplify-js "^1.2.1"
 
 tailwindcss@^2.2.19:
   version "2.2.19"
