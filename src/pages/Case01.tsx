@@ -12,7 +12,7 @@ function mapValuesToContainerPoints(yValues: number[], containerWidth: number, c
     const maxValue = Math.max(...yValues);
 
     const points = yValues.map<[number, number]>((y, idx) => [idx / (yValues.length - 1) * (containerWidth - 16), mapValueToYCoord(y)]);
-    
+
     const tolerance = 0.01;
     const highestQuality = true;
     const path = points.length ? SVGCatmullRomSpline.toPath(points, tolerance, highestQuality) : '';
@@ -126,6 +126,11 @@ export function Case01() {
                 </a.div>
 
                 <div ref={displayRef} className="mt-1 relative h-full bg-gray-50/20">
+
+                    <svg className="bg-red-100/50 w-full h-full">
+                        <path className="" fill="none" stroke="red" strokeWidth="1.2" d={display.path} />
+                    </svg>
+
                     {display.points.map(([x, y], idx) => (
                         <div
                             className={`absolute w-4 h-4 border border-gray-700 rounded-full bg-gray-400/50`}
