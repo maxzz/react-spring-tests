@@ -10,7 +10,7 @@ function mapValuesToContainerPoints(yValues: number[], containerWidth: number, c
     const minValue = Math.min(...yValues);
     const maxValue = Math.max(...yValues);
 
-    const points = yValues.map<[number, number]>((y, idx) => [idx / (yValues.length - 1) * containerWidth, mapValueToYCoord(y)]);
+    const points = yValues.map<[number, number]>((y, idx) => [10 + (idx / (yValues.length - 1) * (containerWidth - 20) ), mapValueToYCoord(y)]);
 
     return {
         points,
@@ -122,7 +122,7 @@ export function Case01() {
                 <div ref={displayRef} className="relative h-full bg-gray-50/20">
                     {display.points.map(([x, y], idx) => (
                         <div
-                            className={`absolute w-4 h-4 border border-gray-700 rounded-full bg-gray-400/50`}
+                            className={`absolute w-0.5 h-0.5 border border-gray-700 rounded-full bg-gray-400/50`}
                             style={{ left: `${x}px`, top: `${y}px` }}
                             key={idx}
                         >
