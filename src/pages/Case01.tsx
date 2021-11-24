@@ -91,7 +91,9 @@ export function Case01() {
                             style={{ left: `${idx * 14}px`, top: `${dot}px` }}
                             key={idx}
                         >
-                            <div className="text-[.55rem]">{idx}</div>
+                            <div className="text-[.55rem] text-center">{idx}
+                            <div className="text-[.47rem]">{dot.toFixed(0)}</div>
+                            </div>
                         </div>
                     ))}
                 </div>

@@ -14,7 +14,7 @@ function App() {
                     <Case01 />
                     <Case02 />
                     <Case03 />
-                    <Case04 />
+                    {/* <Case04 /> */}
                 </div>
             </div>
         </React.Fragment>
