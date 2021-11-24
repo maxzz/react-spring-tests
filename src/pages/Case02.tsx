@@ -1,5 +1,5 @@
 import React from 'react';
-import { a, config, useSpring } from '@react-spring/web';
+import { a, config, useSpring, useSpringRef } from '@react-spring/web';
 import { useMeasure } from 'react-use';
 import { SimpleCheckbox } from './Case01';
 
@@ -11,8 +11,11 @@ export function Case02() {
     const [containerRef, { width: containerWidth }] = useMeasure<HTMLDivElement>();
     const [elementRef, { width: elementWidth }] = useMeasure<HTMLDivElement>();
 
+    const springRef = useSpringRef();
+
     const bind = useSpring({
         x: running ? containerWidth - elementWidth - 2 : 0,
+        //ref: springRef, // as soon as we use springRef we switch to manual control.
         config: {
             ...config.wobbly,
             mass: wobbly ? 2 : .2, // this change will not have effect during running animation
