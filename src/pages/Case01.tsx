@@ -12,10 +12,14 @@ function mapValuesToContainerPoints(yValues: number[], containerWidth: number, c
     const maxValue = Math.max(...yValues);
 
     const points = yValues.map<[number, number]>((y, idx) => [idx / (yValues.length - 1) * (containerWidth - 16), mapValueToYCoord(y)]);
-    SVGCatmullRomSpline()
+    
+    const tolerance = 0.01;
+    const highestQuality = true;
+    const path = points.length ? SVGCatmullRomSpline.toPath(points, tolerance, highestQuality) : '';
 
     return {
         points,
+        path,
         minValue,
         maxValue,
         yFrom: mapValueToYCoord(0),
@@ -26,7 +30,7 @@ function mapValuesToContainerPoints(yValues: number[], containerWidth: number, c
         return containerHeight - mapValueFromRangeToRange({
             value,
             from: { min: minValue, max: maxValue },
-            to: { min: containerHeight * 0.2, max: containerHeight * 0.8 }
+            to: { min: containerHeight * 0.1, max: containerHeight * 0.99 }
         });
     }
 }
@@ -45,7 +49,7 @@ export function Case01() {
 
     const display = React.useMemo(() => {
         console.log(displayWidth, displayHeight);
-        
+
         return mapValuesToContainerPoints(dots, displayWidth, displayHeight);
     }, [dots, displayWidth, displayHeight]);
 
@@ -121,7 +125,7 @@ export function Case01() {
                 >
                 </a.div>
 
-                <div ref={displayRef} className="relative h-full bg-gray-50/20">
+                <div ref={displayRef} className="mt-1 relative h-full bg-gray-50/20">
                     {display.points.map(([x, y], idx) => (
                         <div
                             className={`absolute w-4 h-4 border border-gray-700 rounded-full bg-gray-400/50`}
