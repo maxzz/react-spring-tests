@@ -2,7 +2,7 @@ import React from 'react';
 import { a, config, useSpring } from '@react-spring/web';
 import { useMeasure } from 'react-use';
 
-export function SimpleChekbox({ label, value, onChange }: { label: string; value: boolean; onChange: (v: boolean) => void; }) {
+export function SimpleCheckbox({ label, value, onChange }: { label: string; value: boolean; onChange: (v: boolean) => void; }) {
     return (
         <label className="self-end text-sm flex items-center space-x-1">
             <input
@@ -11,7 +11,7 @@ export function SimpleChekbox({ label, value, onChange }: { label: string; value
                 checked={value}
                 onChange={(event) => onChange(event.target.checked)}
             />
-            <span className="select-none">auto reset animation</span>
+            <span className="select-none">{label}</span>
         </label>
     );
 }
@@ -20,6 +20,7 @@ export function Case01() {
     const [fromStart, setFromStart] = React.useState(false);
     const [started, setStarted] = React.useState(false);
     const [auto, setAuto] = React.useState(false);
+    const [wobbly, setWobbly] = React.useState(false);
     const [dots, setDots] = React.useState<number[]>([]);
     const dotsRaw = React.useRef<number[]>([]);
 
@@ -32,7 +33,7 @@ export function Case01() {
         config: {
             ...config.wobbly,
             //mass: .2,
-            mass: .2,
+            mass: wobbly ? 2 : .2,
             //clamp: true,
             //duration: 2000
         },
@@ -63,7 +64,8 @@ export function Case01() {
 
             {/* Controls */}
             <div className="flex justify-end space-x-4">
-                <SimpleChekbox label="auto reset animation" value={auto} onChange={setAuto} />
+                <SimpleCheckbox label="wobbly" value={wobbly} onChange={setWobbly} />
+                <SimpleCheckbox label="auto reset animation" value={auto} onChange={setAuto} />
                 <button
                     className="px-4 py-2 w-16 bg-red-400 border border-red-800 rounded active:scale-[.97]"
                     onClick={() => {
