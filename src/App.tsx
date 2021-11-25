@@ -7,7 +7,7 @@ import { Case03 } from './pages/Case03';
 import { Case04 } from './pages/Case04';
 import { Case0X } from './pages/Case0X';
 
-import { BrowserRouter as Router, Switch, Route, Redirect, Link, LinkProps, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect, Link, LinkProps, useLocation, NavLink as StateLink } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 function PageA() {
@@ -36,8 +36,8 @@ function PageB() {
 
 function NavLink(props: LinkProps & React.RefAttributes<HTMLAnchorElement>) {
     return (
-        <div className="px-4 py-2 bg-gray-100/20">
-            <Link {...props} className={(isActive: boolean) => isActive ? '' : 'bg-red-100'} />
+        <div className="">
+            <StateLink className={(isActive: boolean) => `px-4 py-2 ${isActive ? 'bg-red-100' : 'bg-green-400'}`} {...props} />
         </div>
     );
 }
