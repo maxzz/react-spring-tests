@@ -13,7 +13,7 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 function PageA() {
     return (
         <React.Fragment>
-            <div className="h-full grid place-items-center bg-[salmon] text-red-800">
+            <div className="grid place-items-center bg-[salmon] text-red-800">
                 <div className="m-4 grid grid-cols-[repeat(2,minmax(400px,1fr))] gap-4">
                     <Case01 />
                     <Case02 />
@@ -29,7 +29,7 @@ function PageA() {
 function PageB() {
     return (
         <React.Fragment>
-            <div className="">111</div>
+            <div className="">Nothing here yet</div>
         </React.Fragment>
     );
 }
@@ -37,7 +37,7 @@ function PageB() {
 function NavLink(props: LinkProps & React.RefAttributes<HTMLAnchorElement>) {
     return (
         <div className="px-4 py-2 bg-gray-100/20">
-            <Link {...props} />
+            <Link {...props} className={(isActive: boolean) => isActive ? '' : 'bg-red-100'} />
         </div>
     );
 }
@@ -49,13 +49,17 @@ function AppRoutes() {
             <nav className="p-4 flex justify-end space-x-4">
                 <NavLink to="/spring">Spring</NavLink>
                 <NavLink to="/springs">Springs</NavLink>
+                <NavLink to="/transitions">Transitions</NavLink>
+                <NavLink to="/trails">Trails</NavLink>
             </nav>
-            <div className="flex-1 w-full h-full bg-[salmon]">
+            <div className="flex-1 w-full bg-[salmon]">
                 <TransitionGroup>
                     <CSSTransition key={location.pathname} classNames="fade" timeout={300}>
                         <Switch>
                             <Route path="/spring" children={PageA} />
                             <Route path="/springs" children={PageB} />
+                            <Route path="/transitions" children={PageB} />
+                            <Route path="/trails" children={PageB} />
                         </Switch>
                     </CSSTransition>
                 </TransitionGroup>
