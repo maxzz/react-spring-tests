@@ -15,6 +15,7 @@
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-router-dom": "5.3.0",
+    "react-transition-group": "^4.4.2",
     "react-use": "^17.3.1",
     "svg-catmull-rom-spline": "^0.0.1"
   },
