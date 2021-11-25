@@ -37,7 +37,7 @@ function PageB() {
 function NavLink(props: LinkProps & React.RefAttributes<HTMLAnchorElement>) {
     return (
         <div className="">
-            <StateLink className={(isActive: boolean) => `px-4 py-2 ${isActive ? 'bg-red-100' : 'bg-green-400'}`} {...props} />
+            <StateLink className={(isActive: boolean) => `px-4 py-2 rounded shadow ${isActive ? 'bg-red-100' : 'opacity-75'}`} {...props} />
         </div>
     );
 }
@@ -45,7 +45,7 @@ function NavLink(props: LinkProps & React.RefAttributes<HTMLAnchorElement>) {
 function AppRoutes() {
     let location = useLocation();
     return (
-        <div className="h-screen flex flex-col bg-[tomato] text-red-800">
+        <div className="h-screen flex flex-col bg-[salmon] text-red-800">
             <nav className="p-4 flex justify-end space-x-4">
                 <NavLink to="/spring">Spring</NavLink>
                 <NavLink to="/springs">Springs</NavLink>
