@@ -12,8 +12,8 @@ import { BrowserRouter as Router, Switch, Route, Redirect, Link } from 'react-ro
 function PageA() {
     return (
         <React.Fragment>
-            <div className="h-screen grid place-items-center bg-[salmon] text-red-800">
-                <div className="mx-4 grid grid-cols-[repeat(2,minmax(400px,1fr))] gap-4">
+            <div className="h-full grid place-items-center bg-[salmon] text-red-800">
+                <div className="m-4 grid grid-cols-[repeat(2,minmax(400px,1fr))] gap-4">
                     <Case01 />
                     <Case02 />
                     <Case03 />
@@ -35,16 +35,16 @@ function PageB() {
 
 function AppWithRoutes() {
     return (
-        <div className="h-screen grid place-items-center bg-[salmon] text-red-800">
-            <nav className="flex justify-end space-x-2">
-                <div className="">
+        <div className="h-screen flex flex-col bg-[tomato] text-red-800">
+            <nav className="p-4 flex justify-end space-x-4">
+                <div className="px-4 py-2 bg-gray-100/20">
                     <Link to="/spring">Spring</Link>
                 </div>
-                <div className="">
+                <div className="px-4 py-2 bg-gray-100/20">
                     <Link to="/springs">Springs</Link>
                 </div>
             </nav>
-            <div className="">
+            <div className="flex-1 w-full h-full">
                 <Switch>
                     <Route path="/spring" children={PageA} />
                     <Route path="/springs" children={PageB} />
