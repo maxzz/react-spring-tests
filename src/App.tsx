@@ -7,7 +7,7 @@ import { Case03 } from './pages/Case03';
 import { Case04 } from './pages/Case04';
 import { Case0X } from './pages/Case0X';
 
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect, Link } from 'react-router-dom';
 
 function PageA() {
     return (
@@ -25,16 +25,29 @@ function PageA() {
     );
 }
 
+function PageB() {
+    return (
+        <React.Fragment>
+            111
+        </React.Fragment>
+    );
+}
+
 function AppWithRoutes() {
     return (
         <div className="h-screen grid place-items-center bg-[salmon] text-red-800">
             <nav className="flex justify-end space-x-2">
-                <div className="">Spring</div>
-                <div className="">Springs</div>
+                <div className="">
+                    <Link to="/spring">Spring</Link>
+                </div>
+                <div className="">
+                    <Link to="/springs">Springs</Link>
+                </div>
             </nav>
             <div className="">
                 <Switch>
                     <Route path="/spring" children={PageA} />
+                    <Route path="/springs" children={PageB} />
                 </Switch>
             </div>
         </div>
