@@ -9,8 +9,7 @@ import { Case0X } from './pages/Case0X';
 
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
-
-function AppWithRoutes() {
+function PageA() {
     return (
         <React.Fragment>
             <div className="h-screen grid place-items-center bg-[salmon] text-red-800">
@@ -26,12 +25,28 @@ function AppWithRoutes() {
     );
 }
 
+function AppWithRoutes() {
+    return (
+        <div className="h-screen grid place-items-center bg-[salmon] text-red-800">
+            <nav className="flex justify-end space-x-2">
+                <div className="">Spring</div>
+                <div className="">Springs</div>
+            </nav>
+            <div className="">
+                <Switch>
+                    <Route path="/spring" children={PageA} />
+                </Switch>
+            </div>
+        </div>
+    );
+}
+
 function App() {
     return (
         <Router>
             <Switch>
                 <Route exact path="/">
-                    <Redirect to="/hsl/10/90/50" />
+                    <Redirect to="/spring" />
                 </Route>
                 <Route path="*">
                     <AppWithRoutes />
@@ -39,7 +54,6 @@ function App() {
             </Switch>
         </Router>
     );
-
 }
 
 export default App;
