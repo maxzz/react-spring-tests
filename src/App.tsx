@@ -7,7 +7,7 @@ import { Case03 } from './pages/Case03';
 import { Case04 } from './pages/Case04';
 import { Case0X } from './pages/Case0X';
 
-import { BrowserRouter as Router, Switch, Route, Redirect, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect, Link, LinkProps } from 'react-router-dom';
 
 function PageA() {
     return (
@@ -33,18 +33,22 @@ function PageB() {
     );
 }
 
-function AppWithRoutes() {
+function NavLink(props: LinkProps & React.RefAttributes<HTMLAnchorElement>) {
+    return (
+        <div className="px-4 py-2 bg-gray-100/20">
+            <Link {...props} />
+        </div>
+    );
+}
+
+function AppRoutes() {
     return (
         <div className="h-screen flex flex-col bg-[tomato] text-red-800">
             <nav className="p-4 flex justify-end space-x-4">
-                <div className="px-4 py-2 bg-gray-100/20">
-                    <Link to="/spring">Spring</Link>
-                </div>
-                <div className="px-4 py-2 bg-gray-100/20">
-                    <Link to="/springs">Springs</Link>
-                </div>
+                <NavLink to="/spring">Spring</NavLink>
+                <NavLink to="/springs">Springs</NavLink>
             </nav>
-            <div className="flex-1 w-full h-full">
+            <div className="flex-1 w-full h-full bg-[salmon]">
                 <Switch>
                     <Route path="/spring" children={PageA} />
                     <Route path="/springs" children={PageB} />
@@ -62,7 +66,7 @@ function App() {
                     <Redirect to="/spring" />
                 </Route>
                 <Route path="*">
-                    <AppWithRoutes />
+                    <AppRoutes />
                 </Route>
             </Switch>
         </Router>
