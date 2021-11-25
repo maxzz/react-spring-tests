@@ -7,7 +7,10 @@ import { Case03 } from './pages/Case03';
 import { Case04 } from './pages/Case04';
 import { Case0X } from './pages/Case0X';
 
-function App() {
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+
+
+function AppWithRoutes() {
     return (
         <React.Fragment>
             <div className="h-screen grid place-items-center bg-[salmon] text-red-800">
@@ -21,6 +24,22 @@ function App() {
             </div>
         </React.Fragment>
     );
+}
+
+function App() {
+    return (
+        <Router>
+            <Switch>
+                <Route exact path="/">
+                    <Redirect to="/hsl/10/90/50" />
+                </Route>
+                <Route path="*">
+                    <AppWithRoutes />
+                </Route>
+            </Switch>
+        </Router>
+    );
+
 }
 
 export default App;
