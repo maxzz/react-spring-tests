@@ -12,7 +12,7 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 function PageA() {
     return (
-        <React.Fragment>
+        // <React.Fragment>
             <div className="grid place-items-center bg-[salmon] text-red-800">
                 <div className="m-4 grid grid-cols-[repeat(2,minmax(400px,1fr))] gap-4">
                     <Case01 />
@@ -22,15 +22,15 @@ function PageA() {
                     {/* <Case01snapshot /> */}
                 </div>
             </div>
-        </React.Fragment>
+        // </React.Fragment>
     );
 }
 
 function PageB() {
     return (
-        <React.Fragment>
+        // <React.Fragment>
             <div className="">Nothing here yet</div>
-        </React.Fragment>
+        // </React.Fragment>
     );
 }
 
