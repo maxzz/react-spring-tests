@@ -13,10 +13,6 @@
     inset: 0;
 }
 
-.fade {
-    position: relative;
-}
-
 .fade-appear,
 .fade-enter {
     opacity: 0;
