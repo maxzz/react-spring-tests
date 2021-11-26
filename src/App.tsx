@@ -10,28 +10,29 @@ import { Case0X } from './pages/Case0X';
 import { BrowserRouter as Router, Switch, Route, Redirect, Link, LinkProps, useLocation, NavLink as StateLink } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
-function PageA() {
+function PageA({ path }: { path: string; }) {
     let loc = useLocation();
-    console.log({location: loc});
+    console.log({ location: loc });
+    const isMatch = React.useCallback((textpath: string): boolean => loc.pathname === textpath ?? false, [loc]);
     const nodeRef = React.useRef(null);
     return (
-        // <CSSTransition nodeRef={nodeRef} classNames="fade" timeout={300}>
+        <CSSTransition nodeRef={nodeRef} key={path} in={isMatch(path)} classNames="fade" timeout={300}>
             <div ref={nodeRef} className="grid place-items-center bg-[salmon] text-red-800">
                 <div className="m-4 grid grid-cols-[repeat(2,minmax(400px,1fr))] gap-4">
                     <Case01 />
                     {/* <Case02 />
-                <Case03 />
-                <Case04 /> */}
+                    <Case03 />
+                    <Case04 /> */}
                     {/* <Case01snapshot /> */}
                 </div>
             </div>
-        // </CSSTransition>
+        </CSSTransition>
     );
 }
 
-function PageB({path}: {path: string}) {
+function PageB({ path }: { path: string; }) {
     let loc = useLocation();
-    console.log({loc, path});
+    console.log({ loc, path });
     const isMatch = React.useCallback((textpath: string): boolean => loc.pathname === textpath ?? false, [loc]);
     const nodeRef = React.useRef(null);
     return (
@@ -63,7 +64,7 @@ function AppRoutes() {
                 <TransitionGroup>
                     {/* <CSSTransition key={loc.pathname} classNames="fade" timeout={300}> */}
                     <Switch>
-                        <Route path="/spring" children={<PageA />} />
+                        <Route path="/spring" children={<PageA path="/spring" />} />
                         <Route path="/springs" children={<PageB path="/springs" />} />
                         <Route path="/transitions" children={<PageB path="/transitions" />} />
                         <Route path="/trails" children={<PageB path="/trails" />} />
