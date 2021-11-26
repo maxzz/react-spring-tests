@@ -44,8 +44,20 @@ function PageB({ path }: { path: string; }) {
 
 function NavLink(props: LinkProps & React.RefAttributes<HTMLAnchorElement>) {
     return (
-        <div className="">
-            <StateLink className={(isActive: boolean) => `px-4 py-2 rounded shadow ${isActive ? 'bg-red-100' : 'opacity-75'}`} exact={true} {...props} />
+        <StateLink className={(isActive: boolean) => `px-4 py-2 rounded shadow ${isActive ? 'bg-red-100' : 'opacity-75'}`} exact={true} {...props} />
+    );
+}
+
+function PageAA() {
+    return (
+        <div className="page grid place-items-center bg-[salmon] text-red-800">
+            <div className="m-4 grid grid-cols-[repeat(2,minmax(400px,1fr))] gap-4">
+                <Case01 />
+                {/* <Case02 />
+                    <Case03 />
+                    <Case04 /> */}
+                {/* <Case01snapshot /> */}
+            </div>
         </div>
     );
 }
@@ -57,7 +69,7 @@ function PageC() {
 }
 
 const routes = [
-    { path: '/', name: "Spring", Component: PageC, },
+    { path: '/', name: "Spring", Component: PageAA, },
     { path: '/springs', name: "Springs", Component: PageC, },
     { path: '/transitions', name: "Home", Component: PageC, },
     { path: '/trails', name: "Home", Component: PageC, },
@@ -66,10 +78,7 @@ const routes = [
 function NavMenu() {
     return (
         <nav className="p-4 flex justify-end space-x-4">
-            {routes.map((route) => (
-                <NavLink to={route.path} children={route.name} />
-            ))
-            }
+            {routes.map((route, idx) => <NavLink key={idx} to={route.path} children={route.name} />)}
         </nav>
     );
 }
