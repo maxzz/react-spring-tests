@@ -7,7 +7,7 @@ import { Case03 } from './pages/Case03';
 import { Case04 } from './pages/Case04';
 import { Case0X } from './pages/Case0X';
 
-import { BrowserRouter as Router, Switch, Route, Redirect, Link, LinkProps, useLocation, NavLink as StateLink } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect, Link, LinkProps, useLocation, NavLink as StateLink, withRouter } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 function PageA({ path }: { path: string; }) {
@@ -67,12 +67,42 @@ function NavMenu() {
     return (
         <nav className="p-4 flex justify-end space-x-4">
             {routes.map((route) => (
-                <NavLink to={route.path} children={route.name}  />
+                <NavLink to={route.path} children={route.name} />
             ))
             }
         </nav>
     );
 }
+
+const PageContent = withRouter(({ location: loc }) => {
+    const isMatch = React.useCallback((path: string): boolean => loc.pathname === path, [loc]);
+    return (<>
+        {routes.map(({ path, Component }, index) => {
+            const rf = React.useRef(null);
+            return (
+                <Route key={index} exact path={path}>
+                    {() => { // Route callback ensures the transitions are loaded correctly
+                        return (
+                            <CSSTransition
+                                nodeRef={rf}
+                                in={isMatch(path)}
+                                timeout={300}
+                                classNames="fade"
+                                unmountOnExit
+                                appear
+                            >
+                                <div ref={rf} className="fade">
+                                    <Component />
+                                </div>
+                            </CSSTransition>
+                        );
+                    }}
+                </Route>
+            );
+        })}
+    </>);
+});
+
 
 /*
         <nav className="p-4 flex justify-end space-x-4">
@@ -89,16 +119,18 @@ function AppRoutes() {
         <div className="h-screen flex flex-col bg-[salmon] text-red-800">
             <div className="flex-1 w-full bg-[salmon]">
                 <NavMenu />
-                <TransitionGroup>
-                    {/* <CSSTransition key={loc.pathname} classNames="fade" timeout={300}> */}
+
+                <PageContent />
+                {/* <TransitionGroup>
+                    {/* <CSSTransition key={loc.pathname} classNames="fade" timeout={300}> * /}
                     <Switch>
                         <Route path="/spring" children={<PageA path="/spring" />} />
                         <Route path="/springs" children={<PageB path="/springs" />} />
                         <Route path="/transitions" children={<PageB path="/transitions" />} />
                         <Route path="/trails" children={<PageB path="/trails" />} />
                     </Switch>
-                    {/* </CSSTransition> */}
-                </TransitionGroup>
+                    {/* </CSSTransition> * /}
+                </TransitionGroup> */}
             </div>
         </div>
     );
@@ -107,14 +139,15 @@ function AppRoutes() {
 function App() {
     return (
         <Router>
-            <Switch>
+            <AppRoutes />
+            {/* <Switch>
                 <Route exact path="/">
                     <Redirect to="/spring" />
                 </Route>
                 <Route path="*">
                     <AppRoutes />
                 </Route>
-            </Switch>
+            </Switch> */}
         </Router>
     );
 }
