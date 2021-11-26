@@ -45,19 +45,8 @@ function PageB({ path }: { path: string; }) {
 function NavLink(props: LinkProps & React.RefAttributes<HTMLAnchorElement>) {
     return (
         <div className="">
-            <StateLink className={(isActive: boolean) => `px-4 py-2 rounded shadow ${isActive ? 'bg-red-100' : 'opacity-75'}`} {...props} />
+            <StateLink className={(isActive: boolean) => `px-4 py-2 rounded shadow ${isActive ? 'bg-red-100' : 'opacity-75'}`} exact={true} {...props} />
         </div>
-    );
-}
-
-function NavMenu() {
-    return (
-        <nav className="p-4 flex justify-end space-x-4">
-            <NavLink to="/spring">Spring</NavLink>
-            <NavLink to="/springs">Springs</NavLink>
-            <NavLink to="/transitions">Transitions</NavLink>
-            <NavLink to="/trails">Trails</NavLink>
-        </nav>
     );
 }
 
@@ -68,11 +57,31 @@ function PageC() {
 }
 
 const routes = [
-    { path: '/', name: "Spring", component: PageC, },
-    { path: '/springs', name: "Springs", component: PageC, },
-    { path: '/transitions', name: "Home", component: PageC, },
-    { path: '/trails', name: "Home", component: PageC, },
+    { path: '/', name: "Spring", Component: PageC, },
+    { path: '/springs', name: "Springs", Component: PageC, },
+    { path: '/transitions', name: "Home", Component: PageC, },
+    { path: '/trails', name: "Home", Component: PageC, },
 ];
+
+function NavMenu() {
+    return (
+        <nav className="p-4 flex justify-end space-x-4">
+            {routes.map((route) => (
+                <NavLink to={route.path} children={route.name}  />
+            ))
+            }
+        </nav>
+    );
+}
+
+/*
+        <nav className="p-4 flex justify-end space-x-4">
+            <NavLink to="/spring">Spring</NavLink>
+            <NavLink to="/springs">Springs</NavLink>
+            <NavLink to="/transitions">Transitions</NavLink>
+            <NavLink to="/trails">Trails</NavLink>
+        </nav>
+*/
 
 function AppRoutes() {
     let loc = useLocation();
