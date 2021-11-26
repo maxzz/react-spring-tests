@@ -50,17 +50,23 @@ function NavLink(props: LinkProps & React.RefAttributes<HTMLAnchorElement>) {
     );
 }
 
+function NavMenu() {
+    return (
+        <nav className="p-4 flex justify-end space-x-4">
+            <NavLink to="/spring">Spring</NavLink>
+            <NavLink to="/springs">Springs</NavLink>
+            <NavLink to="/transitions">Transitions</NavLink>
+            <NavLink to="/trails">Trails</NavLink>
+        </nav>
+    );
+}
+
 function AppRoutes() {
     let loc = useLocation();
     return (
         <div className="h-screen flex flex-col bg-[salmon] text-red-800">
-            <nav className="p-4 flex justify-end space-x-4">
-                <NavLink to="/spring">Spring</NavLink>
-                <NavLink to="/springs">Springs</NavLink>
-                <NavLink to="/transitions">Transitions</NavLink>
-                <NavLink to="/trails">Trails</NavLink>
-            </nav>
             <div className="flex-1 w-full bg-[salmon]">
+                <NavMenu />
                 <TransitionGroup>
                     {/* <CSSTransition key={loc.pathname} classNames="fade" timeout={300}> */}
                     <Switch>
