@@ -40,7 +40,7 @@ const PageContent = withRouter(({ location: loc }) => {
                             <CSSTransition
                                 nodeRef={rf}
                                 in={isMatch(path)}
-                                timeout={700}
+                                timeout={300}
                                 classNames="fade"
                                 unmountOnExit
                                 //appear
