@@ -52,7 +52,7 @@ function NavLink(props: LinkProps & React.RefAttributes<HTMLAnchorElement>) {
 
 function PageC() {
     return (
-        <div className="">Nothing here yet C</div>
+        <div className="page">Nothing here yet C</div>
     );
 }
 

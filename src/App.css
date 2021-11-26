@@ -1,4 +1,4 @@
-.fade-enter {
+/* .fade-enter {
     opacity: 0;
     z-index: 1;
 }
@@ -6,4 +6,36 @@
 .fade-enter.fade-enter-active {
     opacity: 1;
     transition: opacity 1250ms ease-in;
+} */
+
+.page {
+    position: absolute;
+}
+
+.fade {
+    position: relative;
+}
+
+.fade-appear,
+.fade-enter {
+    opacity: 0;
+    filter: blur(8px);
+}
+
+.fade-appear-active,
+.fade-enter-active {
+    transition: 0.3s linear;
+    opacity: 1;
+    filter: none;
+}
+
+.fade-exit {
+    transition: 0.3s linear;
+    opacity: 1;
+    filter: none;
+}
+
+.fade-exit-active {
+    opacity: 0;
+    filter: blur(8px);
 }
