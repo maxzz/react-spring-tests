@@ -61,6 +61,19 @@ function NavMenu() {
     );
 }
 
+function PageC() {
+    return (
+        <div className="">Nothing here yet C</div>
+    );
+}
+
+const routes = [
+    { path: '/', name: "Spring", component: PageC, },
+    { path: '/springs', name: "Springs", component: PageC, },
+    { path: '/transitions', name: "Home", component: PageC, },
+    { path: '/trails', name: "Home", component: PageC, },
+];
+
 function AppRoutes() {
     let loc = useLocation();
     return (
