@@ -7,8 +7,8 @@ import { Case03 } from './pages/Case03';
 import { Case04 } from './pages/Case04';
 import { Case0X } from './pages/Case0X';
 
-import { BrowserRouter as Router, Switch, Route, Redirect, Link, LinkProps, useLocation, NavLink as StateLink, withRouter } from 'react-router-dom';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { BrowserRouter as Router, Route, LinkProps, NavLink as StateLink, withRouter } from 'react-router-dom';
+import { CSSTransition } from 'react-transition-group';
 
 function NavLink(props: LinkProps & React.RefAttributes<HTMLAnchorElement>) {
     return (
@@ -32,7 +32,15 @@ function PageA() {
 
 function PageB() {
     return (
-        <div className="page">Nothing here yet B</div>
+        <div className="page grid place-items-center bg-[salmon] text-red-800">
+            <div className="m-4 grid grid-cols-[repeat(2,minmax(400px,1fr))] gap-4">
+                <Case01 />
+                <Case02 />
+                <Case03 />
+                <Case04 />
+                {/* <Case01snapshot /> */}
+            </div>
+        </div>
     );
 }
 
@@ -66,7 +74,7 @@ const PageContent = withRouter(({ location: loc }) => {
                                 timeout={300}
                                 classNames="fade"
                                 unmountOnExit
-                                appear
+                                //appear
                             >
                                 <div ref={rf} className="fade">
                                     <Component />
@@ -84,10 +92,10 @@ function App() {
     return (
         <Router>
             <div className="h-screen flex flex-col bg-[salmon] text-red-800">
-                <div className="flex-1 w-full bg-[salmon]">
-                    <NavMenu />
+                <NavMenu />
+                <main className="flex-1">
                     <PageContent />
-                </div>
+                </main>
             </div>
         </Router>
     );
