@@ -10,45 +10,13 @@ import { Case0X } from './pages/Case0X';
 import { BrowserRouter as Router, Switch, Route, Redirect, Link, LinkProps, useLocation, NavLink as StateLink, withRouter } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
-function PageA({ path }: { path: string; }) {
-    let loc = useLocation();
-    console.log({ location: loc });
-    const isMatch = React.useCallback((textpath: string): boolean => loc.pathname === textpath ?? false, [loc]);
-    const nodeRef = React.useRef(null);
-    return (
-        <CSSTransition nodeRef={nodeRef} key={path} in={isMatch(path)} classNames="fade" timeout={300}>
-            <div ref={nodeRef} className="grid place-items-center bg-[salmon] text-red-800">
-                <div className="m-4 grid grid-cols-[repeat(2,minmax(400px,1fr))] gap-4">
-                    <Case01 />
-                    {/* <Case02 />
-                    <Case03 />
-                    <Case04 /> */}
-                    {/* <Case01snapshot /> */}
-                </div>
-            </div>
-        </CSSTransition>
-    );
-}
-
-function PageB({ path }: { path: string; }) {
-    let loc = useLocation();
-    console.log({ loc, path });
-    const isMatch = React.useCallback((textpath: string): boolean => loc.pathname === textpath ?? false, [loc]);
-    const nodeRef = React.useRef(null);
-    return (
-        <CSSTransition nodeRef={nodeRef} key={path} in={isMatch(path)} classNames="fade" timeout={300}>
-            <div ref={nodeRef} className="">Nothing here yet</div>
-        </CSSTransition>
-    );
-}
-
 function NavLink(props: LinkProps & React.RefAttributes<HTMLAnchorElement>) {
     return (
         <StateLink className={(isActive: boolean) => `px-4 py-2 rounded shadow ${isActive ? 'bg-red-100' : 'opacity-75'}`} exact={true} {...props} />
     );
 }
 
-function PageAA() {
+function PageA() {
     return (
         <div className="page grid place-items-center bg-[salmon] text-red-800">
             <div className="m-4 grid grid-cols-[repeat(2,minmax(400px,1fr))] gap-4">
@@ -62,17 +30,17 @@ function PageAA() {
     );
 }
 
-function PageC() {
+function PageB() {
     return (
-        <div className="page">Nothing here yet C</div>
+        <div className="page">Nothing here yet B</div>
     );
 }
 
 const routes = [
-    { path: '/', name: "Spring", Component: PageAA, },
-    { path: '/springs', name: "Springs", Component: PageC, },
-    { path: '/transitions', name: "Home", Component: PageC, },
-    { path: '/trails', name: "Home", Component: PageC, },
+    { path: '/', name: "Spring", Component: PageA, },
+    { path: '/springs', name: "Springs", Component: PageB, },
+    { path: '/transitions', name: "Home", Component: PageB, },
+    { path: '/trails', name: "Home", Component: PageB, },
 ];
 
 function NavMenu() {
@@ -112,51 +80,15 @@ const PageContent = withRouter(({ location: loc }) => {
     </>);
 });
 
-
-/*
-        <nav className="p-4 flex justify-end space-x-4">
-            <NavLink to="/spring">Spring</NavLink>
-            <NavLink to="/springs">Springs</NavLink>
-            <NavLink to="/transitions">Transitions</NavLink>
-            <NavLink to="/trails">Trails</NavLink>
-        </nav>
-*/
-
-function AppRoutes() {
-    let loc = useLocation();
-    return (
-        <div className="h-screen flex flex-col bg-[salmon] text-red-800">
-            <div className="flex-1 w-full bg-[salmon]">
-                <NavMenu />
-
-                <PageContent />
-                {/* <TransitionGroup>
-                    {/* <CSSTransition key={loc.pathname} classNames="fade" timeout={300}> * /}
-                    <Switch>
-                        <Route path="/spring" children={<PageA path="/spring" />} />
-                        <Route path="/springs" children={<PageB path="/springs" />} />
-                        <Route path="/transitions" children={<PageB path="/transitions" />} />
-                        <Route path="/trails" children={<PageB path="/trails" />} />
-                    </Switch>
-                    {/* </CSSTransition> * /}
-                </TransitionGroup> */}
-            </div>
-        </div>
-    );
-}
-
 function App() {
     return (
         <Router>
-            <AppRoutes />
-            {/* <Switch>
-                <Route exact path="/">
-                    <Redirect to="/spring" />
-                </Route>
-                <Route path="*">
-                    <AppRoutes />
-                </Route>
-            </Switch> */}
+            <div className="h-screen flex flex-col bg-[salmon] text-red-800">
+                <div className="flex-1 w-full bg-[salmon]">
+                    <NavMenu />
+                    <PageContent />
+                </div>
+            </div>
         </Router>
     );
 }
