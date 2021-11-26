@@ -1,42 +1,9 @@
 import React from 'react';
 import './App.css';
-import { Case01 } from './pages/PageA/Case01';
-import { Case01snapshot } from './pages/PageA/Case01snapshot';
-import { Case02 } from './pages/PageA/Case02';
-import { Case03 } from './pages/PageA/Case03';
-import { Case04 } from './pages/PageA/Case04';
-import { Case0X } from './pages/PageA/Case0X';
-
 import { BrowserRouter as Router, Route, LinkProps, NavLink as StateLink, withRouter } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
-
-function PageA() {
-    return (
-        <div className="page grid place-items-center">
-            <div className="m-4 grid grid-cols-[repeat(2,minmax(400px,1fr))] gap-4">
-                <Case01 />
-                <Case02 />
-                <Case03 />
-                <Case04 />
-                {/* <Case01snapshot /> */}
-            </div>
-        </div>
-    );
-}
-
-function PageB() {
-    return (
-        <div className="page grid place-items-center">
-            <div className="m-4 grid grid-cols-[repeat(2,minmax(400px,1fr))] gap-4">
-                <Case01 />
-                <Case02 />
-                <Case03 />
-                <Case04 />
-                {/* <Case01snapshot /> */}
-            </div>
-        </div>
-    );
-}
+import { PageA } from './pages/PageA/PageA';
+import { PageB } from './pages/PageB/PageB';
 
 const routes = [
     { path: '/', name: "Spring", Component: PageA, },
@@ -47,7 +14,7 @@ const routes = [
 
 function NavLink(props: LinkProps & React.RefAttributes<HTMLAnchorElement>) {
     return (
-        <StateLink className={(isActive: boolean) => `px-4 py-2 rounded shadow ${isActive ? 'bg-red-100' : 'opacity-75'}`} exact={true} {...props} />
+        <StateLink className={(isActive: boolean) => `px-4 py-2 rounded shadow ${isActive ? 'bg-red-300' : 'opacity-75'}`} exact={true} {...props} />
     );
 }
 
@@ -76,7 +43,7 @@ const PageContent = withRouter(({ location: loc }) => {
                                 timeout={300}
                                 classNames="fade"
                                 unmountOnExit
-                            //appear
+                                //appear
                             >
                                 <div ref={rf} className="absolute inset-0">
                                     {/* <div ref={rf} className="relative"> */}
