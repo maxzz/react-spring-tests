@@ -29,12 +29,13 @@ function PageA() {
     );
 }
 
-function PageB() {
+function PageB({path}: {path: string}) {
     let loc = useLocation();
-    const isMatch = React.useCallback((path: string): boolean => loc.pathname === path ?? false, [loc]);
+    console.log({loc, path});
+    const isMatch = React.useCallback((textpath: string): boolean => loc.pathname === textpath ?? false, [loc]);
     const nodeRef = React.useRef(null);
     return (
-        <CSSTransition nodeRef={nodeRef} in={isMatch('/springs')} classNames="fade" timeout={300}>
+        <CSSTransition nodeRef={nodeRef} key={path} in={isMatch(path)} classNames="fade" timeout={300}>
             <div ref={nodeRef} className="">Nothing here yet</div>
         </CSSTransition>
     );
@@ -63,9 +64,9 @@ function AppRoutes() {
                     {/* <CSSTransition key={loc.pathname} classNames="fade" timeout={300}> */}
                     <Switch>
                         <Route path="/spring" children={<PageA />} />
-                        <Route path="/springs" children={<PageB />} />
-                        <Route path="/transitions" children={<PageB />} />
-                        <Route path="/trails" children={<PageB />} />
+                        <Route path="/springs" children={<PageB path="/springs" />} />
+                        <Route path="/transitions" children={<PageB path="/transitions" />} />
+                        <Route path="/trails" children={<PageB path="/trails" />} />
                     </Switch>
                     {/* </CSSTransition> */}
                 </TransitionGroup>
