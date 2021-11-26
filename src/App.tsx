@@ -53,15 +53,21 @@ function AppRoutes() {
                 <NavLink to="/trails">Trails</NavLink>
             </nav>
             <div className="flex-1 w-full bg-[salmon]">
-                <TransitionGroup>
-                    <CSSTransition key={location.pathname} classNames="fade" timeout={300}>
+                <TransitionGroup component={null}>
                         <Switch>
+                    <CSSTransition key={location.pathname} classNames="fade" timeout={300}>
                             <Route path="/spring" children={PageA} />
-                            <Route path="/springs" children={PageB} />
-                            <Route path="/transitions" children={PageB} />
-                            <Route path="/trails" children={PageB} />
-                        </Switch>
                     </CSSTransition>
+                    <CSSTransition key={location.pathname} classNames="fade" timeout={300}>
+                            <Route path="/springs" children={PageB} />
+                    </CSSTransition>
+                    <CSSTransition key={location.pathname} classNames="fade" timeout={300}>
+                            <Route path="/transitions" children={PageB} />
+                    </CSSTransition>
+                    <CSSTransition key={location.pathname} classNames="fade" timeout={300}>
+                            <Route path="/trails" children={PageB} />
+                    </CSSTransition>
+                        </Switch>
                 </TransitionGroup>
             </div>
         </div>
