@@ -11,15 +11,14 @@ import { BrowserRouter as Router, Switch, Route, Redirect, Link, LinkProps, useL
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 function PageA() {
-    let location = useLocation();
     return (
         <CSSTransition key={location.pathname} classNames="fade" timeout={300}>
             <div className="grid place-items-center bg-[salmon] text-red-800">
                 <div className="m-4 grid grid-cols-[repeat(2,minmax(400px,1fr))] gap-4">
                     <Case01 />
-                    <Case02 />
-                    <Case03 />
-                    <Case04 />
+                    {/* <Case02 />
+                <Case03 />
+                <Case04 /> */}
                     {/* <Case01snapshot /> */}
                 </div>
             </div>
@@ -29,9 +28,9 @@ function PageA() {
 
 function PageB() {
     return (
-        // <React.Fragment>
+        <CSSTransition key={location.pathname} classNames="fade" timeout={300}>
             <div className="">Nothing here yet</div>
-        // </React.Fragment>
+        </CSSTransition>
     );
 }
 
@@ -54,15 +53,15 @@ function AppRoutes() {
                 <NavLink to="/trails">Trails</NavLink>
             </nav>
             <div className="flex-1 w-full bg-[salmon]">
-                <TransitionGroup component={null}>
-                    <CSSTransition key={location.pathname} classNames="fade" timeout={300}>
-                        <Switch>
-                            <Route path="/spring" children={<PageA />} />
-                            <Route path="/springs" children={PageB} />
-                            <Route path="/transitions" children={PageB} />
-                            <Route path="/trails" children={PageB} />
-                        </Switch>
-                    </CSSTransition>
+                <TransitionGroup>
+                    {/* <CSSTransition key={location.pathname} classNames="fade" timeout={300}> */}
+                    <Switch>
+                        <Route path="/spring" children={<PageA />} />
+                        <Route path="/springs" children={<PageB />} />
+                        <Route path="/transitions" children={<PageB />} />
+                        <Route path="/trails" children={<PageB />} />
+                    </Switch>
+                    {/* </CSSTransition> */}
                 </TransitionGroup>
             </div>
         </div>
