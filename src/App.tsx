@@ -11,8 +11,9 @@ import { BrowserRouter as Router, Switch, Route, Redirect, Link, LinkProps, useL
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 function PageA() {
+    let location = useLocation();
     return (
-        // <React.Fragment>
+        <CSSTransition key={location.pathname} classNames="fade" timeout={300}>
             <div className="grid place-items-center bg-[salmon] text-red-800">
                 <div className="m-4 grid grid-cols-[repeat(2,minmax(400px,1fr))] gap-4">
                     <Case01 />
@@ -22,7 +23,7 @@ function PageA() {
                     {/* <Case01snapshot /> */}
                 </div>
             </div>
-        // </React.Fragment>
+        </CSSTransition>
     );
 }
 
@@ -54,20 +55,14 @@ function AppRoutes() {
             </nav>
             <div className="flex-1 w-full bg-[salmon]">
                 <TransitionGroup component={null}>
+                    <CSSTransition key={location.pathname} classNames="fade" timeout={300}>
                         <Switch>
-                    <CSSTransition key={location.pathname} classNames="fade" timeout={300}>
-                            <Route path="/spring" children={PageA} />
-                    </CSSTransition>
-                    <CSSTransition key={location.pathname} classNames="fade" timeout={300}>
+                            <Route path="/spring" children={<PageA />} />
                             <Route path="/springs" children={PageB} />
-                    </CSSTransition>
-                    <CSSTransition key={location.pathname} classNames="fade" timeout={300}>
                             <Route path="/transitions" children={PageB} />
-                    </CSSTransition>
-                    <CSSTransition key={location.pathname} classNames="fade" timeout={300}>
                             <Route path="/trails" children={PageB} />
-                    </CSSTransition>
                         </Switch>
+                    </CSSTransition>
                 </TransitionGroup>
             </div>
         </div>
