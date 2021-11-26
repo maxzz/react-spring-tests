@@ -15,7 +15,7 @@ function PageA() {
     console.log({location: loc});
     const nodeRef = React.useRef(null);
     return (
-        <CSSTransition nodeRef={nodeRef} key={loc.pathname} classNames="fade" timeout={300}>
+        // <CSSTransition nodeRef={nodeRef} classNames="fade" timeout={300}>
             <div ref={nodeRef} className="grid place-items-center bg-[salmon] text-red-800">
                 <div className="m-4 grid grid-cols-[repeat(2,minmax(400px,1fr))] gap-4">
                     <Case01 />
@@ -25,7 +25,7 @@ function PageA() {
                     {/* <Case01snapshot /> */}
                 </div>
             </div>
-        </CSSTransition>
+        // </CSSTransition>
     );
 }
 
@@ -57,14 +57,14 @@ function AppRoutes() {
             </nav>
             <div className="flex-1 w-full bg-[salmon]">
                 <TransitionGroup>
-                    {/* <CSSTransition key={loc.pathname} classNames="fade" timeout={300}> */}
+                    <CSSTransition key={loc.pathname} classNames="fade" timeout={300}>
                     <Switch>
                         <Route path="/spring" children={<PageA />} />
                         <Route path="/springs" children={<PageB />} />
                         <Route path="/transitions" children={<PageB />} />
                         <Route path="/trails" children={<PageB />} />
                     </Switch>
-                    {/* </CSSTransition> */}
+                    </CSSTransition>
                 </TransitionGroup>
             </div>
         </div>
