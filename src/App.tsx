@@ -1,20 +1,14 @@
 import React from 'react';
 import './App.css';
-import { Case01 } from './pages/Case01';
-import { Case01snapshot } from './pages/Case01snapshot';
-import { Case02 } from './pages/Case02';
-import { Case03 } from './pages/Case03';
-import { Case04 } from './pages/Case04';
-import { Case0X } from './pages/Case0X';
+import { Case01 } from './pages/PageA/Case01';
+import { Case01snapshot } from './pages/PageA/Case01snapshot';
+import { Case02 } from './pages/PageA/Case02';
+import { Case03 } from './pages/PageA/Case03';
+import { Case04 } from './pages/PageA/Case04';
+import { Case0X } from './pages/PageA/Case0X';
 
 import { BrowserRouter as Router, Route, LinkProps, NavLink as StateLink, withRouter } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
-
-function NavLink(props: LinkProps & React.RefAttributes<HTMLAnchorElement>) {
-    return (
-        <StateLink className={(isActive: boolean) => `px-4 py-2 rounded shadow ${isActive ? 'bg-red-100' : 'opacity-75'}`} exact={true} {...props} />
-    );
-}
 
 function PageA() {
     return (
@@ -51,10 +45,18 @@ const routes = [
     { path: '/trails', name: "Home", Component: PageB, },
 ];
 
+function NavLink(props: LinkProps & React.RefAttributes<HTMLAnchorElement>) {
+    return (
+        <StateLink className={(isActive: boolean) => `px-4 py-2 rounded shadow ${isActive ? 'bg-red-100' : 'opacity-75'}`} exact={true} {...props} />
+    );
+}
+
 function NavMenu() {
     return (
         <nav className="p-4 flex justify-end space-x-4">
-            {routes.map((route, idx) => <NavLink key={idx} to={route.path} children={route.name} />)}
+            {routes.map((route, idx) => (
+                <NavLink key={idx} to={route.path} children={route.name} />
+            ))}
         </nav>
     );
 }
@@ -74,10 +76,10 @@ const PageContent = withRouter(({ location: loc }) => {
                                 timeout={300}
                                 classNames="fade"
                                 unmountOnExit
-                                //appear
+                            //appear
                             >
                                 <div ref={rf} className="absolute inset-0">
-                                {/* <div ref={rf} className="relative"> */}
+                                    {/* <div ref={rf} className="relative"> */}
                                     <Component />
                                 </div>
                             </CSSTransition>
