@@ -4,12 +4,14 @@ import { BrowserRouter as Router, Route, LinkProps, NavLink as StateLink, withRo
 import { CSSTransition } from 'react-transition-group';
 import { PageA } from './pages/PageA/PageA';
 import { PageB } from './pages/PageB/PageB';
+import { PageCBlobs } from './pages/PageC/PageBlobs';
 
 const routes = [
     { path: '/', name: "Spring", Component: PageA, },
     { path: '/springs', name: "Springs", Component: PageB, },
-    { path: '/transitions', name: "Home", Component: PageB, },
-    { path: '/trails', name: "Home", Component: PageB, },
+    { path: '/transitions', name: "Transitions", Component: PageB, },
+    { path: '/trails', name: "Trails", Component: PageB, },
+    { path: '/blobs', name: "Blobs", Component: PageCBlobs, },
 ];
 
 function NavLink(props: LinkProps & React.RefAttributes<HTMLAnchorElement>) {
