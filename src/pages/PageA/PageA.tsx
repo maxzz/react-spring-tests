@@ -8,8 +8,8 @@ import { Case0X } from './Case0X';
 
 export function PageA() {
     return (
-        <div className="page grid place-items-center">
-            <div className="m-4 grid grid-cols-[repeat(2,minmax(400px,1fr))] gap-4">
+        <div className="page grid place-items-center overflow-hidden">
+            <div className="m-4 grid grid-cols-[repeat(2,minmax(400px,28rem))] gap-4">
                 <Case01 />
                 <Case02 />
                 <Case03 />
