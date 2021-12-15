@@ -10,10 +10,10 @@ const trans = (x: any, y: any) => `translate3d(${x}px,${y}px,0) translate3d(-50%
 const Main: React.FC = () => {
     const [trail, setTrail] = useTrail(3, () => ({
         xy: [0, 0],
-        // config: (i) => {
-        //     console.log({ i });
-        //     return +i === 0 ? configFast : configSlow;
-        // },
+        config: (i) => {
+            console.log({ i });
+            return +i === 0 ? configFast : configSlow;
+        },
     }));
 
     return (
@@ -38,18 +38,20 @@ const Main: React.FC = () => {
                 </filter>
             </svg>
 
-            <div
-                className="hooks-main absolute w-full h-[90%] overflow-hidden"
-                style={{ filter: 'url(#goo)' }}
-                onMouseMove={e => setTrail({ xy: [e.clientX, e.clientY] })}
-            >
-                {trail.map((props, index) => (
-                    <a.div
-                        key={index}
-                        style={{ transform: props?.xy?.interpolate(trans) }}
-                        className="bg-purple-700 opacity-60"
-                    />
-                ))}
+            <div className="absolute inset-0 overflow-hidden border-4 border-gray-700">
+                <div
+                    className="hooks-main absolute inset-0"
+                    style={{ filter: 'url(#goo)' }}
+                    onMouseMove={e => setTrail({ xy: [e.clientX, e.clientY] })}
+                >
+                    {trail.map((props, index) => (
+                        <a.div
+                            key={index}
+                            style={{ transform: props?.xy?.to(trans) }}
+                            className="bg-purple-700 opacity-60"
+                        />
+                    ))}
+                </div>
             </div>
             {/* </div> */}
             {/* </main> */}
