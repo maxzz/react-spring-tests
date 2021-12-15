@@ -8,7 +8,7 @@ const configSlow = { mass: 10, tension: 200, friction: 50 };
 const trans = (x: any, y: any) => `translate3d(${x}px,${y}px,0) translate3d(-50%,-50%,0)`;
 
 const Main: React.FC = () => {
-    const [trail, setTrail] = useTrail(3, () => ({
+    const [trail, api] = useTrail(3, () => ({
         xy: [0, 0],
         config: (i) => {
             console.log({ i });
@@ -31,18 +31,18 @@ const Main: React.FC = () => {
 
             {/* <div className="w-full h-full"> */}
 
-            <svg style={{ display: "none", position: "absolute", width: 0, height: 0 }}>
-                <filter id="goo">
+            <svg className="hidden absolute w-0 h-0">
+                <filter id="goo-filter">
                     <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="30" />
                     <feColorMatrix in="blur" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 30 -7" />
                 </filter>
             </svg>
 
-            <div className="absolute inset-0 overflow-hidden border-4 border-gray-700">
+            <div className="absolute inset-0 overflow-hidden border border-gray-900/20">
                 <div
                     className="hooks-main absolute inset-0"
                     style={{ filter: 'url(#goo)' }}
-                    onMouseMove={e => setTrail({ xy: [e.clientX, e.clientY] })}
+                    onMouseMove={e => api.start({ xy: [e.clientX, e.clientY] })}
                 >
                     {trail.map((props, index) => (
                         <a.div
