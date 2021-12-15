@@ -41,7 +41,7 @@ const Main: React.FC = () => {
             <div className="absolute inset-0 overflow-hidden border border-gray-900/20">
                 <div
                     className="hooks-main absolute inset-0"
-                    style={{ filter: 'url(#goo)' }}
+                    style={{ filter: 'url(#goo-filter)' }}
                     onMouseMove={e => api.start({ xy: [e.clientX, e.clientY] })}
                 >
                     {trail.map((props, index) => (
