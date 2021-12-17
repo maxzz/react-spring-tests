@@ -31,16 +31,11 @@ const Main: React.FC = () => {
 
             {/* <div className="w-full h-full"> */}
 
-            <svg className="absolute w-0 h-0">
-                <filter id="goo-filter">
-                    <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="30" />
-                    <feColorMatrix in="blur" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 30 -7" />
-                </filter>
-            </svg>
+            <FilterGoo />
 
             <div className="absolute inset-0 overflow-hidden border border-gray-900/20">
                 <div
-                    className="hooks-main absolute inset-0"
+                    className="blobs absolute inset-0"
                     style={{ filter: 'url(#goo-filter)' }}
                     onMouseMove={e => api.start({ xy: [e.clientX, e.clientY] })}
                 >
@@ -58,6 +53,17 @@ const Main: React.FC = () => {
         </>
     );
 };
+
+function FilterGoo() {
+    return (
+        <svg className="absolute w-0 h-0">
+            <filter id="goo-filter">
+                <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="30" />
+                <feColorMatrix in="blur" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 30 -7" />
+            </filter>
+        </svg>
+    );
+}
 
 export function PageCBlobs() {
     return (
