@@ -65,9 +65,14 @@ function Blobs() {
                         className={classNames(
                             "bg-purple-700 opacity-60"
                         )}
-                    />
+                    >
+                        {index}
+                    </a.div>
                 ))}
+            <div className="w-96 h-96 rounded-none bg-pink-500" style={{ filter: `${useGoo ? 'url(#goo-filter)' : 'none'}` }}></div>
+            <div className="top-24 w-24 h-24 rounded-none bg-pink-500" style={{ filter: `${useGoo ? 'url(#goo-filter)' : 'none'}` }}></div>
             </div>
+            
         </div>
     );
 }
