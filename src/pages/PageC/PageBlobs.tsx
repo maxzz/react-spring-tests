@@ -93,10 +93,6 @@ function PageContent() {
                     <div className="grid place-items-center">
                         <div className="text-7xl opacity-50">⚗</div>
                         <div className="mt-4 text-3xl opacity-50 font-black uppercase tracking-tighter">Goo Blobs</div>
-                        <label className="flex items-center space-x-1">
-                            <input type="checkbox" className="form-checkbox select-none" />
-                            <div className="">Use filter</div>
-                        </label>
                     </div>
                 </a.div>
             )}
@@ -106,10 +102,18 @@ function PageContent() {
 
 export function PageCBlobs() {
     return (
-        <div className="page grid place-items-center relative bg-red-700/20">
-            <FilterGoo />
-            <Blobs />
-            <PageContent />
+        <div className="page grid grid-rows-[1fr,auto] bg-red-700/20">
+            <div className="relative">
+                <FilterGoo />
+                <Blobs />
+            </div>
+            <div className="grid overflow-hidden">
+                <PageContent />
+                <label className="flex items-center space-x-1">
+                    <input type="checkbox" className="form-checkbox select-none" />
+                    <div className="">Use filter</div>
+                </label>
+            </div>
         </div>
     );
 }
