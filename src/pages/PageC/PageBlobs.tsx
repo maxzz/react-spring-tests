@@ -50,11 +50,12 @@ function Blobs() {
         xy: [200, 200],
         config: configSlow,
     }));
+    const [useGoo] = useAtom(useGooAtom);
     return (
         <div className="absolute inset-0 overflow-hidden border border-gray-900/20">
             <div
                 className="blobs absolute inset-0"
-                style={{ filter: 'url(#goo-filter)' }}
+                style={{ filter: `${useGoo ? 'url(#goo-filter)' : 'none'}` }}
                 onMouseMove={e => api.start({ xy: [e.clientX, e.clientY] })}
             >
                 {trail.map((props, index) => (
@@ -82,7 +83,7 @@ function FilterGoo() {
     );
 }
 
-const useGooAtom = atom(false);
+const useGooAtom = atom(true);
 
 function PageContent() {
     const [useGoo, setUseGoo] = useAtom(useGooAtom);
@@ -90,9 +91,15 @@ function PageContent() {
         <Spring from={{ opacity: 0, scale: 0 }} to={{ opacity: 1, scale: 1 }} config={config.wobbly}>
             {(props) => (
                 <a.div style={props}>
-                    <div className="grid place-items-center">
+                    <div className="my-4 grid place-items-center">
                         <div className="text-7xl opacity-50">⚗</div>
-                        <div className="mt-4 text-3xl opacity-50 font-black uppercase tracking-tighter">Goo Blobs</div>
+                        <label className="mt-2 flex items-center justify-center space-x-2 select-none">
+                            <input
+                                type="checkbox" className="w-7 h-7 form-checkbox text-red-600 bg-red-300 red-ring rounded border-red-900/40"
+                                checked={useGoo} onChange={(event) => setUseGoo(event.target.checked)}
+                            />
+                            <div className="text-3xl opacity-50 font-black uppercase tracking-tighter">Goo Blobs</div>
+                        </label>
                     </div>
                 </a.div>
             )}
@@ -109,10 +116,10 @@ export function PageCBlobs() {
             </div>
             <div className="grid overflow-hidden">
                 <PageContent />
-                <label className="flex items-center space-x-1">
+                {/* <label className="flex items-center space-x-1">
                     <input type="checkbox" className="form-checkbox select-none" />
                     <div className="">Use filter</div>
-                </label>
+                </label> */}
             </div>
         </div>
     );
