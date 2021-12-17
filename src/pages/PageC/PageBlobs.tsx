@@ -10,20 +10,11 @@ const trans = (x: any, y: any) => `translate3d(${x}px,${y}px,0) translate3d(-50%
 const Main: React.FC = () => {
     const [trail, api] = useTrail(3, () => ({
         xy: [200, 200],
-        config: (i) => {
-            console.log({ i });
-            return +i === 0 ? configFast : configSlow;
-        },
+        config: configSlow,
     }));
-
     return (
         <>
-            {/* <main className="w-full h-full flex flex-col items-center justify-center"> */}
-
             <PageContent />
-
-            {/* <div className="w-full h-full"> */}
-
             <FilterGoo />
 
             <div className="absolute inset-0 overflow-hidden border border-gray-900/20">
@@ -41,8 +32,6 @@ const Main: React.FC = () => {
                     ))}
                 </div>
             </div>
-            {/* </div> */}
-            {/* </main> */}
         </>
     );
 };
@@ -54,7 +43,7 @@ function PageContent() {
                 <a.div style={props}>
                     <div className="grid place-items-center gap-4">
                         <div className="text-7xl opacity-50">⚗</div>
-                        <div className="text-2xl uppercase tracking-tighter">Goo Blobs</div>
+                        <div className="text-3xl opacity-50 font-black uppercase tracking-tighter">Goo Blobs</div>
                     </div>
                 </a.div>
             )}
