@@ -9,7 +9,7 @@ const trans = (x: any, y: any) => `translate3d(${x}px,${y}px,0) translate3d(-50%
 
 const Main: React.FC = () => {
     const [trail, api] = useTrail(3, () => ({
-        xy: [0, 0],
+        xy: [200, 200],
         config: (i) => {
             console.log({ i });
             return +i === 0 ? configFast : configSlow;

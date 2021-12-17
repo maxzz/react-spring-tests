@@ -10,7 +10,7 @@
     position: absolute;
     will-change: transform;
     border-radius: 50%;
-    //background: lightcoral;
+    background: lightcoral;
     box-shadow: 12px 12px 4px 7px #c9f80c;
     //opacity: 0.6;
 }
@@ -33,12 +33,15 @@
 .hooks-main > div::after {
     content: "";
     position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.hooks-main > div:nth-child(1):after {
     top: 20px;
     left: 20px;
     width: 40px;
     height: 40px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.8);
 }
 
 .hooks-main > div:nth-child(2)::after {
