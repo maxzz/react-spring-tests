@@ -5,18 +5,15 @@ import './PageBlobs.scss';
 const configFast = { tension: 1200, friction: 40 };
 const configSlow = { mass: 10, tension: 200, friction: 50 };
 
-const trans = (x: any, y: any) => `translate3d(${x}px,${y}px,0) translate3d(-50%,-50%,0)`;
+const interpolate = (x: number, y: number) => `translate3d(${x}px,${y}px,0) translate3d(-50%,-50%,0)`;
 
-const Main: React.FC = () => {
+function Blobs() {
     const [trail, api] = useTrail(3, () => ({
         xy: [200, 200],
         config: configSlow,
     }));
     return (
         <>
-            <PageContent />
-            <FilterGoo />
-
             <div className="absolute inset-0 overflow-hidden border border-gray-900/20">
                 <div
                     className="blobs absolute inset-0"
@@ -26,7 +23,7 @@ const Main: React.FC = () => {
                     {trail.map((props, index) => (
                         <a.div
                             key={index}
-                            style={{ transform: props?.xy?.to(trans) }}
+                            style={{ transform: props.xy.to(interpolate) }}
                             className="bg-purple-700 opacity-60"
                         />
                     ))}
@@ -34,7 +31,18 @@ const Main: React.FC = () => {
             </div>
         </>
     );
-};
+}
+
+function FilterGoo() {
+    return (
+        <svg className="absolute w-0 h-0">
+            <filter id="goo-filter">
+                <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="30" />
+                <feColorMatrix in="blur" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 30 -7" />
+            </filter>
+        </svg>
+    );
+}
 
 function PageContent() {
     return (
@@ -51,21 +59,12 @@ function PageContent() {
     );
 }
 
-function FilterGoo() {
-    return (
-        <svg className="absolute w-0 h-0">
-            <filter id="goo-filter">
-                <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="30" />
-                <feColorMatrix in="blur" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 30 -7" />
-            </filter>
-        </svg>
-    );
-}
-
 export function PageCBlobs() {
     return (
         <div className="page grid place-items-center relative bg-red-700/20">
-            <Main />
+            <PageContent />
+            <FilterGoo />
+            <Blobs />
         </div>
     );
 }
