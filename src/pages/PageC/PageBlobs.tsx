@@ -35,7 +35,7 @@ function Blobs() {
 
 function FilterGoo() {
     return (
-        <svg className="absolute w-0 h-0">
+        <svg className="absolute w-0 h-0"> {/* Firefox does not like display: none */}
             <filter id="goo-filter">
                 <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="30" />
                 <feColorMatrix in="blur" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 30 -7" />
