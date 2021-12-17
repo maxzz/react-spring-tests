@@ -1,11 +1,48 @@
 import React from 'react';
 import { a, useTrail, Spring, config } from "@react-spring/web";
 import './PageBlobs.scss';
+import { classNames } from '../../utils/classnames';
 
 const configFast = { tension: 1200, friction: 40 };
 const configSlow = { mass: 10, tension: 200, friction: 50 };
 
 const interpolate = (x: number, y: number) => `translate3d(${x}px,${y}px,0) translate3d(-50%,-50%,0)`;
+
+const BlogAPos = [
+    {
+        width: 120,
+        height: 120,
+    },
+    {
+        width: 250,
+        height: 250,
+    },
+    {
+        width: 150,
+        height: 150,
+    },
+];
+
+const BlogBPos = [
+    {
+        top: 20,
+        left: 20,
+        width: 40,
+        height: 40,
+    },
+    {
+        top: 70,
+        left: 70,
+        width: 70,
+        height: 70,
+    },
+    {
+        top: 50,
+        left: 50,
+        width: 50,
+        height: 50,
+    },
+];
 
 function Blobs() {
     const [trail, api] = useTrail(3, () => ({
@@ -24,7 +61,9 @@ function Blobs() {
                         <a.div
                             key={index}
                             style={{ transform: props.xy.to(interpolate) }}
-                            className="bg-purple-700 opacity-60"
+                            className={classNames(
+                                "bg-purple-700 opacity-60"
+                            )}
                         />
                     ))}
                 </div>
