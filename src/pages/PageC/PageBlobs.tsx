@@ -20,14 +20,7 @@ const Main: React.FC = () => {
         <>
             {/* <main className="w-full h-full flex flex-col items-center justify-center"> */}
 
-
-            <Spring from={{ opacity: 0, scale: 0 }} to={{ opacity: 1, scale: 1 }} config={config.wobbly}>
-                {(props) => (
-                    <a.div style={props}>
-                        <div className="text-5xl">Goo Blobs ⚗</div>
-                    </a.div>
-                )}
-            </Spring>
+            <PageContent />
 
             {/* <div className="w-full h-full"> */}
 
@@ -53,6 +46,21 @@ const Main: React.FC = () => {
         </>
     );
 };
+
+function PageContent() {
+    return (
+        <Spring from={{ opacity: 0, scale: 0 }} to={{ opacity: 1, scale: 1 }} config={config.wobbly}>
+            {(props) => (
+                <a.div style={props}>
+                    <div className="grid place-items-center gap-4">
+                        <div className="text-7xl opacity-50">⚗</div>
+                        <div className="text-2xl uppercase tracking-tighter">Goo Blobs</div>
+                    </div>
+                </a.div>
+            )}
+        </Spring>
+    );
+}
 
 function FilterGoo() {
     return (
