@@ -65,11 +65,12 @@ function Blobs() {
                             transform: props.xy.to(interpolate),
                             ['--width' as any]: BlogAPos[index].width,
                             ['--height' as any]: BlogAPos[index].height,
-                            width: `calc(var(--width) * 1px)`,
-                            height: `calc(var(--height) * 1px)`,
+                            // width: `calc(var(--width) * 1px)`,
+                            // height: `calc(var(--height) * 1px)`,
                         }}
                         className={classNames(
                             "bg-purple-700 opacity-60",
+                            "w-[calc(var(--width)*1px)] h-[calc(var(--height)*1px)]",
                             "after:left-[calc(var(--width)*.22px)] after:top-[calc(var(--height)*.22px)]",
                             "after:w-[calc(var(--width)*.33px)] after:h-[calc(var(--height)*.33px)]",
                         )}
