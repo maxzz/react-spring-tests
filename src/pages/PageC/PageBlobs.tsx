@@ -3,6 +3,7 @@ import { a, useTrail, Spring, config } from "@react-spring/web";
 import './PageBlobs.scss';
 import { classNames } from '../../utils/classnames';
 import { atom, useAtom } from 'jotai';
+import styled from 'styled-components';
 
 const configFast = { tension: 1200, friction: 40 };
 const configSlow = { mass: 10, tension: 200, friction: 50 };
@@ -45,6 +46,8 @@ const BlogBPos = [
     },
 ];
 
+const Blob = styled.div``;
+
 function Blobs() {
     const [trail, api] = useTrail(3, () => ({
         xy: [335, 185],
@@ -63,7 +66,7 @@ function Blobs() {
                 {trail.map((props, index) => (
                     <a.div
                         key={index}
-                        style={{ 
+                        style={{
                             transform: props.xy.to(interpolate),
                             '--width': BlogAPos[index].width,
                             '--height': BlogAPos[index].height,
@@ -78,10 +81,10 @@ function Blobs() {
                         {useGoo ? null : <div className="font-bold">{index}</div>}
                     </a.div>
                 ))}
-            <div className="left-[2%] top-[1%] w-96 h-96 rounded-none bg-[transparent]" style={{ filter: `${useGoo ? 'url(#goo-filter)' : 'none'}` }}></div>
-            <div className="left-[60%] top-[8rem] w-24 h-24 rounded-none bg-[lightcoral]" style={{ filter: `${useGoo ? 'url(#goo-filter)' : 'none'}` }}></div>
+                <div className="left-[2%] top-[1%] w-96 h-96 rounded-none bg-[transparent]" style={{ filter: `${useGoo ? 'url(#goo-filter)' : 'none'}` }}></div>
+                <div className="left-[60%] top-[8rem] w-24 h-24 rounded-none bg-[lightcoral]" style={{ filter: `${useGoo ? 'url(#goo-filter)' : 'none'}` }}></div>
             </div>
-            
+
         </div>
     );
 }
