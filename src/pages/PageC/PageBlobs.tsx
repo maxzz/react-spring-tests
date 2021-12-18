@@ -11,8 +11,8 @@ const interpolate = (x: number, y: number) => `translate3d(${x}px,${y}px,0) tran
 
 const BlogAPos = [
     {
-        width: 120,
-        height: 120,
+        width: 120*2,
+        height: 120*2,
     },
     {
         width: 250,
@@ -46,7 +46,7 @@ const BlogBPos = [
 ];
 
 function Blobs() {
-    const [trail, api] = useTrail(3, () => ({
+    const [trail, api] = useTrail(1, () => ({
         xy: [200, 200],
         config: configSlow,
     }));
@@ -63,18 +63,15 @@ function Blobs() {
                         key={index}
                         style={{ 
                             transform: props.xy.to(interpolate),
-                            // ['--width' as any]: `${BlogAPos[index].width}px`,
-                            // ['--height' as any]: `${BlogAPos[index].height}px`,
                             ['--width' as any]: BlogAPos[index].width,
                             ['--height' as any]: BlogAPos[index].height,
-                            // width: `${BlogAPos[index].width}px`,
-                            // height: `${BlogAPos[index].height}px`,
                             width: `calc(var(--width) * 1px)`,
                             height: `calc(var(--height) * 1px)`,
                         }}
                         className={classNames(
                             "bg-purple-700 opacity-60",
-                            "after:w-[calc(var(--width)*1px)] after:h-[calc(var(--height)*1px)]"
+                            "after:left-[calc(var(--width)*.22px)] after:top-[calc(var(--height)*.22px)]",
+                            "after:w-[calc(var(--width)*.33px)] after:h-[calc(var(--height)*.33px)]",
                         )}
                     >
                         {index}
