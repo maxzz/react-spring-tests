@@ -46,7 +46,19 @@ const BlogBPos = [
     },
 ];
 
-const Blob = styled.div``;
+//bg-purple-700
+const Blob = styled(a.div)`
+    background: #7e22ce;
+    opacity: .6;
+    width: calc(var(--width) * 1px);
+    height: calc(var(--height) * 1px);
+    &::after {
+        left: calc(var(--width) * 0.22px);
+        top: calc(var(--height) * 0.22px);
+        width: calc(var(--width) * 0.33px);
+        height: calc(var(--height) * 0.33px);
+    }
+`;
 
 function Blobs() {
     const [trail, api] = useTrail(3, () => ({
@@ -64,22 +76,22 @@ function Blobs() {
                 )}
             >
                 {trail.map((props, index) => (
-                    <a.div
+                    <Blob
                         key={index}
                         style={{
                             transform: props.xy.to(interpolate),
                             '--width': BlogAPos[index].width,
                             '--height': BlogAPos[index].height,
                         }}
-                        className={classNames(
-                            "bg-purple-700 opacity-60",
-                            "w-[calc(var(--width)*1px)] h-[calc(var(--height)*1px)]",
-                            "after:left-[calc(var(--width)*.22px)] after:top-[calc(var(--height)*.22px)]",
-                            "after:w-[calc(var(--width)*.33px)] after:h-[calc(var(--height)*.33px)]",
-                        )}
+                        // className={classNames(
+                        //     "bg-purple-700 opacity-60",
+                        //     "w-[calc(var(--width)*1px)] h-[calc(var(--height)*1px)]",
+                        //     "after:left-[calc(var(--width)*.22px)] after:top-[calc(var(--height)*.22px)]",
+                        //     "after:w-[calc(var(--width)*.33px)] after:h-[calc(var(--height)*.33px)]",
+                        // )}
                     >
                         {useGoo ? null : <div className="font-bold">{index}</div>}
-                    </a.div>
+                    </Blob>
                 ))}
                 <div className="left-[2%] top-[1%] w-96 h-96 rounded-none bg-[transparent]" style={{ filter: `${useGoo ? 'url(#goo-filter)' : 'none'}` }}></div>
                 <div className="left-[60%] top-[8rem] w-24 h-24 rounded-none bg-[lightcoral]" style={{ filter: `${useGoo ? 'url(#goo-filter)' : 'none'}` }}></div>
