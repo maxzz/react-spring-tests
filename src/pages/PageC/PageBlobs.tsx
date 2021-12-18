@@ -61,9 +61,13 @@ function Blobs() {
                 {trail.map((props, index) => (
                     <a.div
                         key={index}
-                        style={{ transform: props.xy.to(interpolate) }}
+                        style={{ 
+                            transform: props.xy.to(interpolate),
+                            width: `${BlogAPos[index].width}px`,
+                            height: `${BlogAPos[index].height}px`,
+                         }}
                         className={classNames(
-                            "bg-purple-700 opacity-60"
+                            "bg-purple-700 opacity-60",
                         )}
                     >
                         {index}

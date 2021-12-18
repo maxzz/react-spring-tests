@@ -15,21 +15,21 @@
     //opacity: 0.6;
 }
 
-.blobs > div:nth-child(1) {
-    width: 120px;
-    height: 120px;
-    //background: red;
-}
+// .blobs > div:nth-child(1) {
+//     width: 120px;
+//     height: 120px;
+//     //background: red;
+// }
 
-.blobs > div:nth-child(2) {
-    width: 250px;
-    height: 250px;
-}
+// .blobs > div:nth-child(2) {
+//     width: 250px;
+//     height: 250px;
+// }
 
-.blobs > div:nth-child(3) {
-    width: 150px;
-    height: 150px;
-}
+// .blobs > div:nth-child(3) {
+//     width: 150px;
+//     height: 150px;
+// }
 
 .blobs > div::after {
     content: "";
