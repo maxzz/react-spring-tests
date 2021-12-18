@@ -1,12 +1,16 @@
 import * as CSS from 'csstype';
 
-type CSSCustProp<Str extends string> = `--${Str}`;
+type CSSCustomProperty<Str extends string = string> = `--${Str}`;
 
 declare module 'csstype' {
   interface Properties {
 
-    // CSSCustProp<string>: any;
-    [key: CSSCustProp<string>]: any;
+    [key: CSSCustomProperty]: any;
+    '--top'?: number;
+    '--left'?: number;
+    '--width'?: number;
+    '--height'?: number;
+
     /*
     // Add a missing property
     WebkitRocketLauncher?: string;
