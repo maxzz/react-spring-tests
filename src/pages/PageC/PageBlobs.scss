@@ -6,14 +6,14 @@
 //     overflow: hidden;
 // }
 
-.blobs > div {
-    position: absolute;
-    will-change: transform;
-    border-radius: 50%;
-    //background: lightcoral;
-    box-shadow: 12px 12px 4px 7px #c9f80c;
-    //opacity: 0.6;
-}
+// .blobs > div {
+//     position: absolute;
+//     will-change: transform;
+//     border-radius: 50%;
+//     //background: lightcoral;
+//     box-shadow: 12px 12px 4px 7px #c9f80c;
+//     //opacity: 0.6;
+// }
 
 // .blobs > div:nth-child(1) {
 //     width: 120px;
@@ -31,12 +31,12 @@
 //     height: 150px;
 // }
 
-.blobs > div::after {
-    content: "";
-    position: absolute;
-    border-radius: 50%;
-    background: #ffffffcc;
-}
+// .blobs > div::after {
+//     content: "";
+//     position: absolute;
+//     border-radius: 50%;
+//     background: #ffffffcc;
+// }
 
 // .blobs > div:nth-child(1):after {
 //     top: 20px;

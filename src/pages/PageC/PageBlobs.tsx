@@ -46,17 +46,30 @@ const BlogBPos = [
     },
 ];
 
-//bg-purple-700
-const Blob = styled(a.div)`
-    background: #7e22ce;
-    opacity: .6;
+const BlobsParent = styled.div<{ useGoo: boolean; }>`
+    position: absolute;
+    inset: 0;
+    filter: ${props => props.useGoo ? 'url(#goo-filter)' : 'none'};
+`;
+
+const BlobChild = styled(a.div)`
+    position: absolute;
     width: calc(var(--width) * 1px);
     height: calc(var(--height) * 1px);
+    border-radius: 50%;
+    background: #7e22ce; //bg-purple-700 //background: lightcoral;
+    box-shadow: 12px 12px 4px 7px #c9f80c;
+    opacity: .6;
+    will-change: transform;
     &::after {
+        content: '';
+        position: absolute;
         left: calc(var(--width) * 0.22px);
         top: calc(var(--height) * 0.22px);
         width: calc(var(--width) * 0.33px);
         height: calc(var(--height) * 0.33px);
+        border-radius: 50%;
+        background: #ffffffcc;
     }
 `;
 
@@ -68,34 +81,36 @@ function Blobs() {
     const [useGoo] = useAtom(useGooAtom);
     return (
         <div className="absolute inset-0 overflow-hidden border border-gray-900/20">
-            <div
-                className="blobs absolute inset-0"
-                style={{ filter: `${useGoo ? 'url(#goo-filter)' : 'none'}` }}
-                // onMouseMove={(eveny) => api.start({ xy: [eveny.clientX, eveny.clientY] })}
-                onMouseMove={(event) => (console.log([event.clientX, event.clientY]), api.start({ xy: [event.clientX, event.clientY] })
-                )}
-            >
+            <BlobsParent useGoo={useGoo} onMouseMove={(event) => api.start({ xy: [event.clientX, event.clientY] })}>
                 {trail.map((props, index) => (
-                    <Blob
+                    <BlobChild
                         key={index}
                         style={{
                             transform: props.xy.to(interpolate),
                             '--width': BlogAPos[index].width,
                             '--height': BlogAPos[index].height,
                         }}
-                        // className={classNames(
-                        //     "bg-purple-700 opacity-60",
-                        //     "w-[calc(var(--width)*1px)] h-[calc(var(--height)*1px)]",
-                        //     "after:left-[calc(var(--width)*.22px)] after:top-[calc(var(--height)*.22px)]",
-                        //     "after:w-[calc(var(--width)*.33px)] after:h-[calc(var(--height)*.33px)]",
-                        // )}
+                    // className={classNames(
+                    //     "bg-purple-700 opacity-60",
+                    //     "w-[calc(var(--width)*1px)] h-[calc(var(--height)*1px)]",
+                    //     "after:left-[calc(var(--width)*.22px)] after:top-[calc(var(--height)*.22px)]",
+                    //     "after:w-[calc(var(--width)*.33px)] after:h-[calc(var(--height)*.33px)]",
+                    // )}
                     >
                         {useGoo ? null : <div className="font-bold">{index}</div>}
-                    </Blob>
+                    </BlobChild>
                 ))}
                 <div className="left-[2%] top-[1%] w-96 h-96 rounded-none bg-[transparent]" style={{ filter: `${useGoo ? 'url(#goo-filter)' : 'none'}` }}></div>
                 <div className="left-[60%] top-[8rem] w-24 h-24 rounded-none bg-[lightcoral]" style={{ filter: `${useGoo ? 'url(#goo-filter)' : 'none'}` }}></div>
-            </div>
+            </BlobsParent>
+
+            {/* <div
+                className="blobs absolute inset-0"
+                style={{ filter: `${useGoo ? 'url(#goo-filter)' : 'none'}` }}
+                onMouseMove={(event) => api.start({ xy: [event.clientX, event.clientY] })}
+                //onMouseMove={(event) => (console.log([event.clientX, event.clientY]), api.start({ xy: [event.clientX, event.clientY] }))}
+            >
+            </div> */}
 
         </div>
     );
