@@ -11,8 +11,8 @@ const interpolate = (x: number, y: number) => `translate3d(${x}px,${y}px,0) tran
 
 const BlogAPos = [
     {
-        width: 120*2,
-        height: 120*2,
+        width: 120,
+        height: 120,
     },
     {
         width: 250,
@@ -45,12 +45,9 @@ const BlogBPos = [
     },
 ];
 
-// type CSSCustProp<Str extends string> = `--${Str}`;
-// type CWidth = CSSCustProp<'width'>;
-
 function Blobs() {
-    const [trail, api] = useTrail(1, () => ({
-        xy: [200, 200],
+    const [trail, api] = useTrail(3, () => ({
+        xy: [335, 185],
         config: configSlow,
     }));
     const [useGoo] = useAtom(useGooAtom);
@@ -59,7 +56,9 @@ function Blobs() {
             <div
                 className="blobs absolute inset-0"
                 style={{ filter: `${useGoo ? 'url(#goo-filter)' : 'none'}` }}
-                onMouseMove={e => api.start({ xy: [e.clientX, e.clientY] })}
+                // onMouseMove={(eveny) => api.start({ xy: [eveny.clientX, eveny.clientY] })}
+                onMouseMove={(event) => (console.log([event.clientX, event.clientY]), api.start({ xy: [event.clientX, event.clientY] })
+                )}
             >
                 {trail.map((props, index) => (
                     <a.div
@@ -68,8 +67,6 @@ function Blobs() {
                             transform: props.xy.to(interpolate),
                             '--width': BlogAPos[index].width,
                             '--height': BlogAPos[index].height,
-                            // width: `calc(var(--width) * 1px)`,
-                            // height: `calc(var(--height) * 1px)`,
                         }}
                         className={classNames(
                             "bg-purple-700 opacity-60",
@@ -78,11 +75,11 @@ function Blobs() {
                             "after:w-[calc(var(--width)*.33px)] after:h-[calc(var(--height)*.33px)]",
                         )}
                     >
-                        {index}
+                        {useGoo ? null : <div className="font-bold">{index}</div>}
                     </a.div>
                 ))}
-            <div className="left-[1%] top-[1%] w-96 h-96 rounded-none bg-[transparent]" style={{ filter: `${useGoo ? 'url(#goo-filter)' : 'none'}` }}></div>
-            <div className="left-[70%] top-96 w-24 h-24 rounded-none bg-[lightcoral]" style={{ filter: `${useGoo ? 'url(#goo-filter)' : 'none'}` }}></div>
+            <div className="left-[2%] top-[1%] w-96 h-96 rounded-none bg-[transparent]" style={{ filter: `${useGoo ? 'url(#goo-filter)' : 'none'}` }}></div>
+            <div className="left-[60%] top-[8rem] w-24 h-24 rounded-none bg-[lightcoral]" style={{ filter: `${useGoo ? 'url(#goo-filter)' : 'none'}` }}></div>
             </div>
             
         </div>
@@ -100,7 +97,7 @@ function FilterGoo() {
     );
 }
 
-const useGooAtom = atom(true);
+const useGooAtom = atom(false);
 
 function PageContent() {
     const [useGoo, setUseGoo] = useAtom(useGooAtom);
