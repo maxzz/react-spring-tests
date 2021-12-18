@@ -63,9 +63,14 @@ function Blobs() {
                         key={index}
                         style={{ 
                             transform: props.xy.to(interpolate),
-                            width: `${BlogAPos[index].width}px`,
+                            // ['--width' as any]: `${BlogAPos[index].width}px`,
+                            ['--width' as any]: BlogAPos[index].width,
+                            ['--height' as any]: `${BlogAPos[index].height}px`,
+                            // width: `${BlogAPos[index].width}px`,
+                            // height: `${BlogAPos[index].height}px`,
+                            width: `calc(var(--width) * 1px)`,
                             height: `${BlogAPos[index].height}px`,
-                         }}
+                        }}
                         className={classNames(
                             "bg-purple-700 opacity-60",
                         )}
