@@ -64,15 +64,17 @@ function Blobs() {
                         style={{ 
                             transform: props.xy.to(interpolate),
                             // ['--width' as any]: `${BlogAPos[index].width}px`,
+                            // ['--height' as any]: `${BlogAPos[index].height}px`,
                             ['--width' as any]: BlogAPos[index].width,
-                            ['--height' as any]: `${BlogAPos[index].height}px`,
+                            ['--height' as any]: BlogAPos[index].height,
                             // width: `${BlogAPos[index].width}px`,
                             // height: `${BlogAPos[index].height}px`,
                             width: `calc(var(--width) * 1px)`,
-                            height: `${BlogAPos[index].height}px`,
+                            height: `calc(var(--height) * 1px)`,
                         }}
                         className={classNames(
                             "bg-purple-700 opacity-60",
+                            "after:w-[calc(var(--width)*1px)] after:h-[calc(var(--height)*1px)]"
                         )}
                     >
                         {index}
