@@ -45,6 +45,8 @@ const BlogBPos = [
     },
 ];
 
+type CSSCustProp<Str extends string = string> = `--${Str}`;
+
 function Blobs() {
     const [trail, api] = useTrail(1, () => ({
         xy: [200, 200],
@@ -63,7 +65,7 @@ function Blobs() {
                         key={index}
                         style={{ 
                             transform: props.xy.to(interpolate),
-                            ['--width' as any]: BlogAPos[index].width,
+                            ['--width' as CSSCustProp]: BlogAPos[index].width,
                             ['--height' as any]: BlogAPos[index].height,
                             // width: `calc(var(--width) * 1px)`,
                             // height: `calc(var(--height) * 1px)`,
