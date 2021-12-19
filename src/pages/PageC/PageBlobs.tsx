@@ -94,6 +94,14 @@ function FilterGoo() {
     );
 }
 
+function Bubbles() {
+    return (
+        <div className="absolute left-[15%] top-[12%] w-[49.5%] h-[67%] overflow-hidden rounded-full bg-stone-600">
+            <div className=""></div>
+        </div>
+    );
+}
+
 function PageContent() {
     const [useGoo, setUseGoo] = useAtom(useGooAtom);
     useKey((event) => event.altKey && event.key === 'g', (event) => { event.preventDefault(); setUseGoo(prev => !prev); });
@@ -102,7 +110,10 @@ function PageContent() {
             {(props) => (
                 <a.div style={props}>
                     <div className="my-4 grid place-items-center">
-                        <div className="text-7xl opacity-50">⚗</div>
+                        <div className="relative text-7xl opacity-50">
+                            ⚗
+                            <Bubbles />
+                        </div>
                         <label className="mt-2 flex items-center justify-center space-x-2 select-none">
                             <input
                                 type="checkbox" className="w-7 h-7 form-checkbox text-red-600 bg-red-300 red-ring rounded border-red-900/40"
