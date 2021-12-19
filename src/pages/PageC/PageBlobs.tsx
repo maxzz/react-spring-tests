@@ -1,9 +1,10 @@
 import React from 'react';
 import { a, useTrail, Spring, config } from "@react-spring/web";
 import { atom, useAtom } from 'jotai';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { useKey } from 'react-use';
 import { useGooAtom } from '../../store/store';
+import { rnd } from '../../utils/numbers';
 
 const BLOBPOS = [{
     width: 120,
@@ -94,9 +95,39 @@ function FilterGoo() {
     );
 }
 
+const bubblesAnim = keyframes`
+   0% {
+      opacity: 0;
+   }
+   20% { //show and hint at moving
+      opacity: 1;
+      transform: translate(0, -20%);
+   }
+   100% {
+      opacity: 0;
+      transform: translate(0, -1000%); //big bubbles move faster
+   }
+`;
+
+const BubbleChild = styled.div`
+    top: ${rnd(20,80)}%;
+    left: ${rnd(0,95)}%;
+    width: ${rnd(1,3)}px;
+    height: ${rnd(80,160)}%;
+    animation-delay: -${rnd(0,30)/10}s;
+`;
+
 function Bubbles() {
+    const a = "top:' + $.rnd(20,80) + '%; left:' + $.rnd(0,95) + '%;width:' + size + 'px; height:' + size + 'px;animation-delay: ' + ($.rnd(0,30)/10) + 's;"
+    //const a = `top: ${rnd(-50,0)}%; left: ${rnd(0,100)}%; width: ${rnd(1,3)}px; height: ${rnd(80,160)}%; animation-delay: -${rnd(0,30)/10}s`
     return (
         <div className="absolute left-[15.5%] top-[12.5%] w-[48.5%] h-[66%] overflow-hidden rounded-full bg-stone-600/20">
+
+            {/* <span 
+            className="particle" 
+            style="top:' + $.rnd(-50,0) + '%; left:' + $.rnd(0,100) + '%;width:' + $.rnd(1,3) + 'px; height:' + $.rnd(80,160) + '%;animation-delay: -' + ($.rnd(0,30)/10) + 's;">
+            </span> */}
+
             <div className="absolute left-[20%] top-[10%] w-4 h-4 bg-white/50 border border-gray-500 rounded-full"></div>
             <div className="absolute left-[60%] top-[30%] w-4 h-4 bg-white/50 border border-gray-500 rounded-full"></div>
             <div className="absolute left-[20%] top-[50%]  w-4 h-4 bg-white/50 border border-gray-500 rounded-full"></div>
