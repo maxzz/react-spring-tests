@@ -116,7 +116,7 @@ const BubbleChild = styled.div<{ $left: number; $top: number; $size: number; $de
     width: ${props => props.$size}px;
     height: ${props => props.$size}px;
     //background-color: red;
-    background-color: #7dbe9e80;
+    background-color: #fff7;
     opacity: 0;
     border-radius: 100%;
     animation: ${bubblesAnim} 3s ease-in infinite;
@@ -127,18 +127,9 @@ function Bubbles() {
     const [total, setTotal] = React.useState(20);
     return (
         <div className="absolute left-[15.5%] top-[12.5%] w-[48.5%] h-[66%] overflow-hidden rounded-full bg-stone-600/20">
-
             {Array.from({ length: total }).map((_, idx) => (
-                <BubbleChild $left={rnd(10, 80)} $top={rnd(40, 90)} $size={rnd(40, 80) / 10} $delay={-rnd(0, 30) / 10} key={idx} />
+                <BubbleChild $left={rnd(10, 80)} $top={rnd(60, 80)} $size={rnd(40, 80) / 10} $delay={-rnd(0, 30) / 10} key={idx} />
             ))}
-
-            {/* <BubbleChild $left={rnd(10, 80)} $top={rnd(40, 90)} $size={rnd(40, 80) / 10} $delay={-rnd(0, 30) / 10} />
-            <BubbleChild $left={rnd(10, 80)} $top={rnd(40, 90)} $size={rnd(40, 80) / 10} $delay={-rnd(0, 30) / 10} />
-            <BubbleChild $left={rnd(10, 80)} $top={rnd(40, 90)} $size={rnd(40, 80) / 10} $delay={-rnd(0, 30) / 10} /> */}
-
-            {/* <div className="absolute left-[20%] top-[10%] w-4 h-4 bg-white/50 border border-gray-500 rounded-full"></div>
-            <div className="absolute left-[60%] top-[30%] w-4 h-4 bg-white/50 border border-gray-500 rounded-full"></div>
-            <div className="absolute left-[20%] top-[50%]  w-4 h-4 bg-white/50 border border-gray-500 rounded-full"></div> */}
         </div>
     );
 }
