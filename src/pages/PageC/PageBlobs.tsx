@@ -2,17 +2,18 @@ import React from 'react';
 import { a, useTrail, Spring, config } from "@react-spring/web";
 import { atom, useAtom } from 'jotai';
 import styled from 'styled-components';
+import { useKey } from 'react-use';
 
-const BLOBPOS = [ {
-        width: 120,
-        height: 120,
-    }, {
-        width: 250,
-        height: 250,
-    }, {
-        width: 150,
-        height: 150,
-    },
+const BLOBPOS = [{
+    width: 120,
+    height: 120,
+}, {
+    width: 250,
+    height: 250,
+}, {
+    width: 150,
+    height: 150,
+},
 ];
 
 const configFast = { tension: 1200, friction: 40 };
@@ -25,7 +26,7 @@ const BlobsParent = styled.div<{ $useGoo: boolean; }>`
     filter: ${props => props.$useGoo ? 'url(#goo-filter)' : 'none'};
 `;
 
-const BlobChild = styled(a.div)<{ $width: number; $height: number; }>`
+const BlobChild = styled(a.div) <{ $width: number; $height: number; }>`
     position: absolute;
     --width: ${props => props.$width};
     --height: ${props => props.$height};
@@ -96,6 +97,7 @@ const useGooAtom = atom(false);
 
 function PageContent() {
     const [useGoo, setUseGoo] = useAtom(useGooAtom);
+    useKey((event) => event.altKey && event.key === 'g', (event) => { event.preventDefault(); setUseGoo(prev => !prev); });
     return (
         <Spring from={{ opacity: 0, scale: 0 }} to={{ opacity: 1, scale: 1 }} config={config.wobbly}>
             {(props) => (
@@ -107,7 +109,11 @@ function PageContent() {
                                 type="checkbox" className="w-7 h-7 form-checkbox text-red-600 bg-red-300 red-ring rounded border-red-900/40"
                                 checked={useGoo} onChange={(event) => setUseGoo(event.target.checked)}
                             />
-                            <div className="text-3xl opacity-50 font-black uppercase tracking-tighter">Goo Blobs</div>
+                            <div className="text-3xl opacity-50 font-black uppercase tracking-tighter">Goo Blobs
+                                <div className="ml-1 -mt-2 px-1 pb-0.5 text-red-900 bg-red-300 border border-red-800 rounded inline-block align-text-top text-sm font-normal normal-case">
+                                    Alt+G
+                                </div>
+                            </div>
                         </label>
                     </div>
                 </a.div>
