@@ -124,7 +124,11 @@ const BubbleChild = styled.div<{ $left: number; $top: number; $size: number; $de
 `;
 
 function Bubbles() {
-    const [total, setTotal] = React.useState(20);
+    const [total, setTotal] = React.useState(10);
+    React.useEffect(() => {
+        const int = setInterval(() => setTotal(rnd(total - 5, total + 5)), 2000);
+        return () => clearInterval(int);
+    }, []);
     return (
         <div className="absolute left-[15.5%] top-[12.5%] w-[48.5%] h-[66%] overflow-hidden rounded-full bg-stone-600/20">
             {Array.from({ length: total }).map((_, idx) => (
