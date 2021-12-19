@@ -29,10 +29,10 @@ const BlobsParent = styled.div<{ useGoo: boolean; }>`
     filter: ${props => props.useGoo ? 'url(#goo-filter)' : 'none'};
 `;
 
-const BlobChild = styled.div<{ width2: number, height2: number; }>`
+const BlobChild = styled(a.div)<{ w: number; h: number; }>`
     position: absolute;
-    --width: ${props => props.width2};
-    --height: ${props => props.height2};
+    --width: ${props => props.w};
+    --height: ${props => props.h};
     width: calc(var(--width) * 1px);
     height: calc(var(--height) * 1px);
     border-radius: 50%;
@@ -62,15 +62,15 @@ function Blobs() {
         <div className="absolute inset-0 overflow-hidden border border-gray-900/20">
             <BlobsParent useGoo={useGoo} onMouseMove={(event) => api.start({ xy: [event.clientX, event.clientY] })}>
                 {trail.map((props, index) => (
-                    <a.BlobChild
+                    <BlobChild
                         key={index}
-                        width2={BlogAPos[index].width}
-                        height2={BlogAPos[index].height}
+                        w={BlogAPos[index].width}
+                        h={BlogAPos[index].height}
                         // style={{ '--width': BlogAPos[index].width, '--height': BlogAPos[index].height, transform: props.xy.to(interpolate), }}
                         style={{ transform: props.xy.to(interpolate), }}
                     >
                         {useGoo ? null : <div className="font-bold">{index}</div>}
-                    </a.BlobChild>
+                    </BlobChild>
                 ))}
                 <div
                     className="absolute left-[2%] top-[1%] w-96 h-96 rounded-full bg-[transparent]"
