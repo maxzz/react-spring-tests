@@ -29,10 +29,10 @@ const BlobsParent = styled.div<{ useGoo: boolean; }>`
     filter: ${props => props.useGoo ? 'url(#goo-filter)' : 'none'};
 `;
 
-const BlobChild = styled(a.div)<{ w: number; h: number; }>`
+const BlobChild = styled(a.div)<{ $width: number; $height: number; }>`
     position: absolute;
-    --width: ${props => props.w};
-    --height: ${props => props.h};
+    --width: ${props => props.$width};
+    --height: ${props => props.$height};
     width: calc(var(--width) * 1px);
     height: calc(var(--height) * 1px);
     border-radius: 50%;
@@ -64,8 +64,8 @@ function Blobs() {
                 {trail.map((props, index) => (
                     <BlobChild
                         key={index}
-                        w={BlogAPos[index].width}
-                        h={BlogAPos[index].height}
+                        $width={BlogAPos[index].width}
+                        $height={BlogAPos[index].height}
                         // style={{ '--width': BlogAPos[index].width, '--height': BlogAPos[index].height, transform: props.xy.to(interpolate), }}
                         style={{ transform: props.xy.to(interpolate), }}
                     >
