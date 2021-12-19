@@ -3,25 +3,21 @@ import { a, useTrail, Spring, config } from "@react-spring/web";
 import { atom, useAtom } from 'jotai';
 import styled from 'styled-components';
 
-const configFast = { tension: 1200, friction: 40 };
-const configSlow = { mass: 10, tension: 200, friction: 50 };
-
-const interpolate = (x: number, y: number) => `translate3d(${x}px,${y}px,0) translate3d(-50%,-50%,0)`;
-
-const BlogAPos = [
-    {
+const BLOBPOS = [ {
         width: 120,
         height: 120,
-    },
-    {
+    }, {
         width: 250,
         height: 250,
-    },
-    {
+    }, {
         width: 150,
         height: 150,
     },
 ];
+
+const configFast = { tension: 1200, friction: 40 };
+const configSlow = { mass: 10, tension: 200, friction: 50 };
+const interpolate = (x: number, y: number) => `translate3d(${x}px,${y}px,0) translate3d(-50%,-50%,0)`;
 
 const BlobsParent = styled.div<{ $useGoo: boolean; }>`
     position: absolute;
@@ -40,6 +36,7 @@ const BlobChild = styled(a.div)<{ $width: number; $height: number; }>`
     box-shadow: 12px 12px 4px 7px #c9f80c;
     opacity: .6;
     will-change: transform;
+
     &::after {
         content: '';
         position: absolute;
@@ -64,9 +61,8 @@ function Blobs() {
                 {trail.map((props, index) => (
                     <BlobChild
                         key={index}
-                        $width={BlogAPos[index].width}
-                        $height={BlogAPos[index].height}
-                        // style={{ '--width': BlogAPos[index].width, '--height': BlogAPos[index].height, transform: props.xy.to(interpolate), }}
+                        $width={BLOBPOS[index].width}
+                        $height={BLOBPOS[index].height}
                         style={{ transform: props.xy.to(interpolate), }}
                     >
                         {useGoo ? null : <div className="font-bold">{index}</div>}
