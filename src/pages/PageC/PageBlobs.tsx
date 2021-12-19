@@ -23,10 +23,10 @@ const BlogAPos = [
     },
 ];
 
-const BlobsParent = styled.div<{ useGoo: boolean; }>`
+const BlobsParent = styled.div<{ $useGoo: boolean; }>`
     position: absolute;
     inset: 0;
-    filter: ${props => props.useGoo ? 'url(#goo-filter)' : 'none'};
+    filter: ${props => props.$useGoo ? 'url(#goo-filter)' : 'none'};
 `;
 
 const BlobChild = styled(a.div)<{ $width: number; $height: number; }>`
@@ -60,7 +60,7 @@ function Blobs() {
     const [useGoo] = useAtom(useGooAtom);
     return (
         <div className="absolute inset-0 overflow-hidden border border-gray-900/20">
-            <BlobsParent useGoo={useGoo} onMouseMove={(event) => api.start({ xy: [event.clientX, event.clientY] })}>
+            <BlobsParent $useGoo={useGoo} onMouseMove={(event) => api.start({ xy: [event.clientX, event.clientY] })}>
                 {trail.map((props, index) => (
                     <BlobChild
                         key={index}
