@@ -112,8 +112,8 @@ function PageContent() {
             {(props) => (
                 <a.div style={props}>
                     <div className="my-4 grid place-items-center">
-                        <div className="relative text-7xl opacity-50">
-                            ⚗
+                        <div className="relative text-7xl">
+                            <span className="opacity-50">⚗</span>
                             <Bubbles />
                         </div>
                         <label className="mt-2 flex items-center justify-center space-x-2 select-none">
