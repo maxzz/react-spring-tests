@@ -109,24 +109,26 @@ const bubblesAnim = keyframes`
    }
 `;
 
-const BubbleChild = styled.div`
-    top: ${rnd(20,80)}%;
-    left: ${rnd(0,95)}%;
-    width: ${rnd(1,3)}px;
-    height: ${rnd(80,160)}%;
-    animation-delay: -${rnd(0,30)/10}s;
+const BubbleChild = styled.div<{ $size: number; }>`
+    position: absolute;
+    background-color: red;
+    left: ${rnd(10, 80)}%;
+    top: ${rnd(40, 90)}%;
+    /* top: ${rnd(20, 90)}%; */
+    width: ${props => props.$size}px;
+    height: ${props => props.$size}px;
+    border-radius: 100%;
+    animation: ${bubblesAnim} 1s ease-in infinite;
+    animation-delay: -${rnd(0, 30) / 10}s;
 `;
 
 function Bubbles() {
-    const a = "top:' + $.rnd(20,80) + '%; left:' + $.rnd(0,95) + '%;width:' + size + 'px; height:' + size + 'px;animation-delay: ' + ($.rnd(0,30)/10) + 's;"
-    //const a = `top: ${rnd(-50,0)}%; left: ${rnd(0,100)}%; width: ${rnd(1,3)}px; height: ${rnd(80,160)}%; animation-delay: -${rnd(0,30)/10}s`
     return (
         <div className="absolute left-[15.5%] top-[12.5%] w-[48.5%] h-[66%] overflow-hidden rounded-full bg-stone-600/20">
 
-            {/* <span 
-            className="particle" 
-            style="top:' + $.rnd(-50,0) + '%; left:' + $.rnd(0,100) + '%;width:' + $.rnd(1,3) + 'px; height:' + $.rnd(80,160) + '%;animation-delay: -' + ($.rnd(0,30)/10) + 's;">
-            </span> */}
+            <BubbleChild $size={rnd(40,80)/10} />
+            <BubbleChild $size={rnd(40,80)/10} />
+            <BubbleChild $size={rnd(40,80)/10} />
 
             <div className="absolute left-[20%] top-[10%] w-4 h-4 bg-white/50 border border-gray-500 rounded-full"></div>
             <div className="absolute left-[60%] top-[30%] w-4 h-4 bg-white/50 border border-gray-500 rounded-full"></div>
