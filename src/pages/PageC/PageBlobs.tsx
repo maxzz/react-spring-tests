@@ -100,8 +100,14 @@ function Blobs() {
                         {useGoo ? null : <div className="font-bold">{index}</div>}
                     </BlobChild>
                 ))}
-                <div className="left-[2%] top-[1%] w-96 h-96 rounded-none bg-[transparent]" style={{ filter: `${useGoo ? 'url(#goo-filter)' : 'none'}` }}></div>
-                <div className="left-[60%] top-[8rem] w-24 h-24 rounded-none bg-[lightcoral]" style={{ filter: `${useGoo ? 'url(#goo-filter)' : 'none'}` }}></div>
+                <div
+                    className="absolute left-[2%] top-[1%] w-96 h-96 rounded-full bg-[transparent]"
+                    style={{ filter: `${useGoo ? 'url(#goo-filter)' : 'none'}`, boxShadow: '12px 12px 4px 7px #c9f80c' }}
+                />
+                <div
+                    className="absolute left-[60%] top-[8rem] w-24 h-24 rounded-full bg-[lightcoral]"
+                    style={{ filter: `${useGoo ? 'url(#goo-filter)' : 'none'}`, boxShadow: '12px 12px 4px 7px #c9f80c'  }}
+                />
             </BlobsParent>
 
             {/* <div
