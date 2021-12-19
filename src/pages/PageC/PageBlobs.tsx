@@ -121,22 +121,26 @@ const BubbleChild = styled.div`
 function Bubbles() {
     const [total, setTotal] = React.useState(10);
     React.useEffect(() => {
-        const int = setInterval(() => setTotal(rnd(total - 5, total + 5)), 4000);
+        const int = setInterval(() => setTotal(rnd(total - 1, total + 1)), 5000);
         return () => clearInterval(int);
     }, []);
     return (
         <div className="absolute left-[15.5%] top-[12.5%] w-[48.5%] h-[66%] overflow-hidden rounded-full bg-stone-600/20">
             {/* <BubbleChild $left={rnd(10, 80)} $top={rnd(60, 80)} $size={rnd(40, 80) / 10} $delay={-rnd(0, 30) / 10} key={idx} /> */}
-            {Array.from({ length: total }).map((_, idx) => (
-                <BubbleChild key={idx}
-                    style={{
-                        left: `${rnd(10, 80)}px`,
-                        top: `${rnd(60, 80)}px`,
-                        width: `${rnd(40, 80) / 10}px`,
-                        height: `${rnd(40, 80) / 10}px`,
-                        animationDelay: `${-rnd(0, 30) / 10}s`
-                    }} />
-            ))}
+            {Array.from({ length: total }).map((_, idx) => {
+                const size = rnd(40, 80) / 10;
+                return (
+                    <BubbleChild key={idx}
+                        style={{
+                            left: `${rnd(10, 80)}%`,
+                            top: `${rnd(50, 70)}%`,
+                            width: `${size}px`,
+                            height: `${size}px`,
+                            animationDelay: `${-rnd(0, 30) / 10}s`
+                        }}
+                    />
+                );
+            })}
         </div>
     );
 }
