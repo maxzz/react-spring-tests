@@ -3,6 +3,7 @@ import { a, useTrail, Spring, config } from "@react-spring/web";
 import { atom, useAtom } from 'jotai';
 import styled from 'styled-components';
 import { useKey } from 'react-use';
+import { useGooAtom } from '../../store/store';
 
 const BLOBPOS = [{
     width: 120,
@@ -93,8 +94,6 @@ function FilterGoo() {
     );
 }
 
-const useGooAtom = atom(false);
-
 function PageContent() {
     const [useGoo, setUseGoo] = useAtom(useGooAtom);
     useKey((event) => event.altKey && event.key === 'g', (event) => { event.preventDefault(); setUseGoo(prev => !prev); });
@@ -110,7 +109,7 @@ function PageContent() {
                                 checked={useGoo} onChange={(event) => setUseGoo(event.target.checked)}
                             />
                             <div className="text-3xl opacity-50 font-black uppercase tracking-tighter">Goo Blobs
-                                <div className="ml-1 -mt-2 px-1 pb-0.5 text-red-900 bg-red-300 border border-red-800 rounded inline-block align-text-top text-sm font-normal normal-case">
+                                <div className="ml-1 -mt-2 px-1 pb-0.5 text-red-900 bg-red-300 border border-red-800 rounded inline-block align-text-top text-sm font-normal normal-case opacity-70">
                                     Alt+G
                                 </div>
                             </div>
