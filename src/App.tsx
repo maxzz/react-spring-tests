@@ -34,21 +34,20 @@ const PageContent = withRouter(({ location: loc }) => {
     const isMatch = React.useCallback((path: string): boolean => loc.pathname === path, [loc]);
     return (<>
         {routes.map(({ path, Component }, index) => {
-            const rf = React.useRef(null);
+            const transitionChildRef = React.useRef(null);
             return (
                 <Route key={index} exact path={path}>
                     {() => { // Route callback ensures the transitions are loaded correctly
                         return (
                             <CSSTransition
-                                nodeRef={rf}
+                                nodeRef={transitionChildRef}
                                 in={isMatch(path)}
                                 timeout={300}
                                 classNames="fade"
                                 unmountOnExit
                                 //appear
                             >
-                                <div ref={rf} className="absolute inset-0">
-                                    {/* <div ref={rf} className="relative"> */}
+                                <div ref={transitionChildRef} className="absolute inset-0">
                                     <Component />
                                 </div>
                             </CSSTransition>
