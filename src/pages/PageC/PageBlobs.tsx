@@ -96,7 +96,7 @@ function FilterGoo() {
 
 function Bubbles() {
     return (
-        <div className="absolute left-[15%] top-[12%] w-[49.5%] h-[67%] overflow-hidden rounded-full bg-stone-600">
+        <div className="absolute left-[15.5%] top-[12.5%] w-[48.5%] h-[66%] overflow-hidden rounded-full bg-stone-600">
             <div className=""></div>
         </div>
     );
