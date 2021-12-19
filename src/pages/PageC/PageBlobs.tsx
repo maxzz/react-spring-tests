@@ -100,8 +100,12 @@ const bubblesAnim = keyframes`
       opacity: 0;
    }
    20% { //show and hint at moving
+      opacity: 0.25;
+      transform: translate(-20%, 40%);
+   }
+   40% { //show and hint at moving
       opacity: 1;
-      transform: translate(0, -20%);
+      transform: translate(20%, -20%);
    }
    100% {
       opacity: 0;
@@ -125,10 +129,10 @@ function Bubbles() {
         return () => clearInterval(int);
     }, []);
     return (
-        <div className="absolute left-[15.5%] top-[12.5%] w-[48.5%] h-[66%] overflow-hidden rounded-full bg-stone-600/20">
+        <div className="absolute left-[15.5%] top-[12.5%] w-[48.5%] h-[66%] overflow-hidden rounded-full bg-blue-600/20">
             {/* <BubbleChild $left={rnd(10, 80)} $top={rnd(60, 80)} $size={rnd(40, 80) / 10} $delay={-rnd(0, 30) / 10} key={idx} /> */}
             {Array.from({ length: total }).map((_, idx) => {
-                const size = rnd(40, 80) / 10;
+                const size = rnd(20, 70) / 10;
                 return (
                     <BubbleChild key={idx}
                         style={{
