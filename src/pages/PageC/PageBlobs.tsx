@@ -1,7 +1,5 @@
 import React from 'react';
 import { a, useTrail, Spring, config } from "@react-spring/web";
-import './PageBlobs.scss';
-import { classNames } from '../../utils/classnames';
 import { atom, useAtom } from 'jotai';
 import styled from 'styled-components';
 
@@ -22,27 +20,6 @@ const BlogAPos = [
     {
         width: 150,
         height: 150,
-    },
-];
-
-const BlogBPos = [
-    {
-        top: 20,
-        left: 20,
-        width: 40,
-        height: 40,
-    },
-    {
-        top: 70,
-        left: 70,
-        width: 70,
-        height: 70,
-    },
-    {
-        top: 50,
-        left: 50,
-        width: 50,
-        height: 50,
     },
 ];
 
@@ -85,17 +62,7 @@ function Blobs() {
                 {trail.map((props, index) => (
                     <BlobChild
                         key={index}
-                        style={{
-                            transform: props.xy.to(interpolate),
-                            '--width': BlogAPos[index].width,
-                            '--height': BlogAPos[index].height,
-                        }}
-                    // className={classNames(
-                    //     "bg-purple-700 opacity-60",
-                    //     "w-[calc(var(--width)*1px)] h-[calc(var(--height)*1px)]",
-                    //     "after:left-[calc(var(--width)*.22px)] after:top-[calc(var(--height)*.22px)]",
-                    //     "after:w-[calc(var(--width)*.33px)] after:h-[calc(var(--height)*.33px)]",
-                    // )}
+                        style={{ '--width': BlogAPos[index].width, '--height': BlogAPos[index].height, transform: props.xy.to(interpolate), }}
                     >
                         {useGoo ? null : <div className="font-bold">{index}</div>}
                     </BlobChild>
@@ -106,18 +73,9 @@ function Blobs() {
                 />
                 <div
                     className="absolute left-[60%] top-[8rem] w-24 h-24 rounded-full bg-[lightcoral]"
-                    style={{ filter: `${useGoo ? 'url(#goo-filter)' : 'none'}`, boxShadow: '12px 12px 4px 7px #c9f80c'  }}
+                    style={{ filter: `${useGoo ? 'url(#goo-filter)' : 'none'}`, boxShadow: '12px 12px 4px 7px #c9f80c' }}
                 />
             </BlobsParent>
-
-            {/* <div
-                className="blobs absolute inset-0"
-                style={{ filter: `${useGoo ? 'url(#goo-filter)' : 'none'}` }}
-                onMouseMove={(event) => api.start({ xy: [event.clientX, event.clientY] })}
-                //onMouseMove={(event) => (console.log([event.clientX, event.clientY]), api.start({ xy: [event.clientX, event.clientY] }))}
-            >
-            </div> */}
-
         </div>
     );
 }
@@ -166,10 +124,6 @@ export function PageCBlobs() {
             </div>
             <div className="grid overflow-hidden">
                 <PageContent />
-                {/* <label className="flex items-center space-x-1">
-                    <input type="checkbox" className="form-checkbox select-none" />
-                    <div className="">Use filter</div>
-                </label> */}
             </div>
         </div>
     );
