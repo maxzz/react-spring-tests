@@ -10,8 +10,7 @@ const routes = [
     { path: '/', name: "Spring", Component: PageA, },
     { path: '/springs', name: "Springs", Component: PageB, },
     { path: '/transitions', name: "Transitions", Component: PageB, },
-    { path: '/trails', name: "Trails", Component: PageB, },
-    { path: '/blobs', name: "Blobs", Component: PageCBlobs, },
+    { path: '/trails', name: "Trails", Component: PageCBlobs, },
 ];
 
 function NavLink(props: LinkProps & React.RefAttributes<HTMLAnchorElement>) {
