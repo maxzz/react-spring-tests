@@ -98,18 +98,27 @@ function FilterGoo() {
 const bubblesAnim = keyframes`
    0% {
       opacity: 0;
+      background-color: teal;
+      scale: 0.1;
    }
    20% { //show and hint at moving
       opacity: 0.25;
-      transform: translate(-20%, 40%);
+      transform: translate(-30%, 40%);
+      scale: 0.5;
    }
    40% { //show and hint at moving
       opacity: 1;
-      transform: translate(20%, -20%);
+      transform: translate(30%, -20%);
+      scale: 0.2;
+   }
+   60%{
+      background-color: #fff7;
+      transform: translate(-60%, -20%);
+      scale: 1;
    }
    100% {
       opacity: 0;
-      transform: translate(0, -1000%); //big bubbles move faster
+      transform: translate(0, -500%); //big bubbles move faster
    }
 `;
 
@@ -136,7 +145,7 @@ function Bubbles() {
                 return (
                     <BubbleChild key={idx}
                         style={{
-                            left: `${rnd(10, 80)}%`,
+                            left: `${rnd(20, 70)}%`,
                             top: `${rnd(50, 70)}%`,
                             width: `${size}px`,
                             height: `${size}px`,
