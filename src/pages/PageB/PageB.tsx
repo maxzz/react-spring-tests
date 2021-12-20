@@ -1,8 +1,8 @@
 import React from 'react';
-import { Case01 } from '../PageA/Case01';
-import { Case02 } from '../PageA/Case02';
-import { Case03 } from '../PageA/Case03';
-import { Case04 } from '../PageA/Case04';
+import { Case01 } from '../PageA-spring/Case01';
+import { Case02 } from '../PageA-spring/Case02';
+import { Case03 } from '../PageA-spring/Case03';
+import { Case04 } from '../PageA-spring/Case04';
 
 export function PageB() {
     return (

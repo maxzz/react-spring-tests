@@ -2,9 +2,9 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, LinkProps, NavLink as StateLink, withRouter } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
-import { PageA } from './pages/PageA/PageA';
+import { PageA } from './pages/PageA-spring/PageA';
 import { PageB } from './pages/PageB/PageB';
-import { PageCBlobs } from './pages/PageC/PageBlobs';
+import { PageCBlobs } from './pages/PageD-trails/PageBlobs';
 
 const routes = [
     { path: '/', name: "Spring", Component: PageA, },
@@ -15,13 +15,19 @@ const routes = [
 
 function NavLink(props: LinkProps & React.RefAttributes<HTMLAnchorElement>) {
     return (
-        <StateLink className={(isActive: boolean) => `px-4 py-2 rounded shadow ${isActive ? 'bg-red-300' : 'opacity-75'}`} exact={true} {...props} />
+        <StateLink
+            className={(isActive: boolean) => {
+                return `px-4 py-2 rounded shadow ${isActive ? 'bg-red-300' : 'opacity-75 border-2 border-red-600/10 hover:bg-red-300/60 active:scale-[.97]'}`;
+            }}
+            exact={true}
+            {...props}
+        />
     );
 }
 
 function NavMenu() {
     return (
-        <nav className="p-4 flex justify-end space-x-4">
+        <nav className="p-4 flex justify-end space-x-3">
             {routes.map((route, idx) => (
                 <NavLink key={idx} to={route.path} children={route.name} />
             ))}
@@ -44,7 +50,7 @@ const PageContent = withRouter(({ location: loc }) => {
                                 timeout={300}
                                 classNames="fade"
                                 unmountOnExit
-                                //appear
+                            //appear
                             >
                                 <div ref={transitionChildRef} className="absolute inset-0">
                                     <Component />
