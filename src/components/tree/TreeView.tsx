@@ -20,10 +20,7 @@ export type TreeViewProps<T> = {
     disabled?: boolean;
     expanded?: T[];
     onNodeSelect?: (event: React.MouseEvent<HTMLElement>, id: T) => void;
-    onNodeToggle?: (
-        event: React.MouseEvent<HTMLElement>,
-        expandedIds: T[]
-    ) => void;
+    onNodeToggle?: (event: React.MouseEvent<HTMLElement>, expandedIds: T[]) => void;
     selected?: T;
     style?: React.CSSProperties;
     tree: TreeLeaf<T>[];
@@ -42,176 +39,174 @@ type TreeBranchProps<T> = {
 } & CommonStyledProps;
 
 const Text = styled(LabelText)`
-  white-space: nowrap;
+    white-space: nowrap;
 `;
 
 const focusedElementStyles = css<{ $disabled: boolean; }>`
-  :focus {
-    outline: none;
-  }
+    :focus {
+        outline: none;
+    }
 
-  ${({ $disabled }) =>
+    ${({ $disabled }) =>
         !$disabled
             ? css`
-          cursor: pointer;
-
-          :focus {
-            ${Text} {
-              background: ${({ theme }) => theme.hoverBackground};
-              color: ${({ theme }) => theme.materialTextInvert};
-              outline: 2px dotted ${({ theme }) => theme.focusSecondary};
-            }
-          }
-        `
-            : `cursor: default;`}
+                cursor: pointer;
+                :focus {
+                    ${Text} {
+                    background: ${({ theme }) => theme.hoverBackground};
+                    color: ${({ theme }) => theme.materialTextInvert};
+                    outline: 2px dotted ${({ theme }) => theme.focusSecondary};
+                    }
+                }
+            `
+            : `cursor: default;`
+    }
 `;
 
 const TreeWrapper = styled.ul<{ isRootLevel: boolean; }>`
-  position: relative;
-  isolation: isolate;
+    position: relative;
+    isolation: isolate;
 
-  ${({ isRootLevel }) =>
+    ${({ isRootLevel }) =>
         isRootLevel &&
         css`
-      &:before {
-        content: '';
-        position: absolute;
-        top: 20px;
-        bottom: 0;
-        left: 5.5px;
-        width: 1px;
-        border-left: 2px dashed ${({ theme }) => theme.borderDark};
-      }
-    `}
-
-  ul {
-    padding-left: 19.5px;
-  }
-
-  li {
-    position: relative;
-
-    &:before {
-      content: '';
-      position: absolute;
-      top: 17.5px;
-      left: 5.5px;
-      width: 22px;
-      border-top: 2px dashed ${({ theme }) => theme.borderDark};
-      font-size: 12px;
+            &:before {
+                content: '';
+                position: absolute;
+                top: 20px;
+                bottom: 0;
+                left: 5.5px;
+                width: 1px;
+                border-left: 2px dashed ${({ theme }) => theme.borderDark};
+            }
+        `
     }
-  }
+
+    ul {
+        padding-left: 19.5px;
+    }
+
+    li {
+        position: relative;
+        &:before {
+            content: '';
+            position: absolute;
+            top: 17.5px;
+            left: 5.5px;
+            width: 22px;
+            border-top: 2px dashed ${({ theme }) => theme.borderDark};
+            font-size: 12px;
+        }
+    }
 `;
 
 const TreeItem = styled.li<{ hasItems: boolean; isRootLevel: boolean; }>`
-  position: relative;
-  padding-left: ${({ hasItems }) => (!hasItems ? '13px' : '0')};
+    position: relative;
+    padding-left: ${({ hasItems }) => (!hasItems ? '13px' : '0')};
 
-  ${({ isRootLevel }) =>
+    ${({ isRootLevel }) =>
         !isRootLevel
             ? css`
-          &:last-child {
-            &:after {
-              content: '';
-              position: absolute;
-              z-index: 1;
-              top: 19.5px;
-              bottom: 0;
-              left: 1.5px;
-              width: 10px;
-              background: ${({ theme }) => theme.material};
-            }
-          }
-        `
+                &:last-child {
+                    &:after {
+                    content: '';
+                    position: absolute;
+                    z-index: 1;
+                    top: 19.5px;
+                    bottom: 0;
+                    left: 1.5px;
+                    width: 10px;
+                    background: ${({ theme }) => theme.material};
+                    }
+                }
+            `
             : css`
-          &:last-child {
-            &:after {
-              content: '';
-              position: absolute;
-              top: 19.5px;
-              left: 1px;
-              bottom: 0;
-              width: 10px;
-              background: ${({ theme }) => theme.material};
-            }
-          }
-        `}
-
-  & > details > ul {
-    &:after {
-      content: '';
-      position: absolute;
-      top: -18px;
-      bottom: 0;
-      left: 25px;
-      border-left: 2px dashed ${({ theme }) => theme.borderDark};
+                &:last-child {
+                    &:after {
+                    content: '';
+                    position: absolute;
+                    top: 19.5px;
+                    left: 1px;
+                    bottom: 0;
+                    width: 10px;
+                    background: ${({ theme }) => theme.material};
+                    }
+                }
+            `
     }
-  }
+
+    & > details > ul {
+        &:after {
+        content: '';
+        position: absolute;
+        top: -18px;
+        bottom: 0;
+        left: 25px;
+        border-left: 2px dashed ${({ theme }) => theme.borderDark};
+        }
+    }
 `;
 
 const Details = styled.details`
-  position: relative;
-  z-index: 2;
-
-  &[open] > summary:before {
-    content: '-';
-  }
+    position: relative;
+    z-index: 2;
+    &[open] > summary:before {
+        content: '-';
+    }
 `;
 
 const Summary = styled.summary`
-  position: relative;
-  z-index: 1;
-  display: inline-flex;
-  align-items: center;
-  color: ${({ theme }) => theme.materialText};
-  user-select: none;
-  padding-left: 18px;
-  ${focusedElementStyles};
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    color: ${({ theme }) => theme.materialText};
+    user-select: none;
+    padding-left: 18px;
+    ${focusedElementStyles};
 
-  &::-webkit-details-marker {
-    display: none;
-  }
+    &::-webkit-details-marker {
+        display: none;
+    }
 
-  &:before {
-    content: '+';
-    position: absolute;
-    left: 0;
-    display: block;
-    width: 8px;
-    height: 9px;
-    border: 2px solid #808080;
-    padding-left: 1px;
-    background-color: #fff;
-    line-height: 8px;
-    text-align: center;
-  }
+    &:before {
+        content: '+';
+        position: absolute;
+        left: 0;
+        display: block;
+        width: 8px;
+        height: 9px;
+        border: 2px solid #808080;
+        padding-left: 1px;
+        background-color: #fff;
+        line-height: 8px;
+        text-align: center;
+    }
 `;
 
 const TitleWithIcon = styled(StyledLabel)`
-  position: relative;
-  z-index: 1;
-  background: none;
-  border: 0;
-  font-family: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  margin: 0;
-  ${focusedElementStyles};
+    position: relative;
+    z-index: 1;
+    background: none;
+    border: 0;
+    font-family: inherit;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin: 0;
+    ${focusedElementStyles};
 `;
 
 const Icon = styled.span`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 16px;
-  height: 16px;
-  margin-right: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
 `;
 
 function toggleItem<T>(state: T[], id: T) {
-    return state.includes(id)
-        ? state.filter(item => item !== id)
-        : [...state, id];
+    return state.includes(id) ? state.filter(item => item !== id) : [...state, id];
 }
 
 function preventDefault(event: React.SyntheticEvent) {
@@ -247,49 +242,46 @@ function TreeBranch<T>({
 
             return (
                 <TreeItem
-                    key={item.label}
                     isRootLevel={isRootLevel}
+                    hasItems={hasItems}
                     role='treeitem'
                     aria-expanded={isMenuShown}
                     aria-selected={isSelected}
-                    hasItems={hasItems}
+                    key={item.label}
                 >
-                    {!hasItems ? (
-                        <TitleWithIcon
-                            as='button'
-                            $disabled={isNodeDisabled}
-                            onClick={onClickLeaf}
-                        >
-                            {icon}
-                            <Text>{item.label}</Text>
-                        </TitleWithIcon>
-                    ) : (
-                        <Details open={isMenuShown}>
-                            <Summary onClick={onClickSummary} $disabled={isNodeDisabled}>
-                                <TitleWithIcon $disabled={isNodeDisabled}>
-                                    {icon}
-                                    <Text>{item.label}</Text>
-                                </TitleWithIcon>
-                            </Summary>
+                    {!hasItems
+                        ? (
+                            <TitleWithIcon as='button' $disabled={isNodeDisabled} onClick={onClickLeaf}>
+                                {icon}
+                                <Text>{item.label}</Text>
+                            </TitleWithIcon>
+                        )
+                        : (
+                            <Details open={isMenuShown}>
+                                <Summary onClick={onClickSummary} $disabled={isNodeDisabled}>
+                                    <TitleWithIcon $disabled={isNodeDisabled}>
+                                        {icon}
+                                        <Text>{item.label}</Text>
+                                    </TitleWithIcon>
+                                </Summary>
 
-                            {isMenuShown && (
-                                <TreeBranch
-                                    className={className}
-                                    disabled={isNodeDisabled}
-                                    expanded={expanded}
-                                    level={level + 1}
-                                    select={select}
-                                    selected={selected}
-                                    style={style}
-                                    tree={item.items ?? []}
-                                />
-                            )}
-                        </Details>
-                    )}
+                                {isMenuShown && (
+                                    <TreeBranch
+                                        className={className}
+                                        disabled={isNodeDisabled}
+                                        expanded={expanded}
+                                        level={level + 1}
+                                        select={select}
+                                        selected={selected}
+                                        style={style}
+                                        tree={item.items ?? []}
+                                    />
+                                )}
+                            </Details>
+                        )}
                 </TreeItem>
             );
-        },
-        [className, disabled, expanded, isRootLevel, level, select, selected, style]
+        }, [className, disabled, expanded, isRootLevel, level, select, selected, style]
     );
 
     return (
@@ -346,8 +338,7 @@ function TreeInner<T>(
             setExpandedInternal(previouslyExpandedIds =>
                 toggleItem(previouslyExpandedIds, id)
             );
-        },
-        [expandedInternal, onNodeToggle, setExpandedInternal]
+        }, [expandedInternal, onNodeToggle, setExpandedInternal]
     );
 
     const select = useCallback(
@@ -357,8 +348,7 @@ function TreeInner<T>(
             if (onNodeSelect) {
                 onNodeSelect(event, id);
             }
-        },
-        [onNodeSelect, setSelectedInternal]
+        }, [onNodeSelect, setSelectedInternal]
     );
 
     const handleSelect = useCallback(
@@ -368,8 +358,7 @@ function TreeInner<T>(
             if (item.items && item.items.length) {
                 toggleMenu(event, item.id);
             }
-        },
-        [select, toggleMenu]
+        }, [select, toggleMenu]
     );
 
     return (
@@ -390,7 +379,7 @@ function TreeInner<T>(
 // export const TreeView = 
 //     forwardRef(TreeInner) as <T>(props: TreeViewProps<T> & { ref?: React.ForwardedRef<HTMLUListElement>; }) => ReturnType<typeof TreeInner<T>>;
 
-type TreeInnerReturn<T extends (...args: any[]) => any > = ReturnType< T >;
+type TreeInnerReturn<T extends (...args: any[]) => any> = ReturnType<T>;
 
 export const TreeView = forwardRef(TreeInner) as <T>(props: TreeViewProps<T> & { ref?: React.ForwardedRef<HTMLUListElement>; }) => TreeInnerReturn<typeof TreeInner>;
 

@@ -1,11 +1,8 @@
 import { ComponentType } from 'react';
-
 import { Color, Theme, WindowsTheme } from './common-themes-types';
 
 export type Sizes = 'sm' | 'md' | 'lg';
-
 export type Orientation = 'horizontal' | 'vertical';
-
 export type Direction = 'up' | 'down' | 'left' | 'right';
 
 export type DimensionValue = undefined | number | string;
