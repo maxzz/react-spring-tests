@@ -1,4 +1,5 @@
 import React from 'react';
+import { TestTree } from '../../components/tree/TestTree';
 import { Case01 } from '../PageA-spring/Case01';
 import { Case02 } from '../PageA-spring/Case02';
 import { Case03 } from '../PageA-spring/Case03';
@@ -13,6 +14,7 @@ export function PageB() {
                 {/* <Case02 />
                 <Case03 />
                 <Case04 /> */}
+                <TestTree />
             </div>
         </div>
     );
