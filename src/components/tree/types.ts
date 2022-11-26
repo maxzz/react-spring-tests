@@ -1,6 +1,6 @@
 import { ComponentType } from 'react';
 
-import { Color, Theme, WindowsTheme } from './common/themes/types';
+import { Color, Theme, WindowsTheme } from './common-themes-types';
 
 export type Sizes = 'sm' | 'md' | 'lg';
 
@@ -27,4 +27,4 @@ export type CommonThemeProps = {
   shadow?: boolean;
 };
 
-export { Color, Theme, WindowsTheme };
+export type { Color, Theme, WindowsTheme };

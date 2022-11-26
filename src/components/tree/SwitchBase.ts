@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
-import { createDisabledTextStyles, focusOutline } from '.';
-import { StyledMenuListItem } from '../MenuList/MenuList';
+import { createDisabledTextStyles, focusOutline } from './common_index'; // '.'
+import { StyledMenuListItem } from './MenuList_MenuListItem'; //'../MenuList/MenuList'
 
 export const size = 20;
 
@@ -15,7 +15,7 @@ export const StyledInput = styled.input`
   z-index: -1;
 `;
 
-export const StyledLabel = styled.label<{ $disabled: boolean }>`
+export const StyledLabel = styled.label<{ $disabled: boolean; }>`
   display: inline-flex;
   align-items: center;
   position: relative;
@@ -32,8 +32,8 @@ export const StyledLabel = styled.label<{ $disabled: boolean }>`
   }
   ${StyledMenuListItem}:hover & {
     ${({ $disabled, theme }) =>
-      !$disabled &&
-      css`
+        !$disabled &&
+        css`
         color: ${theme.materialTextInvert};
       `};
   }
