@@ -8,15 +8,9 @@ type MenuListItemProps = {
     square?: boolean;
     primary?: boolean;
     size?: Sizes;
-} & React.HTMLAttributes<HTMLLIElement> &
-    CommonStyledProps;
+} & React.HTMLAttributes<HTMLLIElement> & CommonStyledProps;
 
-export const StyledMenuListItem = styled.li<{
-    $disabled?: boolean;
-    square?: boolean;
-    primary?: boolean;
-    size: Sizes;
-}>`
+export const StyledMenuListItem = styled.li<{ $disabled?: boolean; square?: boolean; primary?: boolean; size: Sizes;}>`
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -26,21 +20,20 @@ export const StyledMenuListItem = styled.li<{
     padding: 0 8px;
     font-size: 1rem;
     white-space: nowrap;
-    justify-content: ${props =>
-        props.square ? 'space-around' : 'space-between'};
+    justify-content: ${props => props.square ? 'space-around' : 'space-between'};
     text-align: center;
     line-height: ${props => blockSizes[props.size]};
     color: ${({ theme }) => theme.materialText};
     pointer-events: ${({ $disabled }) => ($disabled ? 'none' : 'auto')};
     font-weight: ${({ primary }) => (primary ? 'bold' : 'normal')};
     &:hover {
-      ${({ theme, $disabled }) =>
-        !$disabled &&
-        `
-          color: ${theme.materialTextInvert};
-          background: ${theme.hoverBackground};
-        `}
+        ${({ theme, $disabled }) => !$disabled &&
+            `
+                color: ${theme.materialTextInvert};
+                background: ${theme.hoverBackground};
+            `
+         }
       cursor: default;
     }
     ${props => props.$disabled && createDisabledTextStyles()}
-  `;
+`;

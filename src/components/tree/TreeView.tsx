@@ -47,19 +47,18 @@ const focusedElementStyles = css<{ $disabled: boolean; }>`
         outline: none;
     }
 
-    ${({ $disabled }) =>
-        !$disabled
-            ? css`
-                cursor: pointer;
-                :focus {
-                    ${Text} {
-                    background: ${({ theme }) => theme.hoverBackground};
-                    color: ${({ theme }) => theme.materialTextInvert};
-                    outline: 2px dotted ${({ theme }) => theme.focusSecondary};
-                    }
+    ${({ $disabled }) => !$disabled
+        ? css`
+            cursor: pointer;
+            :focus {
+                ${Text} {
+                background: ${({ theme }) => theme.hoverBackground};
+                color: ${({ theme }) => theme.materialTextInvert};
+                outline: 2px dotted ${({ theme }) => theme.focusSecondary};
                 }
-            `
-            : `cursor: default;`
+            }
+        `
+        : `cursor: default;`
     }
 `;
 
@@ -67,8 +66,7 @@ const TreeWrapper = styled.ul<{ isRootLevel: boolean; }>`
     position: relative;
     isolation: isolate;
 
-    ${({ isRootLevel }) =>
-        isRootLevel &&
+    ${({ isRootLevel }) => isRootLevel &&
         css`
             &:before {
                 content: '';
@@ -104,45 +102,44 @@ const TreeItem = styled.li<{ hasItems: boolean; isRootLevel: boolean; }>`
     position: relative;
     padding-left: ${({ hasItems }) => (!hasItems ? '13px' : '0')};
 
-    ${({ isRootLevel }) =>
-        !isRootLevel
-            ? css`
-                &:last-child {
-                    &:after {
-                    content: '';
-                    position: absolute;
-                    z-index: 1;
-                    top: 19.5px;
-                    bottom: 0;
-                    left: 1.5px;
-                    width: 10px;
-                    background: ${({ theme }) => theme.material};
-                    }
+    ${({ isRootLevel }) => !isRootLevel
+        ? css`
+            &:last-child {
+                &:after {
+                content: '';
+                position: absolute;
+                z-index: 1;
+                top: 19.5px;
+                bottom: 0;
+                left: 1.5px;
+                width: 10px;
+                background: ${({ theme }) => theme.material};
                 }
-            `
-            : css`
-                &:last-child {
-                    &:after {
-                    content: '';
-                    position: absolute;
-                    top: 19.5px;
-                    left: 1px;
-                    bottom: 0;
-                    width: 10px;
-                    background: ${({ theme }) => theme.material};
-                    }
+            }
+        `
+        : css`
+            &:last-child {
+                &:after {
+                content: '';
+                position: absolute;
+                top: 19.5px;
+                left: 1px;
+                bottom: 0;
+                width: 10px;
+                background: ${({ theme }) => theme.material};
                 }
-            `
+            }
+        `
     }
 
     & > details > ul {
         &:after {
-        content: '';
-        position: absolute;
-        top: -18px;
-        bottom: 0;
-        left: 25px;
-        border-left: 2px dashed ${({ theme }) => theme.borderDark};
+            content: '';
+            position: absolute;
+            top: -18px;
+            bottom: 0;
+            left: 25px;
+            border-left: 2px dashed ${({ theme }) => theme.borderDark};
         }
     }
 `;
@@ -231,12 +228,8 @@ function TreeBranch<T>({
             const hasItems = Boolean(item.items && item.items.length > 0);
             const isMenuShown = expanded.includes(item.id);
             const isNodeDisabled = (disabled || item.disabled) ?? false;
-            const onClickSummary = !isNodeDisabled
-                ? (event: React.MouseEvent<HTMLLabelElement>) => select(event, item)
-                : preventDefault;
-            const onClickLeaf = !isNodeDisabled
-                ? (event: React.MouseEvent<HTMLElement>) => select(event, item)
-                : preventDefault;
+            const onClickSummary = !isNodeDisabled ? (event: React.MouseEvent<HTMLLabelElement>) => select(event, item) : preventDefault;
+            const onClickLeaf = !isNodeDisabled ? (event: React.MouseEvent<HTMLElement>) => select(event, item) : preventDefault;
             const isSelected = selected === item.id;
             const icon = <Icon aria-hidden>{item.icon}</Icon>;
 
@@ -297,21 +290,19 @@ function TreeBranch<T>({
     );
 }
 
-function TreeInner<T>(
-    {
-        className,
-        defaultExpanded = [],
-        defaultSelected,
-        disabled = false,
-        expanded,
-        onNodeSelect,
-        onNodeToggle,
-        selected,
-        style,
-        tree = []
-    }: TreeViewProps<T>,
-    ref: React.ForwardedRef<HTMLUListElement>
-) {
+function TreeInner<T>({
+    className,
+    defaultExpanded = [],
+    defaultSelected,
+    disabled = false,
+    expanded,
+    onNodeSelect,
+    onNodeToggle,
+    selected,
+    style,
+    tree = []
+}: TreeViewProps<T>, ref: React.ForwardedRef<HTMLUListElement>) {
+
     const [expandedInternal, setExpandedInternal] = useControlledOrUncontrolled({
         defaultValue: defaultExpanded,
         onChange: onNodeToggle,
@@ -376,13 +367,11 @@ function TreeInner<T>(
     );
 }
 
-// export const TreeView = 
-//     forwardRef(TreeInner) as <T>(props: TreeViewProps<T> & { ref?: React.ForwardedRef<HTMLUListElement>; }) => ReturnType<typeof TreeInner<T>>;
+// type TreeInnerReturn<T extends (...args: any[]) => any> = ReturnType<T>;
+// export const TreeView = forwardRef(TreeInner) as <T>(props: TreeViewProps<T> & { ref?: React.ForwardedRef<HTMLUListElement>; }) => TreeInnerReturn<typeof TreeInner>;
 
-type TreeInnerReturn<T extends (...args: any[]) => any> = ReturnType<T>;
-
-export const TreeView = forwardRef(TreeInner) as <T>(props: TreeViewProps<T> & { ref?: React.ForwardedRef<HTMLUListElement>; }) => TreeInnerReturn<typeof TreeInner>;
-
+export const TreeView = 
+    forwardRef(TreeInner) as <T>(props: TreeViewProps<T> & { ref?: React.ForwardedRef<HTMLUListElement>; }) => ReturnType<typeof TreeInner<T>>;
 
 // @ts-ignore
 // TreeView.displayName = 'TreeView';

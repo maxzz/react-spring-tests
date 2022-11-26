@@ -8,20 +8,20 @@ export type Direction = 'up' | 'down' | 'left' | 'right';
 export type DimensionValue = undefined | number | string;
 
 export type CommonStyledProps = {
-  /**
-   * "as" polymorphic prop allows to render a different HTML element or React component
-   * @see {@link https://styled-components.com/docs/api#as-polymorphic-prop}
-   */
-  as?: string | ComponentType<any>; // eslint-disable-line @typescript-eslint/no-explicit-any
+    /**
+     * "as" polymorphic prop allows to render a different HTML element or React component
+     * @see {@link https://styled-components.com/docs/api#as-polymorphic-prop}
+     */
+    as?: string | ComponentType<any>; // eslint-disable-line @typescript-eslint/no-explicit-any
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type HTMLDataAttributes = Record<`data-${string}`, any>;
 
 export type CommonThemeProps = {
-  'data-testid'?: string;
-  $disabled?: boolean;
-  shadow?: boolean;
+    'data-testid'?: string;
+    $disabled?: boolean;
+    shadow?: boolean;
 };
 
 export type { Color, Theme, WindowsTheme };
