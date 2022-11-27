@@ -67,7 +67,7 @@ const categories: Category[] = [
 export function TestTree() {
     return (<>
         <div>Catalog</div>
-        <div style={{ maxWidth: '250px' }}>
+        <div className="font-mono" style={{ maxWidth: '250px' }}>
             <TreeView tree={categories} />
         </div>
     </>);
