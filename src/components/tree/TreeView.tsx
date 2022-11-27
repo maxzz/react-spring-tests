@@ -75,7 +75,7 @@ const TreeWrapper = styled.ul<{ isRootLevel: boolean; }>`
                 bottom: 0;
                 left: 5.5px;
                 width: 1px;
-                border-left: 2px dashed ${({ theme }) => theme.borderDark};
+                border-left: 2px dashed ${({ theme }) => 'green'}; // tm: theme.borderDark - vertical
             }
         `
     }
@@ -92,7 +92,7 @@ const TreeWrapper = styled.ul<{ isRootLevel: boolean; }>`
             top: 17.5px;
             left: 5.5px;
             width: 22px;
-            border-top: 2px dashed ${({ theme }) => theme.borderDark};
+            border-top: 2px dashed ${({ theme }) => 'red'}; // tm: theme.borderDark - icon->label
             font-size: 12px;
         }
     }
@@ -106,27 +106,27 @@ const TreeItem = styled.li<{ hasItems: boolean; isRootLevel: boolean; }>`
         ? css`
             &:last-child {
                 &:after {
-                content: '';
-                position: absolute;
-                z-index: 1;
-                top: 19.5px;
-                bottom: 0;
-                left: 1.5px;
-                width: 10px;
-                background: ${({ theme }) => theme.material};
+                    content: '';
+                    position: absolute;
+                    z-index: 1;
+                    top: 19.5px;
+                    bottom: 0;
+                    left: 1.5px;
+                    width: 10px;
+                    background: ${({ theme }) => 'purple'}; // tm: theme.material - last
                 }
             }
         `
         : css`
             &:last-child {
                 &:after {
-                content: '';
-                position: absolute;
-                top: 19.5px;
-                left: 1px;
-                bottom: 0;
-                width: 10px;
-                background: ${({ theme }) => theme.material};
+                    content: '';
+                    position: absolute;
+                    top: 19.5px;
+                    left: 1px;
+                    bottom: 0;
+                    width: 10px;
+                    background: ${({ theme }) => 'green'}; // tm: theme.material - last at root level
                 }
             }
         `
@@ -139,7 +139,7 @@ const TreeItem = styled.li<{ hasItems: boolean; isRootLevel: boolean; }>`
             top: -18px;
             bottom: 0;
             left: 25px;
-            border-left: 2px dashed ${({ theme }) => theme.borderDark};
+            border-left: 2px dashed ${({ theme }) => 'orange'}; // tm: theme.borderDark - last
         }
     }
 `;
