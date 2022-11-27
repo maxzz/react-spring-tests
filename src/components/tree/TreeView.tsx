@@ -147,6 +147,7 @@ const TreeItem = styled.li<{ hasItems: boolean; isRootLevel: boolean; }>`
 const Details = styled.details`
     position: relative;
     z-index: 2;
+    
     &[open] > summary:before {
         content: '-';
     }
@@ -178,8 +179,10 @@ const Summary = styled.summary`
         background-color: #fff;
         line-height: 8px;
         text-align: center;
+
+        box-sizing: content-box;
     }
-`;
+`; // box-sizing: content-box; <- tm-fix
 
 const TitleWithIcon = styled(StyledLabel)`
     position: relative;
@@ -375,3 +378,10 @@ export const TreeView =
 
 // @ts-ignore
 // TreeView.displayName = 'TreeView';
+
+//https://storybook.react95.io/?path=/story/controls-treeview--basic
+//https://github.com/react95-io/React95/blob/master/src/TreeView/TreeView.tsx
+//https://github.com/react95-io/React95/blob/master/src/common/SwitchBase.ts
+//https://github.com/react95-io/React95/blob/master/src/MenuList/MenuListItem.tsx
+//https://github.com/react95-io/React95/blob/master/src/common/index.ts
+//https://github.com/react95-io/React95/blob/master/src/common/hooks/useControlledOrUncontrolled.ts
