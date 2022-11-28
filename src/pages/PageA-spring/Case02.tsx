@@ -32,7 +32,7 @@ function Controls({
                 </div>
             </div>
 
-            <ButtonRunTest running={running} setRunning={setRunning} />
+            <ButtonRunTest running={running} onClick={() => setRunning(!running)} />
         </div>
     );
 }

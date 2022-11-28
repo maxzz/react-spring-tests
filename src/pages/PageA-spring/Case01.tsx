@@ -100,6 +100,7 @@ export function Case01() {
                         <SimpleCheckbox label="auto reset animation" value={auto} onChange={setAuto} />
                     </div>
                 </div>
+                
                 <button
                     className="px-4 py-2 w-16 bg-red-400 border border-red-800 rounded active:scale-[.97]"
                     onClick={() => {

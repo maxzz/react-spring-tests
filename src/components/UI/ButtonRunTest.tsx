@@ -1,8 +1,9 @@
-export function ButtonRunTest({ running, setRunning }: { running: boolean, setRunning: (v: boolean) => void; }) {
+import { HTMLAttributes } from "react";
+import { classNames } from "../../utils/classnames";
+
+export function ButtonRunTest({ running, className, ...rest }: { running: boolean; } & HTMLAttributes<HTMLButtonElement>) {
     return (
-        <button className="px-4 py-2 w-16 bg-red-400 border border-red-800 rounded active:scale-[.97]"
-            onClick={() => setRunning(!running)}
-        >
+        <button className={classNames("px-4 py-2 w-16 bg-red-400 border border-red-800 rounded active:scale-[.97]", className)} {...rest}>
             {running ? 'Stop' : 'Run'}
         </button>
     );
