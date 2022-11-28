@@ -1,7 +1,7 @@
 import React from 'react';
 import { a, config, useSpring, useSpringRef } from '@react-spring/web';
 import { useMeasure } from 'react-use';
-import { SimpleCheckbox } from './Case01';
+import { SimpleCheckbox } from '../../components/UI/SimpleCheckbox';
 
 export function Case02() {
     const [running, setRunning] = React.useState(false);

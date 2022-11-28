@@ -227,7 +227,6 @@ function TreeBranch<T>(props: TreeBranchProps<T>) {
             const onClickLeaf = !isNodeDisabled ? (event: React.MouseEvent<HTMLElement>) => select(event, item) : preventDefault;
             const isSelected = selected === item.id;
             const icon = <Icon aria-hidden>{item.icon}</Icon>;
-
             return (
                 <TreeItem
                     isRootLevel={isRootLevel}

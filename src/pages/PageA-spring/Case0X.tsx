@@ -8,8 +8,9 @@ export function Case0X() {
             <button className="px-4 py-2 bg-red-400 border border-red-800 rounded" onClick={() => setOpen(!open)}>
                 Open case 01
             </button>
-            {open &&
-                <div className="">11</div>}
+            {open && (
+                <div className="">11</div>
+            )}
         </div>
     );
 }
