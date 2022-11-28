@@ -6,13 +6,13 @@ import { ButtonRunTest } from '../../components/UI/ButtonRunTest';
 import { Counters } from '../../components/UI/Counters';
 
 function Controls({
-    running, setRunning,
+    running, onClickRun,
     auto, setAuto,
     wobbly, setWobbly,
     nContainer,
     nElements,
 }: {
-    running: boolean, setRunning: (v: boolean) => void,
+    running: boolean, onClickRun: () => void,
     auto: boolean, setAuto: (v: boolean) => void,
     wobbly: boolean, setWobbly: (v: boolean) => void,
     nContainer: number,
@@ -29,7 +29,7 @@ function Controls({
                 </div>
             </div>
 
-            <ButtonRunTest running={running} onClick={() => setRunning(!running)} />
+            <ButtonRunTest running={running} onClick={onClickRun} />
         </div>
     );
 }
@@ -61,7 +61,7 @@ export function Case02() {
         <div className="w-full h-96 grid grid-rows-[auto,minmax(0,1fr)] bg-red-400">
 
             <Controls
-                running={running} setRunning={setRunning}
+                running={running} onClickRun={() => setRunning(!running)}
                 auto={auto} setAuto={setAuto}
                 wobbly={wobbly} setWobbly={setWobbly}
                 nContainer={containerWidth}
