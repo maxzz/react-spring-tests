@@ -213,17 +213,19 @@ function preventDefault(event: React.SyntheticEvent) {
     event.preventDefault();
 }
 
-function TreeBranch<T>({
-    className,
-    disabled,
-    expanded,
-    innerRef,
-    level,
-    select,
-    selected,
-    style,
-    tree = []
-}: TreeBranchProps<T>) {
+function TreeBranch<T>(props: TreeBranchProps<T>) {
+    const {
+        className,
+        disabled,
+        expanded,
+        innerRef,
+        level,
+        select,
+        selected,
+        style,
+        tree = []
+    } = props;
+
     const isRootLevel = level === 0;
 
     const renderLeaf = useCallback(
@@ -293,18 +295,19 @@ function TreeBranch<T>({
     );
 }
 
-function TreeInner<T>({
-    className,
-    defaultExpanded = [],
-    defaultSelected,
-    disabled = false,
-    expanded,
-    onNodeSelect,
-    onNodeToggle,
-    selected,
-    style,
-    tree = []
-}: TreeViewProps<T>, ref: React.ForwardedRef<HTMLUListElement>) {
+function TreeInner<T>(props: TreeViewProps<T>, ref: React.ForwardedRef<HTMLUListElement>) {
+    const {
+        className,
+        defaultExpanded = [],
+        defaultSelected,
+        disabled = false,
+        expanded,
+        onNodeSelect,
+        onNodeToggle,
+        selected,
+        style,
+        tree = []
+    } = props;
 
     const [expandedInternal, setExpandedInternal] = useControlledOrUncontrolled({
         defaultValue: defaultExpanded,
@@ -373,7 +376,7 @@ function TreeInner<T>({
 // type TreeInnerReturn<T extends (...args: any[]) => any> = ReturnType<T>;
 // export const TreeView = forwardRef(TreeInner) as <T>(props: TreeViewProps<T> & { ref?: React.ForwardedRef<HTMLUListElement>; }) => TreeInnerReturn<typeof TreeInner>;
 
-export const TreeView = 
+export const TreeView =
     forwardRef(TreeInner) as <T>(props: TreeViewProps<T> & { ref?: React.ForwardedRef<HTMLUListElement>; }) => ReturnType<typeof TreeInner<T>>;
 
 // @ts-ignore
