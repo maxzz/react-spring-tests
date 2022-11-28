@@ -9,7 +9,16 @@ function mapValueFromRangeToRange({ value, from, to }: { value: number; from: { 
     return (value - from.min) / (from.max - from.min) * (to.max - to.min) + to.min;
 }
 
-function mapValuesToContainerPoints(yValues: number[], containerWidth: number, containerHeight: number) {
+type MappedPoints = {
+    points: [number, number][];
+    path: string;
+    minValue: number;
+    maxValue: number;
+    yFrom: number;
+    yto: number;
+};
+
+function mapValuesToContainerPoints(yValues: number[], containerWidth: number, containerHeight: number): MappedPoints {
     const minValue = Math.min(...yValues);
     const maxValue = Math.max(...yValues);
 
@@ -49,7 +58,7 @@ export function Case01() {
     const [elementRef, { width: elementWidth }] = useMeasure<HTMLDivElement>();
     const [displayRef, { width: displayWidth, height: displayHeight }] = useMeasure<HTMLDivElement>();
 
-    const display = React.useMemo(() => {
+    const display: MappedPoints = React.useMemo(() => {
         console.log(displayWidth, displayHeight);
 
         return mapValuesToContainerPoints(dots, displayWidth, displayHeight);
