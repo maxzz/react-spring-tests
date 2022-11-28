@@ -4,6 +4,39 @@ import { useMeasure } from 'react-use';
 import { SimpleCheckbox } from '../../components/UI/SimpleCheckbox';
 import { ButtonRunTest } from '../../components/UI/ButtonRunTest';
 
+function Controls({
+    running, setRunning,
+    auto, setAuto,
+    wobbly, setWobbly,
+    nContainer,
+    nElements,
+
+}: {
+    running: boolean, setRunning: (v: boolean) => void,
+    auto: boolean, setAuto: (v: boolean) => void,
+    wobbly: boolean, setWobbly: (v: boolean) => void,
+    nContainer: number,
+    nElements: number,
+
+}) {
+    return (
+        <div className="flex justify-between space-x-4">
+
+            <div className="ml-4 mt-2 flex flex-col">
+                <div className="text-xs">
+                    container: {nContainer.toFixed(0)} element: {nElements.toFixed(0)}
+                </div>
+                <div className="flex items-center space-x-4">
+                    <SimpleCheckbox label="wobbly" value={wobbly} onChange={setWobbly} />
+                    <SimpleCheckbox label="auto reset animation" value={auto} onChange={setAuto} />
+                </div>
+            </div>
+
+            <ButtonRunTest running={running} setRunning={setRunning} />
+        </div>
+    );
+}
+
 export function Case02() {
     const [running, setRunning] = React.useState(false);
     const [auto, setAuto] = React.useState(false);
@@ -30,21 +63,13 @@ export function Case02() {
     return (
         <div className="w-full h-96 grid grid-rows-[auto,minmax(0,1fr)] bg-red-400">
 
-            {/* Controls */}
-            <div className="flex justify-between space-x-4">
-
-                <div className="ml-4 mt-2 flex flex-col">
-                    <div className="text-xs">
-                        container: {containerWidth.toFixed(0)} element: {elementWidth.toFixed(0)}
-                    </div>
-                    <div className="flex items-center space-x-4">
-                        <SimpleCheckbox label="wobbly" value={wobbly} onChange={setWobbly} />
-                        <SimpleCheckbox label="auto reset animation" value={auto} onChange={setAuto} />
-                    </div>
-                </div>
-
-                <ButtonRunTest running={running} setRunning={setRunning} />
-            </div>
+            <Controls 
+                running={running} setRunning={setRunning}
+                auto={auto} setAuto={setAuto}
+                wobbly={wobbly} setWobbly={setWobbly}
+                nContainer={containerWidth}
+                nElements={elementWidth}
+            />
 
             {/* Scene */}
             <div ref={containerRef} className="mt-4 p-1 border border-dotted">
@@ -56,7 +81,9 @@ export function Case02() {
                     }}
                     className="w-32 h-20"
                 >
-                    <div className="h-full border-4 rounded-md bg-purple-400/50 border-purple-800">aaa</div>
+                    <div className="h-full border-4 rounded-md bg-purple-400/50 border-purple-800">
+                        aaa
+                    </div>
                 </a.div>
             </div>
         </div>
