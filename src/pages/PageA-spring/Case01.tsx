@@ -3,6 +3,7 @@ import { a, config, useSpring } from '@react-spring/web';
 import { useMeasure } from 'react-use';
 import SVGCatmullRomSpline from 'svg-catmull-rom-spline';
 import { SimpleCheckbox } from '../../components/UI/SimpleCheckbox';
+import { ButtonRunTest } from '../../components/UI/ButtonRunTest';
 
 function mapValueFromRangeToRange({ value, from, to }: { value: number; from: { min: number; max: number; }; to: { min: number; max: number; }; }): number {
     return (value - from.min) / (from.max - from.min) * (to.max - to.min) + to.min;
@@ -100,10 +101,8 @@ export function Case01() {
                         <SimpleCheckbox label="auto reset animation" value={auto} onChange={setAuto} />
                     </div>
                 </div>
-                
-                <button
-                    className="px-4 py-2 w-16 bg-red-400 border border-red-800 rounded active:scale-[.97]"
-                    onClick={() => {
+
+                <ButtonRunTest running={started} onClick={() => {
                         if (started) {
                             setFromStart(!fromStart);
                             setStarted(false);
@@ -112,10 +111,8 @@ export function Case01() {
                             setFromStart(!fromStart);
                             setStarted(true);
                         }
-                    }}
-                >
-                    {started ? 'Stop' : 'Run'}
-                </button>
+                    }} />
+
             </div>
 
             {/* Scene */}
