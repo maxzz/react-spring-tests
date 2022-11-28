@@ -2,9 +2,7 @@ import React from 'react';
 import { a, config, useSpring } from '@react-spring/web';
 import { useMeasure } from 'react-use';
 import SVGCatmullRomSpline from 'svg-catmull-rom-spline';
-import { SimpleCheckbox } from '../../components/UI/SimpleCheckbox';
-import { ButtonRunTest } from '../../components/UI/ButtonRunTest';
-import { Counters } from '../../components/UI/Counters';
+import { Controls } from '../../components/UI/CaseControls';
 
 function mapValueFromRangeToRange({ value, from, to }: { value: number; from: { min: number; max: number; }; to: { min: number; max: number; }; }): number {
     return (value - from.min) / (from.max - from.min) * (to.max - to.min) + to.min;
@@ -45,35 +43,6 @@ function mapValuesToContainerPoints(yValues: number[], containerWidth: number, c
             to: { min: containerHeight * 0.1, max: containerHeight * 0.99 }
         });
     }
-}
-
-function Controls({
-    running, onClickRun,
-    auto, setAuto,
-    wobbly, setWobbly,
-    nContainer,
-    nElements,
-}: {
-    running: boolean, onClickRun: () => void,
-    auto: boolean, setAuto: (v: boolean) => void,
-    wobbly: boolean, setWobbly: (v: boolean) => void,
-    nContainer: number,
-    nElements: number,
-}) {
-    return (
-        <div className="flex justify-between space-x-4">
-            <div className="ml-4 mt-2 flex flex-col">
-                <Counters nContainer={nContainer} nElements={nElements} />
-
-                <div className="flex items-center space-x-4">
-                    <SimpleCheckbox label="wobbly" value={wobbly} onChange={setWobbly} />
-                    <SimpleCheckbox label="auto reset animation" value={auto} onChange={setAuto} />
-                </div>
-            </div>
-
-            <ButtonRunTest running={running} onClick={onClickRun} />
-        </div>
-    );
 }
 
 export function Case01() {
@@ -131,7 +100,6 @@ export function Case01() {
     return (
         <div className="w-full h-96 grid grid-rows-[auto,minmax(0,1fr)] bg-red-400">
 
-            {/* Controls */}
             <Controls
                 running={started} onClickRun={() => {
                     setFromLeftToRight(!fromLeftToRight);
