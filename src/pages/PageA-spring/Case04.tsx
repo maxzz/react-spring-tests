@@ -1,6 +1,7 @@
 import React from 'react';
 import { a, config, useSpring } from '@react-spring/web';
 import { useMeasure } from 'react-use';
+import { ButtonRunTest } from '../../components/UI/ButtonRunTest';
 
 export function Case04() {
     const [running, setRunning] = React.useState(false);
@@ -10,13 +11,8 @@ export function Case04() {
 
     const bind = useSpring({
         x: running ? containerWidth - elementWidth - 2 : 0,
-        config: {
-            ...config.wobbly,
-            mass: 2,
-            clamp: true,
-        },
-        onRest: () => {
-        }
+        config: { ...config.wobbly, mass: 2, clamp: true, },
+        //onRest: () => {}
     });
 
     return (
@@ -24,13 +20,7 @@ export function Case04() {
 
             {/* Controls */}
             <div className="flex justify-end space-x-4">
-                <button className="px-4 py-2 w-16 bg-red-400 border border-red-800 rounded active:scale-[.97]"
-                    onClick={() => {
-                        setRunning(!running);
-                    }}
-                >
-                    {running ? 'Stop' : 'Run'}
-                </button>
+                <ButtonRunTest running={running} onClick={() => { setRunning(!running); }} />
             </div>
 
             {/* Scene */}
