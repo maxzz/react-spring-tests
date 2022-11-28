@@ -27,9 +27,9 @@ function Controls({
 }) {
     return (
         <div className="flex justify-between space-x-4">
-            <Counters nContainer={nContainer} nElements={nElements} />
-            
             <div className="ml-4 mt-2 flex flex-col">
+                <Counters nContainer={nContainer} nElements={nElements} />
+
                 <div className="flex items-center space-x-4">
                     <SimpleCheckbox label="wobbly" value={wobbly} onChange={setWobbly} />
                     <SimpleCheckbox label="auto reset animation" value={auto} onChange={setAuto} />
