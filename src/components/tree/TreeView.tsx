@@ -214,17 +214,7 @@ function preventDefault(event: React.SyntheticEvent) {
 }
 
 function TreeBranch<T>(props: TreeBranchProps<T>) {
-    const {
-        className,
-        disabled,
-        expanded,
-        innerRef,
-        level,
-        select,
-        selected,
-        style,
-        tree = []
-    } = props;
+    const { className, disabled, expanded, innerRef, level, select, selected, style, tree = [], } = props;
 
     const isRootLevel = level === 0;
 
@@ -249,18 +239,12 @@ function TreeBranch<T>(props: TreeBranchProps<T>) {
                 >
                     {!hasItems
                         ? (
-                            <TitleWithIcon as='button' $disabled={isNodeDisabled} onClick={onClickLeaf}>
-                                {icon}
-                                <Text>{item.label}</Text>
-                            </TitleWithIcon>
+                            <TitleWithIcon as='button' $disabled={isNodeDisabled} onClick={onClickLeaf}>{icon}<Text>{item.label}</Text></TitleWithIcon>
                         )
                         : (
                             <Details open={isMenuShown}>
-                                <Summary onClick={onClickSummary} $disabled={isNodeDisabled}>
-                                    <TitleWithIcon $disabled={isNodeDisabled}>
-                                        {icon}
-                                        <Text>{item.label}</Text>
-                                    </TitleWithIcon>
+                                <Summary $disabled={isNodeDisabled} onClick={onClickSummary}>
+                                    <TitleWithIcon $disabled={isNodeDisabled}>{icon}<Text>{item.label}</Text></TitleWithIcon>
                                 </Summary>
 
                                 {isMenuShown && (
@@ -296,18 +280,7 @@ function TreeBranch<T>(props: TreeBranchProps<T>) {
 }
 
 function TreeInner<T>(props: TreeViewProps<T>, ref: React.ForwardedRef<HTMLUListElement>) {
-    const {
-        className,
-        defaultExpanded = [],
-        defaultSelected,
-        disabled = false,
-        expanded,
-        onNodeSelect,
-        onNodeToggle,
-        selected,
-        style,
-        tree = []
-    } = props;
+    const { className, defaultExpanded = [], defaultSelected, disabled = false, expanded, onNodeSelect, onNodeToggle, selected, style, tree = [] } = props;
 
     const [expandedInternal, setExpandedInternal] = useControlledOrUncontrolled({
         defaultValue: defaultExpanded,
