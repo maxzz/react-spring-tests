@@ -48,13 +48,13 @@ function mapValuesToContainerPoints(yValues: number[], containerWidth: number, c
 }
 
 function Controls({
-    running, setRunning,
+    running, onClickRun,
     auto, setAuto,
     wobbly, setWobbly,
     nContainer,
     nElements,
 }: {
-    running: boolean, setRunning: () => void,
+    running: boolean, onClickRun: () => void,
     auto: boolean, setAuto: (v: boolean) => void,
     wobbly: boolean, setWobbly: (v: boolean) => void,
     nContainer: number,
@@ -71,7 +71,7 @@ function Controls({
                 </div>
             </div>
 
-            <ButtonRunTest running={running} onClick={setRunning} />
+            <ButtonRunTest running={running} onClick={onClickRun} />
         </div>
     );
 }
@@ -133,7 +133,7 @@ export function Case01() {
 
             {/* Controls */}
             <Controls
-                running={started} setRunning={() => {
+                running={started} onClickRun={() => {
                     setFromLeftToRight(!fromLeftToRight);
                     if (started) {
                         setStarted(false);
