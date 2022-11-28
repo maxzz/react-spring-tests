@@ -4,6 +4,14 @@ import { useMeasure } from 'react-use';
 import { SimpleCheckbox } from '../../components/UI/SimpleCheckbox';
 import { ButtonRunTest } from '../../components/UI/ButtonRunTest';
 
+function Counters({ nContainer, nElements }: { nContainer: number, nElements: number, }) {
+    return (
+        <div className="text-xs">
+            container: {nContainer.toFixed(0)} element: {nElements.toFixed(0)}
+        </div>
+    );
+}
+
 function Controls({
     running, setRunning,
     auto, setAuto,
@@ -19,11 +27,9 @@ function Controls({
 }) {
     return (
         <div className="flex justify-between space-x-4">
-
+            <Counters nContainer={nContainer} nElements={nElements} />
+            
             <div className="ml-4 mt-2 flex flex-col">
-                <div className="text-xs">
-                    container: {nContainer.toFixed(0)} element: {nElements.toFixed(0)}
-                </div>
                 <div className="flex items-center space-x-4">
                     <SimpleCheckbox label="wobbly" value={wobbly} onChange={setWobbly} />
                     <SimpleCheckbox label="auto reset animation" value={auto} onChange={setAuto} />
@@ -61,7 +67,7 @@ export function Case02() {
     return (
         <div className="w-full h-96 grid grid-rows-[auto,minmax(0,1fr)] bg-red-400">
 
-            <Controls 
+            <Controls
                 running={running} setRunning={setRunning}
                 auto={auto} setAuto={setAuto}
                 wobbly={wobbly} setWobbly={setWobbly}
