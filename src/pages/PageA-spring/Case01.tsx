@@ -4,6 +4,7 @@ import { useMeasure } from 'react-use';
 import SVGCatmullRomSpline from 'svg-catmull-rom-spline';
 import { SimpleCheckbox } from '../../components/UI/SimpleCheckbox';
 import { ButtonRunTest } from '../../components/UI/ButtonRunTest';
+import { Counters } from '../../components/UI/Counters';
 
 function mapValueFromRangeToRange({ value, from, to }: { value: number; from: { min: number; max: number; }; to: { min: number; max: number; }; }): number {
     return (value - from.min) / (from.max - from.min) * (to.max - to.min) + to.min;
@@ -44,14 +45,6 @@ function mapValuesToContainerPoints(yValues: number[], containerWidth: number, c
             to: { min: containerHeight * 0.1, max: containerHeight * 0.99 }
         });
     }
-}
-
-function Counters({ nContainer, nElements }: { nContainer: number, nElements: number, }) {
-    return (
-        <div className="text-xs">
-            container: {nContainer.toFixed(0)} element: {nElements.toFixed(0)}
-        </div>
-    );
 }
 
 function Controls({

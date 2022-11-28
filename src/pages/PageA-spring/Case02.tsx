@@ -3,14 +3,7 @@ import { a, config, useSpring, useSpringRef } from '@react-spring/web';
 import { useMeasure } from 'react-use';
 import { SimpleCheckbox } from '../../components/UI/SimpleCheckbox';
 import { ButtonRunTest } from '../../components/UI/ButtonRunTest';
-
-function Counters({ nContainer, nElements }: { nContainer: number, nElements: number, }) {
-    return (
-        <div className="text-xs">
-            container: {nContainer.toFixed(0)} element: {nElements.toFixed(0)}
-        </div>
-    );
-}
+import { Counters } from '../../components/UI/Counters';
 
 function Controls({
     running, setRunning,
