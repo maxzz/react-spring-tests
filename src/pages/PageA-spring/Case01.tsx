@@ -46,6 +46,36 @@ function mapValuesToContainerPoints(yValues: number[], containerWidth: number, c
     }
 }
 
+function Controls({
+    running, setRunning,
+    auto, setAuto,
+    wobbly, setWobbly,
+    nContainer,
+    nElements,
+}: {
+    running: boolean, setRunning: () => void,
+    auto: boolean, setAuto: (v: boolean) => void,
+    wobbly: boolean, setWobbly: (v: boolean) => void,
+    nContainer: number,
+    nElements: number,
+}) {
+    return (
+        <div className="flex justify-between space-x-4">
+            <div className="ml-4 mt-2 flex flex-col">
+                <div className="text-xs">
+                    container: {nContainer.toFixed(0)} element: {nElements.toFixed(0)}
+                </div>
+                <div className="flex items-center space-x-4">
+                    <SimpleCheckbox label="wobbly" value={wobbly} onChange={setWobbly} />
+                    <SimpleCheckbox label="auto reset animation" value={auto} onChange={setAuto} />
+                </div>
+            </div>
+
+            <ButtonRunTest running={running} onClick={setRunning} />
+        </div>
+    );
+}
+
 export function Case01() {
     const [started, setStarted] = React.useState(false);
     const [auto, setAuto] = React.useState(false);
@@ -102,29 +132,21 @@ export function Case01() {
         <div className="w-full h-96 grid grid-rows-[auto,minmax(0,1fr)] bg-red-400">
 
             {/* Controls */}
-            <div className="flex justify-between space-x-4">
-                <div className="ml-4 mt-2 flex flex-col">
-                    <div className="text-xs">
-                        container: {containerWidth.toFixed(0)} element: {elementWidth.toFixed(0)}
-                    </div>
-                    <div className="flex items-center space-x-4">
-                        <SimpleCheckbox label="wobbly" value={wobbly} onChange={setWobbly} />
-                        <SimpleCheckbox label="auto reset animation" value={auto} onChange={setAuto} />
-                    </div>
-                </div>
-
-                <ButtonRunTest running={started}
-                    onClick={() => {
-                        setFromLeftToRight(!fromLeftToRight);
-                        if (started) {
-                            setStarted(false);
-                            setAuto(false);
-                        } else {
-                            setStarted(true);
-                        }
-                    }}
-                />
-            </div>
+            <Controls
+                running={started} setRunning={() => {
+                    setFromLeftToRight(!fromLeftToRight);
+                    if (started) {
+                        setStarted(false);
+                        setAuto(false);
+                    } else {
+                        setStarted(true);
+                    }
+                }}
+                auto={auto} setAuto={setAuto}
+                wobbly={wobbly} setWobbly={setWobbly}
+                nContainer={containerWidth}
+                nElements={elementWidth}
+            />
 
             {/* Scene */}
             <div ref={containerRef} className="mt-4 p-1 border border-dotted flex flex-col">

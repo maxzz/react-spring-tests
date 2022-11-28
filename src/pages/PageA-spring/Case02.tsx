@@ -10,14 +10,12 @@ function Controls({
     wobbly, setWobbly,
     nContainer,
     nElements,
-
 }: {
     running: boolean, setRunning: (v: boolean) => void,
     auto: boolean, setAuto: (v: boolean) => void,
     wobbly: boolean, setWobbly: (v: boolean) => void,
     nContainer: number,
     nElements: number,
-
 }) {
     return (
         <div className="flex justify-between space-x-4">
