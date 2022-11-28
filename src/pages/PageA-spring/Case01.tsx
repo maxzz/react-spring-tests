@@ -46,6 +46,14 @@ function mapValuesToContainerPoints(yValues: number[], containerWidth: number, c
     }
 }
 
+function Counters({ nContainer, nElements }: { nContainer: number, nElements: number, }) {
+    return (
+        <div className="text-xs">
+            container: {nContainer.toFixed(0)} element: {nElements.toFixed(0)}
+        </div>
+    );
+}
+
 function Controls({
     running, setRunning,
     auto, setAuto,
@@ -62,9 +70,8 @@ function Controls({
     return (
         <div className="flex justify-between space-x-4">
             <div className="ml-4 mt-2 flex flex-col">
-                <div className="text-xs">
-                    container: {nContainer.toFixed(0)} element: {nElements.toFixed(0)}
-                </div>
+                <Counters nContainer={nContainer} nElements={nElements} />
+
                 <div className="flex items-center space-x-4">
                     <SimpleCheckbox label="wobbly" value={wobbly} onChange={setWobbly} />
                     <SimpleCheckbox label="auto reset animation" value={auto} onChange={setAuto} />
