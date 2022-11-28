@@ -100,7 +100,7 @@ function PageContent() {
     useKey((event) => event.altKey && event.key === 'g', (event) => { event.preventDefault(); setUseGoo(prev => !prev); });
     return (
         <Spring from={{ opacity: 0, scale: 0 }} to={{ opacity: 1, scale: 1 }} config={config.wobbly}>
-            {(props) => (
+            {(props: any) => (
                 <a.div style={props}>
                     <div className="my-4 grid place-items-center">
                         <div className="relative text-7xl">
