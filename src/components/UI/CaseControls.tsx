@@ -2,7 +2,7 @@ import { ButtonRunTest } from "./ButtonRunTest";
 import { Counters } from "./Counters";
 import { SimpleCheckbox } from "./SimpleCheckbox";
 
-export function Controls({
+export function CaseControls({
     running, onClickRun,
     auto, setAuto,
     wobbly, setWobbly,

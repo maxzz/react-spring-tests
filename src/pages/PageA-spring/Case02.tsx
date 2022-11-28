@@ -1,7 +1,7 @@
 import React from 'react';
 import { a, config, useSpring, useSpringRef } from '@react-spring/web';
 import { useMeasure } from 'react-use';
-import { Controls } from '../../components/UI/CaseControls';
+import { CaseControls } from '../../components/UI/CaseControls';
 
 
 export function Case02() {
@@ -30,7 +30,7 @@ export function Case02() {
     return (
         <div className="w-full h-96 grid grid-rows-[auto,minmax(0,1fr)] bg-red-400">
 
-            <Controls
+            <CaseControls
                 running={running} onClickRun={() => setRunning(!running)}
                 auto={auto} setAuto={setAuto}
                 wobbly={wobbly} setWobbly={setWobbly}
