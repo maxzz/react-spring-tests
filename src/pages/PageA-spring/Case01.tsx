@@ -47,10 +47,12 @@ function mapValuesToContainerPoints(yValues: number[], containerWidth: number, c
 }
 
 export function Case01() {
-    const [fromStart, setFromStart] = React.useState(false);
     const [started, setStarted] = React.useState(false);
     const [auto, setAuto] = React.useState(false);
     const [wobbly, setWobbly] = React.useState(false);
+
+    const [fromLeftToRight, setFromLeftToRight] = React.useState(false);
+
     const [dots, setDots] = React.useState<number[]>([]);
     const dotsRaw = React.useRef<number[]>([]);
 
@@ -59,13 +61,13 @@ export function Case01() {
     const [displayRef, { width: displayWidth, height: displayHeight }] = useMeasure<HTMLDivElement>();
 
     const display: MappedPoints = React.useMemo(() => {
-        console.log(displayWidth, displayHeight);
+        console.log('Case01.MappedPoints memo update', displayWidth, displayHeight);
 
         return mapValuesToContainerPoints(dots, displayWidth, displayHeight);
     }, [dots, displayWidth, displayHeight]);
 
     const bind = useSpring({
-        x: fromStart ? containerWidth - elementWidth - 2 : 0,
+        x: fromLeftToRight ? containerWidth - elementWidth - 2 : 0,
         loop: { reverse: true },
         config: {
             ...config.wobbly,
@@ -87,7 +89,7 @@ export function Case01() {
         // },
         onRest: () => {
             if (auto) {
-                setFromStart(!fromStart);
+                setFromLeftToRight(!fromLeftToRight);
                 setStarted(true);
             } else {
                 setStarted(false);
@@ -111,17 +113,17 @@ export function Case01() {
                     </div>
                 </div>
 
-                <ButtonRunTest running={started} onClick={() => {
+                <ButtonRunTest running={started}
+                    onClick={() => {
+                        setFromLeftToRight(!fromLeftToRight);
                         if (started) {
-                            setFromStart(!fromStart);
                             setStarted(false);
                             setAuto(false);
                         } else {
-                            setFromStart(!fromStart);
                             setStarted(true);
                         }
-                    }} />
-
+                    }}
+                />
             </div>
 
             {/* Scene */}
