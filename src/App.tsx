@@ -1,13 +1,15 @@
 import React from 'react';
 import { useLocation } from 'react-use';
-import { BrowserRouter as Router, Route, LinkProps, NavLink as StateLink, } from 'react-router-dom';
+import { BrowserRouter as Router, Route, LinkProps, NavLink as NavLinkWState, } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { PageA } from './pages/PageA-spring/PageA';
 import { PageB } from './pages/PageB/PageB';
 import { PageCBlobs } from './pages/PageD-trails/PageBlobs';
 import './App.css';
 
-const routes: { path: string; name: string; page: () => JSX.Element; }[] = [
+type RouteType = { path: string; name: string; page: () => JSX.Element; };
+
+const routes: RouteType[] = [
     { path: '/', name: "Spring", page: PageA, },
     { path: '/springs', name: "Springs", page: PageB, },
     { path: '/transitions', name: "Transitions", page: PageB, },
@@ -16,7 +18,7 @@ const routes: { path: string; name: string; page: () => JSX.Element; }[] = [
 
 function NavLink(props: LinkProps & React.RefAttributes<HTMLAnchorElement>) {
     return (
-        <StateLink
+        <NavLinkWState
             className={(isActive: boolean) => {
                 return `px-4 py-2 rounded shadow ${isActive ? 'bg-red-300' : 'opacity-75 border-2 border-red-600/10 hover:bg-red-300/60 active:scale-[.97]'}`;
             }}
