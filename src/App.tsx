@@ -1,10 +1,10 @@
 import React from 'react';
-import './App.css';
 import { BrowserRouter as Router, Route, LinkProps, NavLink as StateLink, withRouter } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { PageA } from './pages/PageA-spring/PageA';
 import { PageB } from './pages/PageB/PageB';
 import { PageCBlobs } from './pages/PageD-trails/PageBlobs';
+import './App.css';
 
 const routes = [
     { path: '/', name: "Spring", Component: PageA, },
@@ -35,6 +35,10 @@ function NavMenu() {
     );
 }
 
+//TODO: Get rid off withRouter 
+//https://github.com/remix-run/react-router/blob/main/docs/start/faq.md#what-happened-to-withrouter-i-need-it
+//https://github.com/remix-run/react-router/blob/v5/packages/react-router/modules/withRouter.js
+
 const PageContent = withRouter(({ location: loc }) => {
     const isMatch = React.useCallback((path: string): boolean => loc.pathname === path, [loc]);
     return (<>
@@ -64,7 +68,7 @@ const PageContent = withRouter(({ location: loc }) => {
     </>);
 });
 
-function App() {
+export function App() {
     return (
         <Router>
             <div className="h-screen flex flex-col bg-[salmon] text-red-800">
@@ -76,5 +80,3 @@ function App() {
         </Router>
     );
 }
-
-export default App;
