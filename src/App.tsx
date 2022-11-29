@@ -7,11 +7,11 @@ import { PageB } from './pages/PageB/PageB';
 import { PageCBlobs } from './pages/PageD-trails/PageBlobs';
 import './App.css';
 
-const routes = [
-    { path: '/', name: "Spring", Component: PageA, },
-    { path: '/springs', name: "Springs", Component: PageB, },
-    { path: '/transitions', name: "Transitions", Component: PageB, },
-    { path: '/trails', name: "Trails", Component: PageCBlobs, },
+const routes: { path: string; name: string; page: () => JSX.Element; }[] = [
+    { path: '/', name: "Spring", page: PageA, },
+    { path: '/springs', name: "Springs", page: PageB, },
+    { path: '/transitions', name: "Transitions", page: PageB, },
+    { path: '/trails', name: "Trails", page: PageCBlobs, },
 ];
 
 function NavLink(props: LinkProps & React.RefAttributes<HTMLAnchorElement>) {
@@ -36,35 +36,32 @@ function NavMenu() {
     );
 }
 
-const PageContent = () => {
+function PageContent() {
     const loc = useLocation();
     const isMatch = React.useCallback((path: string): boolean => loc.pathname === path, [loc]);
     return (<>
-        {routes.map(({ path, Component }, index) => {
+        {routes.map(({ path, page: Component }, index) => {
             const transitionChildRef = React.useRef(null);
             return (
                 <Route key={index} exact path={path}>
-                    {() => { // Route callback ensures the transitions are loaded correctly
-                        return (
-                            <CSSTransition
-                                nodeRef={transitionChildRef}
-                                in={isMatch(path)}
-                                timeout={300}
-                                classNames="fade"
-                                unmountOnExit
-                            //appear
-                            >
-                                <div ref={transitionChildRef} className="absolute inset-0">
-                                    <Component />
-                                </div>
-                            </CSSTransition>
-                        );
-                    }}
+                    {() => (
+                        <CSSTransition
+                            nodeRef={transitionChildRef}
+                            in={isMatch(path)}
+                            timeout={300}
+                            classNames="fade"
+                            unmountOnExit
+                        >
+                            <div ref={transitionChildRef} className="absolute inset-0">
+                                <Component />
+                            </div>
+                        </CSSTransition>
+                    )}
                 </Route>
             );
         })}
     </>);
-};
+}
 
 export function App() {
     return (
