@@ -2,19 +2,8 @@ import React from 'react';
 import { useLocation } from 'react-use';
 import { BrowserRouter as Router, Route, LinkProps, NavLink as NavLinkWState, } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
-import { PageA } from './pages/PageA-spring/PageA';
-import { PageB } from './pages/PageB/PageB';
-import { PageCBlobs } from './pages/PageD-trails/PageBlobs';
+import { routes } from './pages/Routes';
 import './App.css';
-
-type RouteType = { path: string; name: string; page: () => JSX.Element; };
-
-const routes: RouteType[] = [
-    { path: '/', name: "Spring", page: PageA, },
-    { path: '/springs', name: "Springs", page: PageB, },
-    { path: '/transitions', name: "Transitions", page: PageB, },
-    { path: '/trails', name: "Trails", page: PageCBlobs, },
-];
 
 function NavLink(props: LinkProps & React.RefAttributes<HTMLAnchorElement>) {
     return (
