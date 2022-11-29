@@ -19,12 +19,12 @@ export function Case04() {
         <div className="w-full h-96 grid grid-rows-[auto,minmax(0,1fr)] bg-red-400">
 
             {/* Controls */}
-            <div className="flex justify-end space-x-4">
+            <div className="pt-1 pr-1 flex justify-end space-x-4">
                 <ButtonRunTest running={running} onClick={() => { setRunning(!running); }} />
             </div>
 
             {/* Scene */}
-            <div ref={containerRef} className="mt-4 p-1 border border-dotted">
+            <div ref={containerRef} className="mt-4 p-1 border-red-300 border border-dotted">
                 <a.div
                     ref={elementRef}
                     style={{

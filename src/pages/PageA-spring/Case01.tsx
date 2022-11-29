@@ -117,7 +117,7 @@ export function Case01() {
             />
 
             {/* Scene */}
-            <div ref={containerRef} className="mt-4 p-1 border border-dotted flex flex-col">
+            <div ref={containerRef} className="mt-4 p-1 border-red-300 border border-dotted flex flex-col">
                 <a.div
                     ref={elementRef}
                     style={{ ...bind }}

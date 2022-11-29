@@ -16,7 +16,7 @@ export function CaseControls({
     nElements: number,
 }) {
     return (
-        <div className="flex justify-between space-x-4">
+        <div className="pt-1 pr-1 flex justify-between space-x-4">
             <div className="ml-4 mt-2 flex flex-col">
                 <Counters nContainer={nContainer} nElements={nElements} />
 

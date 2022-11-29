@@ -3,7 +3,6 @@ import { a, config, useSpring, useSpringRef } from '@react-spring/web';
 import { useMeasure } from 'react-use';
 import { CaseControls } from '../../components/UI/CaseControls';
 
-
 export function Case02() {
     const [running, setRunning] = React.useState(false);
     const [auto, setAuto] = React.useState(false);
@@ -39,7 +38,7 @@ export function Case02() {
             />
 
             {/* Scene */}
-            <div ref={containerRef} className="mt-4 p-1 border border-dotted">
+            <div ref={containerRef} className="mt-4 p-1 border-red-300 border border-dotted">
                 <a.div
                     ref={elementRef}
                     style={{
@@ -48,8 +47,8 @@ export function Case02() {
                     }}
                     className="w-32 h-20"
                 >
-                    <div className="h-full border-4 rounded-md bg-purple-400/50 border-purple-800">
-                        aaa
+                    <div className="h-full bg-purple-400/50 border-purple-800 border rounded-md">
+                        item overflow
                     </div>
                 </a.div>
             </div>
