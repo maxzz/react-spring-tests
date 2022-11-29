@@ -2,7 +2,7 @@ import React from 'react';
 import { a, config, useSpring } from '@react-spring/web';
 import { useMeasure } from 'react-use';
 import SVGCatmullRomSpline from 'svg-catmull-rom-spline';
-import { CaseControls } from '../../components/UI/CaseControls';
+import { CaseControls } from '../../UI/CaseControls';
 
 function mapValueFromRangeToRange({ value, from, to }: { value: number; from: { min: number; max: number; }; to: { min: number; max: number; }; }): number {
     return (value - from.min) / (from.max - from.min) * (to.max - to.min) + to.min;

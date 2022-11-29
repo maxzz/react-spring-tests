@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-use';
 import { BrowserRouter as Router, Route, LinkProps, NavLink as NavLinkWState, } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
-import { routes } from './pages/Routes';
+import { routes } from './components/pages/Routes';
 import './App.css';
 
 function NavLink(props: LinkProps & React.RefAttributes<HTMLAnchorElement>) {
