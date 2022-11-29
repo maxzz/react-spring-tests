@@ -5,6 +5,7 @@ import { PageA } from './pages/PageA-spring/PageA';
 import { PageB } from './pages/PageB/PageB';
 import { PageCBlobs } from './pages/PageD-trails/PageBlobs';
 import './App.css';
+import { useLocation } from 'react-use';
 
 const routes = [
     { path: '/', name: "Spring", Component: PageA, },
@@ -39,7 +40,8 @@ function NavMenu() {
 //https://github.com/remix-run/react-router/blob/main/docs/start/faq.md#what-happened-to-withrouter-i-need-it
 //https://github.com/remix-run/react-router/blob/v5/packages/react-router/modules/withRouter.js
 
-const PageContent = withRouter(({ location: loc }) => {
+const PageContent = () => {
+    const loc = useLocation();
     const isMatch = React.useCallback((path: string): boolean => loc.pathname === path, [loc]);
     return (<>
         {routes.map(({ path, Component }, index) => {
@@ -66,7 +68,36 @@ const PageContent = withRouter(({ location: loc }) => {
             );
         })}
     </>);
-});
+};
+
+// const PageContent = withRouter(({ location: loc }) => {
+//     const isMatch = React.useCallback((path: string): boolean => loc.pathname === path, [loc]);
+//     return (<>
+//         {routes.map(({ path, Component }, index) => {
+//             const transitionChildRef = React.useRef(null);
+//             return (
+//                 <Route key={index} exact path={path}>
+//                     {() => { // Route callback ensures the transitions are loaded correctly
+//                         return (
+//                             <CSSTransition
+//                                 nodeRef={transitionChildRef}
+//                                 in={isMatch(path)}
+//                                 timeout={300}
+//                                 classNames="fade"
+//                                 unmountOnExit
+//                             //appear
+//                             >
+//                                 <div ref={transitionChildRef} className="absolute inset-0">
+//                                     <Component />
+//                                 </div>
+//                             </CSSTransition>
+//                         );
+//                     }}
+//                 </Route>
+//             );
+//         })}
+//     </>);
+// });
 
 export function App() {
     return (
