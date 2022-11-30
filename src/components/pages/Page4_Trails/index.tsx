@@ -1,22 +1,10 @@
 import React from 'react';
+import { useAtom, useAtomValue } from 'jotai';
+import { useGooAtom } from '@/store/store';
 import { a, useTrail, Spring, config } from "@react-spring/web";
-import { useAtom } from 'jotai';
 import styled from 'styled-components';
 import { useKey } from 'react-use';
-import { useGooAtom } from '@/store/store';
-import { Bubbles } from './Bowl';
-
-const BLOBPOS = [{
-    width: 120,
-    height: 120,
-}, {
-    width: 250,
-    height: 250,
-}, {
-    width: 150,
-    height: 150,
-},
-];
+import { BubblesAnimation } from './BubblesAnimation';
 
 const configFast = { tension: 1200, friction: 40 };
 const configSlow = { mass: 10, tension: 200, friction: 50 };
@@ -29,9 +17,10 @@ const BlobsParent = styled.div<{ $useGoo: boolean; }>`
 `;
 
 const BlobChild = styled(a.div) <{ $width: number; $height: number; }>`
-    position: absolute;
     --width: ${props => props.$width};
     --height: ${props => props.$height};
+
+    position: absolute;
     width: calc(var(--width) * 1px);
     height: calc(var(--height) * 1px);
     border-radius: 50%;
@@ -52,33 +41,36 @@ const BlobChild = styled(a.div) <{ $width: number; $height: number; }>`
     }
 `;
 
+const BLOB_SIZES = [
+    { width: 120, height: 120, },
+    { width: 250, height: 250, },
+    { width: 150, height: 150, },
+];
+
 function Blobs() {
+    const useGoo = useAtomValue(useGooAtom);
+    const filter = { filter: `${useGoo ? 'url(#goo-filter)' : 'none'}`, boxShadow: '12px 12px 4px 7px #c9f80c' };
+
     const [trail, api] = useTrail(3, () => ({
         xy: [335, 185],
         config: configSlow,
     }));
-    const [useGoo] = useAtom(useGooAtom);
+
     return (
         <div className="absolute inset-0 overflow-hidden border border-gray-900/20">
             <BlobsParent $useGoo={useGoo} onMouseMove={(event) => api.start({ xy: [event.clientX, event.clientY] })}>
                 {trail.map((props, index) => (
                     <BlobChild
-                        key={index}
-                        $width={BLOBPOS[index].width}
-                        $height={BLOBPOS[index].height}
+                        $width={BLOB_SIZES[index].width}
+                        $height={BLOB_SIZES[index].height}
                         style={{ transform: props.xy.to(interpolate), }}
+                        key={index}
                     >
                         {useGoo ? null : <div className="font-bold">{index}</div>}
                     </BlobChild>
                 ))}
-                <div
-                    className="absolute left-[2%] top-[1%] w-96 h-96 rounded-full bg-[transparent]"
-                    style={{ filter: `${useGoo ? 'url(#goo-filter)' : 'none'}`, boxShadow: '12px 12px 4px 7px #c9f80c' }}
-                />
-                <div
-                    className="absolute left-[60%] top-[8rem] w-24 h-24 rounded-full bg-[lightcoral]"
-                    style={{ filter: `${useGoo ? 'url(#goo-filter)' : 'none'}`, boxShadow: '12px 12px 4px 7px #c9f80c' }}
-                />
+                <div className="absolute left-[2%] top-[1%] w-96 h-96 rounded-full bg-[transparent]" style={filter} />
+                <div className="absolute left-[60%] top-[8rem] w-24 h-24 rounded-full bg-[lightcoral]" style={filter} />
             </BlobsParent>
         </div>
     );
@@ -105,7 +97,7 @@ function PageContent() {
                     <div className="my-4 grid place-items-center">
                         <div className="relative text-7xl">
                             <span className="opacity-50">⚗</span>
-                            <Bubbles />
+                            <BubblesAnimation />
                         </div>
                         <label className="mt-2 flex items-center justify-center space-x-2 select-none">
                             <input
