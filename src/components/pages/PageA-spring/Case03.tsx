@@ -25,7 +25,8 @@ export function Case03() {
 
             {/* Controls */}
             <div className="pt-1 pr-1 flex justify-end space-x-4">
-                <ButtonRunTest running={running}
+                <ButtonRunTest
+                    running={running}
                     onClick={() => {
                         //console.log('Case03. containerWidth ---------- click', containerWidth.toFixed(0), elementWidth.toFixed(0));
                         console.log('Case03. containerWidth ---------- click', containerWidth.toFixed(0));

@@ -1,6 +1,6 @@
-import { PageA } from './PageA-spring/PageA';
-import { PageB } from './PageB/PageB';
-import { PageCBlobs } from './PageD-trails/PageBlobs';
+import { PageA } from './PageA-spring';
+import { PageB } from './PageB';
+import { PageCBlobs } from './PageD-trails';
 
 export type RouteType = { path: string; name: string; page: () => JSX.Element; };
 
