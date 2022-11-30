@@ -125,7 +125,7 @@ function PageContent() {
     );
 }
 
-export function PageCBlobs() {
+export function PageD_Blobs() {
     return (
         <div className="page grid grid-rows-[1fr,auto] bg-red-700/20">
             <div className="relative">

@@ -1,9 +1,9 @@
 import React from 'react';
 import { TestTree } from '@/components/tree/TestTree';
-import { Case01 } from '../PageA-spring/Case01';
-import { Case02 } from '../PageA-spring/Case02';
-import { Case03 } from '../PageA-spring/Case03';
-import { Case04 } from '../PageA-spring/Case04';
+import { Case01 } from '../PageA_Spring/Case01';
+import { Case02 } from '../PageA_Spring/Case02';
+import { Case03 } from '../PageA_Spring/Case03';
+import { Case04 } from '../PageA_Spring/Case04';
 
 export function PageB() {
     return (
