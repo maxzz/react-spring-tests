@@ -3,7 +3,7 @@ import { a, useTrail, Spring, config } from "@react-spring/web";
 import { useAtom } from 'jotai';
 import styled from 'styled-components';
 import { useKey } from 'react-use';
-import { useGooAtom } from '../../../store/store';
+import { useGooAtom } from '@/store/store';
 import { Bubbles } from './Bowl';
 
 const BLOBPOS = [{
