@@ -1,5 +1,5 @@
 import { HTMLAttributes } from "react";
-import { classNames } from "../../utils/classnames";
+import { classNames } from "@/utils/classnames";
 
 export function ButtonRunTest({ running, className, ...rest }: { running: boolean; } & HTMLAttributes<HTMLButtonElement>) {
     return (
