@@ -1,3 +1,4 @@
+import path from 'path';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { visualizer } from 'rollup-plugin-visualizer';
@@ -32,6 +33,12 @@ export default defineConfig({
             brotliSize: true,
         }),
     ],
+    resolve: {
+        alias: {
+            '@ui': path.resolve(__dirname, './src/components/UI'),
+            '@': path.resolve(__dirname, './src'),
+        },
+    },
     server: {
         port: 3000,
     }
