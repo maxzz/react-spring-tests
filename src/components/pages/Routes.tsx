@@ -1,13 +1,13 @@
-import { PageA } from './PageA_Spring';
-import { PageB } from './PageB_Springs';
-import { PageD_Blobs } from './PageD_Trails';
+import { Page1_Spring } from './Page1_Spring';
+import { Page2_Springs } from './Page2_Springs';
+import { Page4_Trails } from './Page4_Trails';
 
 export type RouteType = { path: string; name: string; page: () => JSX.Element; };
 
 export const routes: RouteType[] = [
-    { path: '/', name: "Spring", page: PageA, },
-    { path: '/springs', name: "Springs", page: PageB, },
-    { path: '/transitions', name: "Transitions", page: PageB, },
-    { path: '/trails', name: "Trails", page: PageD_Blobs, },
+    { path: '/', name: "Spring", page: Page1_Spring, },
+    { path: '/springs', name: "Springs", page: Page2_Springs, },
+    { path: '/transitions', name: "Transitions", page: Page2_Springs, },
+    { path: '/trails', name: "Trails", page: Page4_Trails, },
 ];
 

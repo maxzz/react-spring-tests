@@ -6,7 +6,7 @@ import { Case03 } from './Case03';
 import { Case04 } from './Case04';
 import { Case0X } from './Case0X';
 
-export function PageA() {
+export function Page1_Spring() {
     return (
         <div className="page grid place-items-center overflow-hidden">
             <div className="m-4 grid grid-cols-[repeat(2,minmax(400px,28rem))] gap-4">

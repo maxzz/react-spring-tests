@@ -1,11 +1,11 @@
 import React from 'react';
 import { TestTree } from '@/components/tree/TestTree';
-import { Case01 } from '../PageA_Spring/Case01';
-import { Case02 } from '../PageA_Spring/Case02';
-import { Case03 } from '../PageA_Spring/Case03';
-import { Case04 } from '../PageA_Spring/Case04';
+import { Case01 } from '../Page1_Spring/Case01';
+import { Case02 } from '../Page1_Spring/Case02';
+import { Case03 } from '../Page1_Spring/Case03';
+import { Case04 } from '../Page1_Spring/Case04';
 
-export function PageB() {
+export function Page2_Springs() {
     return (
         <div className="page grid place-items-center">
             <div className="m-4 max-w-[28rem]">
