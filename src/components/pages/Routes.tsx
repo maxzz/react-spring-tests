@@ -10,3 +10,4 @@ export const routes: RouteType[] = [
     { path: '/transitions', name: "Transitions", page: PageB, },
     { path: '/trails', name: "Trails", page: PageCBlobs, },
 ];
+

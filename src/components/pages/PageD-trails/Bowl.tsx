@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import { rnd } from '../../../utils/numbers';
+import { rnd } from '@/utils/numbers';
 
 const bubblesAnim = keyframes`
    0% {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { a, config, useSpring, useSpringRef } from '@react-spring/web';
 import { useMeasure } from 'react-use';
-import { CaseControls } from '../../UI/CaseControls';
+import { CaseControls } from '@/components/UI/CaseControls';
 
 export function Case02() {
     const [running, setRunning] = React.useState(false);

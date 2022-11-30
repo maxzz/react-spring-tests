@@ -1,7 +1,7 @@
 import React from 'react';
 import { a, config, useSpring } from '@react-spring/web';
 import { useMeasure } from 'react-use';
-import { ButtonRunTest } from '../../UI/ButtonRunTest';
+import { ButtonRunTest } from '@/components/UI/ButtonRunTest';
 
 export function Case04() {
     const [running, setRunning] = React.useState(false);
