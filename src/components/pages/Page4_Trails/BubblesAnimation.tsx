@@ -19,7 +19,7 @@ const bubblesAnim = keyframes`
       scale: 0.2;
    }
    60%{
-      background-color: #fff7;
+      background-color: #fff9;
       transform: translate(-30%, -20%);
       scale: 1;
    }
@@ -37,10 +37,12 @@ const BubbleChild = styled.div`
     animation: ${bubblesAnim} 3s ease-in infinite;
 `;
 
+const totalBubles = 10;
+
 export function BubblesAnimation() {
-    const [total, setTotal] = React.useState(10);
+    const [total, setTotal] = React.useState(totalBubles);
     React.useEffect(() => {
-        const interval = setInterval(() => setTotal(randomInclusive(total - 1, total + 1)), 1000);
+        const interval = setInterval(() => setTotal(randomInclusive(totalBubles / 2, totalBubles)), 5000);
         return () => clearInterval(interval);
     }, []);
     return (
@@ -51,8 +53,8 @@ export function BubblesAnimation() {
                 return (
                     <BubbleChild key={idx}
                         style={{
-                            left: `${randomInclusive(20, 70)}%`,
-                            top: `${randomInclusive(50, 70)}%`,
+                            left: `${randomInclusive(30, 70)}%`,
+                            top: `${randomInclusive(60, 80)}%`,
                             width: `${size}px`,
                             height: `${size}px`,
                             animationDelay: `${-randomInclusive(0, 30) / 10}s`
