@@ -1,13 +1,13 @@
 import React from 'react';
 import { useLocation } from 'react-use';
-import { BrowserRouter as Router, Route, LinkProps, NavLink as NavLinkWState, } from 'react-router-dom';
+import { BrowserRouter as Router, Route, LinkProps, NavLink } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { routes } from './components/pages/Routes';
 import './App.css';
 
-function NavLink(props: LinkProps & React.RefAttributes<HTMLAnchorElement>) {
+function MenuButton(props: LinkProps & React.RefAttributes<HTMLAnchorElement>) {
     return (
-        <NavLinkWState
+        <NavLink
             className={(isActive: boolean) => {
                 return `px-4 py-2 rounded shadow ${isActive ? 'bg-red-300' : 'opacity-75 border-2 border-red-600/10 hover:bg-red-300/60 active:scale-[.97]'}`;
             }}
@@ -21,7 +21,7 @@ function NavMenu() {
     return (
         <nav className="p-4 flex justify-end space-x-3">
             {routes.map((route, idx) => (
-                <NavLink key={idx} to={route.path} children={route.name} />
+                <MenuButton key={idx} to={route.path} children={route.name} />
             ))}
         </nav>
     );
