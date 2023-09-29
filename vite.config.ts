@@ -3,7 +3,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { visualizer } from 'rollup-plugin-visualizer';
 import url from '@rollup/plugin-url';
-import replace from '@rollup/plugin-replace';
+//import replace from '@rollup/plugin-replace';
 
 const buildAt = () => {
     var d = new Date();
@@ -17,7 +17,7 @@ export default defineConfig({
     plugins: [
         react(),
 
-        { ...url({ include: ['**/*.svg'], limit: 15000, }), enforce: 'pre', },
+        { ...url({ include: ['**            /*.svg'], limit: 15000, }), enforce: 'pre', },
 
         // replace({
         //     values: {
