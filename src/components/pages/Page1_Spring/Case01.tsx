@@ -60,7 +60,7 @@ export function Case01() {
     const [displayRef, { width: displayWidth, height: displayHeight }] = useMeasure<HTMLDivElement>();
 
     const display: MappedPoints = React.useMemo(() => {
-        console.log('Case01.MappedPoints memo update', displayWidth, displayHeight);
+        //console.log('Case01.MappedPoints memo update', displayWidth, displayHeight);
 
         return mapValuesToContainerPoints(dots, displayWidth, displayHeight);
     }, [dots, displayWidth, displayHeight]);

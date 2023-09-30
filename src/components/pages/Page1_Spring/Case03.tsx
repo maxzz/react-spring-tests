@@ -11,7 +11,7 @@ export function Case03() {
     //const [elementRef, { width: elementWidth }] = useMeasure<HTMLDivElement>();
     //console.log('Case03. containerWidth', containerWidth.toFixed(0), 'childWidth', elementWidth.toFixed(0));
 
-    console.log('Case03. containerWidth', containerWidth.toFixed(0));
+    //console.log('Case03. containerWidth', containerWidth.toFixed(0));
 
     const bind = useSpring({
         // x: running ? containerWidth - elementWidth - 2 : 0,
@@ -29,7 +29,7 @@ export function Case03() {
                     running={running}
                     onClick={() => {
                         //console.log('Case03. containerWidth ---------- click', containerWidth.toFixed(0), elementWidth.toFixed(0));
-                        console.log('Case03. containerWidth ---------- click', containerWidth.toFixed(0));
+                        //console.log('Case03. containerWidth ---------- click', containerWidth.toFixed(0));
                         setRunning(!running);
                     }}
                 />

@@ -48,7 +48,7 @@ export function Case01snapshot() {
     const [displayRef, { width: displayWidth, height: displayHeight }] = useMeasure<HTMLDivElement>();
 
     const display = React.useMemo(() => {
-        console.log(displayWidth, displayHeight);
+        //console.log(displayWidth, displayHeight);
 
         return mapValuesToContainerPoints(dots, displayWidth, displayHeight);
     }, [dots, displayWidth, displayHeight]);
