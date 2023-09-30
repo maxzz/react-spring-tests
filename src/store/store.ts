@@ -1,7 +1,7 @@
 // Local storage
 
-import { atom, Getter } from "jotai";
-import atomWithCallback from "../hooks/atomsX";
+import { Getter } from "jotai";
+import { atomWithCallback } from "../hooks/atomsX";
 import debounce from "../utils/debounce";
 
 namespace Storage {
@@ -35,4 +35,4 @@ namespace Storage {
     }, 1000);
 }
 
-export const useGooAtom = atomWithCallback(Storage.initialData.useGoo, ({get}) => Storage.save(get));
+export const useGooAtom = atomWithCallback(Storage.initialData.useGoo, ({ get }) => Storage.save(get));
