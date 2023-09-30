@@ -6,7 +6,7 @@
     "dependencies": {
         "@react-spring/web": "9.7.3",
         "@use-gesture/react": "10.3.0",
-        "jotai": "1.10.0",
+        "jotai": "2.4.3",
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "react-router-dom": "6.16.0",
