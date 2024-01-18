@@ -1,7 +1,7 @@
 import { ReactNode, RefObject, createRef } from 'react';
-import { Page1_Spring } from './1-spring';
-import { Page2_Springs } from './2-springs';
-import { Page4_Trails } from './4-trails';
+import { Page1_Spring } from '../1-spring';
+import { Page2_Springs } from '../2-springs';
+import { Page4_Trails } from '../4-trails';
 
 export type RouteType = { path: string; name: string; element: ReactNode; nodeRef: RefObject<HTMLDivElement> };
 
