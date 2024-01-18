@@ -4,6 +4,10 @@ import { routes } from '../all-routes';
 import { TopMenu } from '../0-top-menu';
 import { Page404 } from '../2-404';
 
+function traceState(path: string, state: string): undefined {
+    console.log(`page: "${path}" transition state: %c${state}`, 'background-color: #333333; color: yellow');
+}
+
 function Root() {
     const location = useLocation();
     const currentOutlet = useOutlet();
@@ -28,7 +32,8 @@ function Root() {
                     >
                         {(state) => (
                             <div ref={nodeRef} className="page">
-                                {console.log(`transition state: ${state} page: "${location.pathname}"`)!}
+                                {/* {console.log(`page: "${location.pathname}" transition state: %c${state}`, 'background-color: #333333; color: yellow')!} */}
+                                {traceState(location.pathname, state)}
 
                                 {currentOutlet}
                             </div>
