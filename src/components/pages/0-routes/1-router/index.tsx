@@ -48,6 +48,7 @@ export const router = createBrowserRouter([
     {
         path: '/',
         element: <Root />,
+        errorElement: <div>404</div>,
         children: routes.map((route) => ({
             index: route.path === '/',
             path: route.path,
