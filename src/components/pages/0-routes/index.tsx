@@ -1,38 +1,16 @@
-import { LinkProps, NavLink, useLocation, createBrowserRouter, RouterProvider, useOutlet } from 'react-router-dom';
+import { useLocation, createBrowserRouter, RouterProvider, useOutlet } from 'react-router-dom';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
-import { routes } from './Routes';
+import { routes } from './all-routes';
+import { TopMenu } from './0-top-menu';
 import './transitions-page.css';
 
-function MenuButton(props: LinkProps & React.RefAttributes<HTMLAnchorElement>) {
-    return (
-        <NavLink
-            className={
-                ({ isActive }) => {
-                    return `px-4 py-2 rounded shadow ${isActive ? 'bg-red-300' : 'opacity-75 border-2 border-red-600/10 hover:bg-red-300/60 active:scale-[.97]'}`;
-                }
-            }
-            {...props}
-        />
-    );
-}
-
-function NavMenu() {
-    return (
-        <nav className="p-4 flex justify-end space-x-3">
-            {routes.map((route, idx) => (
-                <MenuButton key={idx} to={route.path} children={route.name} />
-            ))}
-        </nav>
-    );
-}
-
-function RoutesSelector() {
+function Root() {
     const location = useLocation();
     const currentOutlet = useOutlet();
     const { nodeRef } = routes.find((route) => route.path === location.pathname) ?? {};
     return (<>
         <div className="h-screen flex flex-col bg-[salmon] text-red-800">
-            <NavMenu />
+            <TopMenu />
 
             <div className="flex-1 relative">
                 <SwitchTransition mode="out-in">
@@ -70,7 +48,7 @@ function RoutesSelector() {
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <RoutesSelector />,
+        element: <Root />,
         children: routes.map((route) => ({
             index: route.path === '/',
             path: route.path,
