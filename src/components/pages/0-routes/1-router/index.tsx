@@ -2,6 +2,7 @@ import { useLocation, createBrowserRouter, useOutlet } from 'react-router-dom';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { routes } from '../all-routes';
 import { TopMenu } from '../0-top-menu';
+import { Page404 } from '../2-404';
 
 function Root() {
     const location = useLocation();
@@ -48,7 +49,7 @@ export const router = createBrowserRouter([
     {
         path: '/',
         element: <Root />,
-        errorElement: <div>404</div>,
+        errorElement: <Page404 />,
         children: routes.map((route) => ({
             index: route.path === '/',
             path: route.path,
