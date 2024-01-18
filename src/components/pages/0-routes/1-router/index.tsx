@@ -5,7 +5,17 @@ import { TopMenu } from '../0-top-menu';
 import { Page404 } from '../2-404';
 
 function traceState(path: string, state: string): undefined {
-    console.log(`page: "${path}" transition state: %c${state}`, 'background-color: #333333; color: yellow');
+    const color =
+        state === 'exiting'
+            ? 'darkcyan'
+            : state === 'exited'
+                ? 'cyan'
+                : state === 'entering'
+                    ? 'saddlebrown'
+                    : state === 'entered'
+                        ? 'chocolate'
+                        : 'black';
+    console.log(`page: "${path}" %c${state}`, `background-color: #252525; color: ${color}`);
 }
 
 function Root() {
