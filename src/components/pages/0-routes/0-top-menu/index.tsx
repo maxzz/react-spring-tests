@@ -1,5 +1,5 @@
 import { LinkProps, NavLink } from 'react-router-dom';
-import { routes } from '../1-router/all-routes';
+import { routes } from '../1-router/0-all-routes';
 
 function MenuButton(props: LinkProps & React.RefAttributes<HTMLAnchorElement>) {
     return (
