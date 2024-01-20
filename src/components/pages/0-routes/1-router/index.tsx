@@ -1,8 +1,8 @@
 import { useLocation, createBrowserRouter, useOutlet } from 'react-router-dom';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
-import { routes } from '../all-routes';
+import { routes } from './all-routes';
 import { TopMenu } from '../0-top-menu';
-import { Page404 } from '../2-404';
+import { Page404 } from './error-page-404';
 
 function traceState(path: string, state: string): undefined {
     const color =
