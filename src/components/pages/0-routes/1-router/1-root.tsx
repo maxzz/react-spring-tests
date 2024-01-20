@@ -1,5 +1,5 @@
 import { useLocation, useOutlet } from 'react-router-dom';
-import { CSSTransition, SwitchTransition } from 'react-transition-group';
+import { CSSTransition, SwitchTransition, TransitionStatus } from 'react-transition-group';
 import { RouteType } from './0-all-routes';
 import { TopMenu } from '../0-top-menu';
 
@@ -39,7 +39,7 @@ export function Root({ routes }: { routes: RouteType[]; }) {
                         classNames="fade"
                         unmountOnExit
                     >
-                        {(state) => (
+                        {(state: TransitionStatus) => (
                             <div ref={nodeRef} className="page">
                                 {/* {console.log(`page: "${location.pathname}" transition state: %c${state}`, 'background-color: #333333; color: yellow')!} */}
                                 {traceState(location.pathname, state)}

@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { routes } from './0-all-routes';
-import { Page404 } from './error-page-404';
 import { Root } from './1-root';
+import { Page404 } from './error-page-404';
 
 export const router = createBrowserRouter([
     {
